@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>VitaVue — Where Nutrition Meets Intelligence</title>
-  <meta name="description" content="AI-Powered Multimodal Nutrition Intelligence, Evidence-Based Knowledge, and Precision Metabolic Wellness.">
+  <meta name="description" content="VitaVue — AI-Powered Multimodal Nutrition Intelligence, Evidence-Based Knowledge, and Precision Metabolic Wellness.">
   <meta name="theme-color" content="#040817">
 
   <!-- Google Fonts: Plus Jakarta Sans -->
@@ -20,11 +20,11 @@
   <!-- Mobile Top Bar -->
   <header class="mobile-top-bar">
     <div class="mobile-brand">
-      <div class="mobile-brand-icon">🌿</div>
+      <img src="assets/vitavue_logo.jpg" alt="VitaVue Logo" class="mobile-brand-logo-img">
       <div class="mobile-brand-title">VitaVue</div>
     </div>
     <button class="settings-btn" onclick="VitaVue.switchTab('my-nutrition')">
-      ⚙️ Profile
+      ⚙️ Profile & Data
     </button>
   </header>
 
@@ -33,14 +33,14 @@
     <!-- Desktop Navigation Sidebar -->
     <aside class="nav-sidebar">
       <div class="brand-header">
-        <div class="brand-logo-badge">🌿</div>
+        <img src="assets/vitavue_logo.jpg" alt="VitaVue Logo" class="brand-logo-img">
         <div class="brand-text">
           <h1>VitaVue</h1>
-          <span>Nutrition Intelligence</span>
+          <span class="brand-tagline-small">Where Nutrition Meets Intelligence</span>
         </div>
       </div>
 
-      <nav style="display: flex; flex-direction: column; gap: 6px;">
+      <nav class="nav-menu">
         <a class="nav-link active" data-tab="home">
           <span class="icon">🏠</span>
           <span>Home</span>
@@ -72,9 +72,10 @@
       </nav>
 
       <div class="nav-sidebar-footer">
-        <div style="font-size: 11px; color: var(--neutral-400); line-height: 1.4;">
+        <div class="sidebar-attribution">
           <strong>VitaVue v1.0</strong><br>
-          Where Nutrition Meets Intelligence.
+          <em>Where Nutrition Meets Intelligence.</em><br>
+          <span style="color: var(--teal-400); font-size: 10px; display: inline-block; margin-top: 4px;">Lead Developer: Muhammad Ahsan Shahzad</span>
         </div>
       </div>
     </aside>
@@ -82,29 +83,95 @@
     <!-- Main Viewport -->
     <main class="main-viewport">
 
-      <!-- SCREEN: HOME -->
+      <!-- =================================================================== -->
+      <!-- SCREEN 1: HOME                                                      -->
+      <!-- =================================================================== -->
       <section id="screen-home" class="screen active">
+        <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-tag">✨ Multimodal Nutrition AI</div>
-          <h2 class="hero-title">Where Nutrition Meets Intelligence.</h2>
-          <p class="hero-subtitle">Evidence-based nutritional science, real-time image food analysis, and personalized metabolic insights at your fingertips.</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" onclick="VitaVue.switchTab('analyzer')">
-              📸 Analyze Meal Photo
-            </button>
-            <button class="btn btn-secondary" onclick="VitaVue.switchTab('explorer')">
-              🔍 Explore 100+ Foods
-            </button>
+          <div class="hero-content">
+            <div class="hero-badge">✨ Multimodal Nutrition Intelligence</div>
+            <h2 class="hero-title">Where Nutrition Meets Intelligence.</h2>
+            <p class="hero-subtitle">Evidence-based nutritional biochemistry, real-time multimodal meal vision, and personalized metabolic wellness designed for everyday human vitality.</p>
+            
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="VitaVue.switchTab('analyzer')">
+                📸 Analyze Meal Photo
+              </button>
+              <button class="btn btn-secondary" onclick="VitaVue.switchTab('explorer')">
+                🔍 Explore 64 Curated Foods
+              </button>
+            </div>
+          </div>
+          <div class="hero-media">
+            <img src="assets/vitavue_hero.jpg" alt="VitaVue Intelligence Banner" class="hero-banner-img">
+          </div>
+        </div>
+
+        <!-- 7-Stage Core Philosophy -->
+        <div class="philosophy-section">
+          <div class="section-header-compact">
+            <h3 class="section-title">Core Operating Philosophy</h3>
+            <span class="section-badge">Human-Centered</span>
+          </div>
+          <div class="philosophy-flow-grid">
+            <div class="philosophy-step">
+              <span class="step-num">1</span>
+              <span class="step-label">SEE</span>
+              <span class="step-desc">Visual food matrix capture</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="philosophy-step">
+              <span class="step-num">2</span>
+              <span class="step-label">ANALYZE</span>
+              <span class="step-desc">Portion & macro extraction</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="philosophy-step">
+              <span class="step-num">3</span>
+              <span class="step-label">UNDERSTAND</span>
+              <span class="step-desc">Micronutrients & synergy</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="philosophy-step">
+              <span class="step-num">4</span>
+              <span class="step-label">LEARN</span>
+              <span class="step-desc">Evidence & myth busting</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="philosophy-step">
+              <span class="step-num">5</span>
+              <span class="step-label">PLAN</span>
+              <span class="step-desc">Targeted meal structure</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="philosophy-step">
+              <span class="step-num">6</span>
+              <span class="step-label">PRACTICE</span>
+              <span class="step-desc">Mindful culinary habit</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="philosophy-step">
+              <span class="step-num">7</span>
+              <span class="step-label">IMPROVE</span>
+              <span class="step-desc">Continuous metabolic wellness</span>
+            </div>
           </div>
         </div>
 
         <!-- Today's Nutrition Summary Card -->
         <div class="m3-card m3-card-accent">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white);">Today's Macro Balance</h3>
-            <span style="font-size: 12px; color: var(--teal-300); font-weight: 700;">Live Summary</span>
+          <div class="macro-header-row">
+            <div>
+              <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white);">Today's Macro Balance</h3>
+              <p id="home-log-status" style="font-size: 12px; color: var(--neutral-400); margin-top: 2px;">Aggregated across your logged and analyzed meals today.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button id="btn-load-demo-data" class="btn-chip" onclick="VitaVue.toggleDemoDayData()">
+                📊 Load Sample Day
+              </button>
+            </div>
           </div>
-          <p style="font-size: 12px; color: var(--neutral-400); margin-bottom: 12px;">Aggregated across your logged and analyzed meals today.</p>
           
           <div class="macro-grid">
             <div class="macro-box calories">
@@ -131,252 +198,661 @@
         </div>
 
         <!-- Quick Access Navigation Grid -->
-        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin: 24px 0 12px;">Core Intelligence Modules</h3>
+        <h3 class="module-grid-heading">Core Intelligence Modules</h3>
         <div class="quick-action-grid">
           <div class="action-card" onclick="VitaVue.switchTab('analyzer')">
             <div class="action-icon-badge teal">📸</div>
             <h3>Meal Vision Analyzer</h3>
-            <p>Upload any meal photo to identify food components, estimate portion sizes, and calculate macros.</p>
+            <p>Upload or snap any meal photo to identify food components, estimate portion sizes, and calculate macros.</p>
           </div>
 
           <div class="action-card" onclick="VitaVue.switchTab('agent')">
             <div class="action-icon-badge indigo">💬</div>
             <h3>AI Nutrition Agent</h3>
-            <p>Ask science-backed questions on leucine thresholds, micronutrient synergy, or culinary bioavailability.</p>
+            <p>Engage in multi-turn dialogue on leucine thresholds, micronutrient synergy, or culinary bioavailability.</p>
+          </div>
+
+          <div class="action-card" onclick="VitaVue.switchTab('explorer')">
+            <div class="action-icon-badge cyan">🔍</div>
+            <h3>Food Explorer</h3>
+            <p>Browse 64 curated global foods with full macro breakdowns, micronutrient %DV, and culinary notes.</p>
           </div>
 
           <div class="action-card" onclick="VitaVue.switchTab('learn')">
             <div class="action-icon-badge amber">📚</div>
             <h3>Nutrition Hub & Myths</h3>
-            <p>Peer-reviewed nutrition articles across 8 disciplines and 8 debunked popular food myths.</p>
+            <p>Access peer-reviewed articles and deconstruct 8 widespread nutritional myths with clinical facts.</p>
           </div>
 
           <div class="action-card" onclick="VitaVue.switchTab('planner')">
             <div class="action-icon-badge emerald">📋</div>
             <h3>Diet Planner</h3>
-            <p>Generate balanced 3-day nutritional blueprints customized for your metabolic objectives.</p>
+            <p>Generate structured 3-day meal frameworks customized for muscle synthesis, metabolic health, and longevity.</p>
+          </div>
+
+          <div class="action-card" onclick="VitaVue.switchTab('my-nutrition')">
+            <div class="action-icon-badge pink">👤</div>
+            <h3>My Nutrition</h3>
+            <p>Review your personal food log, saved favorite foods, reading bookmarks, and API settings.</p>
           </div>
         </div>
 
-        <!-- Recent Meal Analyses List -->
-        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin-bottom: 12px;">Recent Meal Analyses</h3>
-        <div id="home-recent-analyses"></div>
-
-        <!-- Responsible AI Disclosure -->
-        <div class="disclosure-banner">
-          ⚖️ <strong>Responsible AI Disclosure:</strong> VitaVue is an educational and lifestyle nutritional intelligence system powered by scientific literature. It does not provide medical diagnoses or replace personalized advice from licensed clinical dietitians.
+        <!-- Responsible AI Notice Card -->
+        <div class="m3-card info-notice-card">
+          <div class="notice-icon">🛡️</div>
+          <div class="notice-text">
+            <h4>Responsible AI & Evidence-Based Nutrition Notice</h4>
+            <p>VitaVue provides educational and visual nutrition estimates powered by generative vision models and scientific databases. Visual portion and nutrient estimations are intelligent approximations. VitaVue is not a substitute for clinical medical diagnosis, treatment, or individualized medical nutrition therapy from registered dietitians or licensed physicians.</p>
+          </div>
         </div>
       </section>
 
-      <!-- SCREEN: MEAL ANALYZER -->
+      <!-- =================================================================== -->
+      <!-- SCREEN 2: MULTIMODAL MEAL VISION ANALYZER                           -->
+      <!-- =================================================================== -->
       <section id="screen-analyzer" class="screen">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Multimodal Meal Analyzer</h2>
-          <p style="font-size: 14px; color: var(--neutral-300);">Upload or capture a photo of your meal for instant food identification, portion estimation, and micronutrient breakdown.</p>
+        <div class="screen-header">
+          <h2>Multimodal Meal Vision Analyzer</h2>
+          <p>Identify food items, estimate portion sizes, calculate macronutrients, and receive culinary suggestions.</p>
         </div>
 
-        <input type="file" id="meal-file-input" accept="image/*" style="display: none;">
+        <!-- Image Input Container -->
+        <div id="analyzer-input-card" class="m3-card">
+          <input type="file" id="meal-file-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
+          <input type="file" id="meal-camera-input" accept="image/*" capture="environment" style="display: none;">
 
-        <div id="analyzer-drop-box" class="analyzer-box">
-          <div style="font-size: 40px; margin-bottom: 12px;">📷</div>
-          <h3 style="font-size: 16px; font-weight: 700; color: var(--pure-white); margin-bottom: 6px;">Tap to select or take a meal photo</h3>
-          <p style="font-size: 13px; color: var(--teal-300);">JPEG, PNG, or WEBP images supported</p>
+          <div id="analyzer-drop-box" class="drop-zone">
+            <div class="drop-zone-icon">📸</div>
+            <h4 style="color: var(--pure-white); font-size: 16px; margin-bottom: 4px;">Select or Drop a Meal Image</h4>
+            <p style="font-size: 13px; color: var(--neutral-400); margin-bottom: 16px;">Supports JPEG, PNG, WEBP (Max 10MB)</p>
+            
+            <div class="drop-zone-buttons">
+              <button type="button" class="btn btn-primary" onclick="document.getElementById('meal-file-input').click()">
+                📂 Browse Photos
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('meal-camera-input').click()">
+                📷 Open Camera
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Sample Meal Selectors -->
+          <div class="sample-meals-row">
+            <span class="sample-label">Or test with a sample dish:</span>
+            <div class="sample-chips-container">
+              <button type="button" class="sample-chip" onclick="VitaVue.loadSampleMealPreset('salmon_bowl')">
+                🥗 Salmon Quinoa Bowl
+              </button>
+              <button type="button" class="sample-chip" onclick="VitaVue.loadSampleMealPreset('chicken_biryani')">
+                🍛 Chicken Biryani
+              </button>
+              <button type="button" class="sample-chip" onclick="VitaVue.loadSampleMealPreset('falafel_plate')">
+                🧆 Falafel & Hummus
+              </button>
+              <button type="button" class="sample-chip" onclick="VitaVue.loadSampleMealPreset('oatmeal_berries')">
+                🥣 Oats & Berries
+              </button>
+            </div>
+          </div>
+
+          <!-- Image Preview Area -->
+          <div id="analyzer-preview-container" class="preview-container" style="display: none;">
+            <div class="preview-image-wrapper">
+              <img id="analyzer-preview-img" src="" alt="Selected Meal Preview">
+              <button class="preview-remove-btn" onclick="VitaVue.clearSelectedImage()" title="Remove image">✕</button>
+            </div>
+            <div class="preview-info-row">
+              <span id="analyzer-file-name" class="file-name">meal_photo.jpg</span>
+              <span id="analyzer-file-size" class="file-size">1.2 MB</span>
+            </div>
+            <button id="btn-run-analysis" class="btn btn-primary btn-large" onclick="VitaVue.analyzeMeal()">
+              ⚡ Run AI Nutritional Vision Analysis
+            </button>
+          </div>
         </div>
 
-        <div id="analyzer-preview-container" class="preview-img-container">
-          <img id="analyzer-preview-img" src="" alt="Meal preview">
+        <!-- Loading State -->
+        <div id="analyzer-loading-card" class="m3-card" style="display: none; text-align: center; padding: 48px 24px;">
+          <div class="loading-spinner"></div>
+          <h3 id="analyzer-loading-status" style="color: var(--teal-300); font-size: 18px; margin-top: 20px; font-weight: 700;">
+            Deconstructing Food Matrices...
+          </h3>
+          <p id="analyzer-loading-detail" style="color: var(--neutral-400); font-size: 13px; margin-top: 8px;">
+            Extracting ingredient volumes, protein bioavailability, and micronutrient density.
+          </p>
+          <div class="loading-progress-bar">
+            <div class="loading-progress-fill"></div>
+          </div>
         </div>
 
-        <div style="text-align: center; margin-bottom: 20px;">
-          <button id="run-analysis-btn" class="btn btn-primary" style="display: none; padding: 14px 28px; font-size: 15px;">
-            ⚡ Run Intelligence Analysis
+        <!-- Error State -->
+        <div id="analyzer-error-card" class="m3-card error-card" style="display: none;">
+          <div style="font-size: 28px; margin-bottom: 8px;">⚠️</div>
+          <h3 style="color: #FF5376; font-size: 16px; font-weight: 700;">Analysis Failed</h3>
+          <p id="analyzer-error-message" style="color: var(--neutral-300); font-size: 13px; margin: 8px 0 16px;">
+            An error occurred while communicating with the vision intelligence engine.
+          </p>
+          <button class="btn btn-secondary" onclick="VitaVue.retryAnalysis()">
+            🔄 Try Again
           </button>
         </div>
 
-        <div id="analyzer-status" style="display: none;"></div>
-        <div id="analyzer-result-box" style="display: none;"></div>
-      </section>
+        <!-- Result View Container -->
+        <div id="analyzer-result-container" style="display: none;">
+          <!-- Meal Overview Card -->
+          <div class="m3-card m3-card-accent">
+            <div class="result-top-header">
+              <div>
+                <span class="confidence-badge" id="res-confidence-badge">Confidence: High</span>
+                <h3 id="res-meal-title" class="result-title">Mediterranean Grilled Salmon & Quinoa Bowl</h3>
+                <p id="res-meal-desc" class="result-desc">Fresh pan-seared Atlantic salmon resting over fluffy organic quinoa, steamed broccoli florets, and sliced avocado.</p>
+              </div>
+            </div>
 
-      <!-- SCREEN: FOOD EXPLORER -->
-      <section id="screen-explorer" class="screen">
-        <div style="margin-bottom: 18px;">
-          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Food Explorer</h2>
-          <p style="font-size: 14px; color: var(--neutral-300);">Comprehensive evidence-based database of whole foods, macronutrients, and bioactives.</p>
-        </div>
+            <!-- Total Macronutrients Grid -->
+            <div class="macro-grid" style="margin-top: 16px;">
+              <div class="macro-box calories">
+                <span class="macro-label">Total Calories</span>
+                <span id="res-cals" class="macro-val">580 kcal</span>
+              </div>
+              <div class="macro-box protein">
+                <span class="macro-label">Protein</span>
+                <span id="res-protein" class="macro-val">42g</span>
+              </div>
+              <div class="macro-box carbs">
+                <span class="macro-label">Carbs</span>
+                <span id="res-carbs" class="macro-val">48g</span>
+              </div>
+              <div class="macro-box fats">
+                <span class="macro-label">Fats</span>
+                <span id="res-fats" class="macro-val">22g</span>
+              </div>
+              <div class="macro-box fiber">
+                <span class="macro-label">Fiber</span>
+                <span id="res-fiber" class="macro-val">9.5g</span>
+              </div>
+            </div>
 
-        <!-- Search Bar -->
-        <div class="search-container">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="food-search-input" class="search-input" placeholder="Search foods, nutrients, cultural origins, or tags...">
-        </div>
+            <!-- Energy Ratio Bar -->
+            <div class="energy-ratio-container">
+              <div class="energy-ratio-labels">
+                <span style="color: var(--macro-protein)">Protein <strong id="res-pct-p">29%</strong></span>
+                <span style="color: var(--macro-carbs)">Carbs <strong id="res-pct-c">33%</strong></span>
+                <span style="color: var(--macro-fats)">Fats <strong id="res-pct-f">34%</strong></span>
+                <span style="color: var(--macro-fiber)">Fiber <strong id="res-pct-fib">4%</strong></span>
+              </div>
+              <div class="energy-ratio-bar">
+                <div id="bar-p" class="ratio-segment protein" style="width: 29%;"></div>
+                <div id="bar-c" class="ratio-segment carbs" style="width: 33%;"></div>
+                <div id="bar-f" class="ratio-segment fats" style="width: 34%;"></div>
+                <div id="bar-fib" class="ratio-segment fiber" style="width: 4%;"></div>
+              </div>
+            </div>
+          </div>
 
-        <!-- Category Pills -->
-        <div id="food-category-pills" class="pill-scroller"></div>
+          <!-- Detected Components Breakdown Card -->
+          <div class="m3-card">
+            <h4 class="subcard-title">🔍 Identified Food Components & Portions</h4>
+            <div id="res-components-list" class="components-table-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
 
-        <!-- Food Cards Grid -->
-        <div id="food-cards-grid" class="food-grid"></div>
-      </section>
+          <!-- Key Micronutrients & Bioactives Card -->
+          <div class="m3-card">
+            <h4 class="subcard-title">🧬 Micronutrients & Bioactive Compounds</h4>
+            <div id="res-micros-grid" class="micros-pill-grid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
 
-      <!-- SCREEN: NUTRITION HUB & MYTHS -->
-      <section id="screen-learn" class="screen">
-        <div style="margin-bottom: 18px;">
-          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Nutrition Knowledge Hub</h2>
-          <p style="font-size: 14px; color: var(--neutral-300);">Evidence-based articles across 8 nutritional disciplines and scientific myth-busting.</p>
-        </div>
+          <!-- Nutrition Highlights & Culinary Suggestions -->
+          <div class="two-col-grid">
+            <div class="m3-card">
+              <h4 class="subcard-title" style="color: var(--emerald-400)">✨ Nutritional Highlights</h4>
+              <ul id="res-highlights-list" class="styled-bullet-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
 
-        <!-- Article Categories -->
-        <div id="article-category-pills" class="pill-scroller"></div>
+            <div class="m3-card">
+              <h4 class="subcard-title" style="color: var(--amber-400)">💡 Culinary & Bioavailability Optimizations</h4>
+              <ul id="res-suggestions-list" class="styled-bullet-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+          </div>
 
-        <!-- Articles List -->
-        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin-bottom: 12px;">Evidence-Based Guides</h3>
-        <div id="articles-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;"></div>
+          <!-- Uncertainty & AI Disclaimer -->
+          <div class="m3-card uncertainty-card">
+            <div class="uncertainty-icon">ℹ️</div>
+            <div class="uncertainty-content">
+              <strong>Estimation Confidence & Variance:</strong>
+              <p id="res-uncertainty-text">Estimated nutrition based on visual representation. Actual cooking oils, portion depth, sodium, and hidden ingredients may vary.</p>
+            </div>
+          </div>
 
-        <!-- Myth Busters Section -->
-        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin-bottom: 12px;">🔬 Evidence Myth Busters</h3>
-        <div id="myths-accordion"></div>
-      </section>
-
-      <!-- SCREEN: AI NUTRITIONIST CHAT -->
-      <section id="screen-agent" class="screen">
-        <div style="margin-bottom: 16px;">
-          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">AI Nutrition Agent</h2>
-          <p style="font-size: 13px; color: var(--neutral-300);">Instant evidence-based answers on nutrient synergy, meal timing, and dietary adaptations.</p>
-        </div>
-
-        <div class="chat-container">
-          <div id="chat-thread" class="chat-thread"></div>
-          <div class="chat-input-bar">
-            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about protein timing, iron absorption, or your recent meal...">
-            <button id="chat-send-btn" class="btn btn-primary btn-sm" style="padding: 10px 18px;">
-              Send
+          <!-- Action Buttons -->
+          <div class="result-actions-bar">
+            <button class="btn btn-primary" onclick="VitaVue.saveAnalysisToLog()">
+              📥 Log this Meal to Today's Nutrition
+            </button>
+            <button class="btn btn-secondary" onclick="VitaVue.discussMealWithAgent()">
+              💬 Discuss this Meal with AI Nutritionist
+            </button>
+            <button class="btn btn-outline" onclick="VitaVue.resetAnalyzer()">
+              📸 Analyze Another Meal
             </button>
           </div>
         </div>
       </section>
 
-      <!-- SCREEN: DIET PLANNER -->
-      <section id="screen-planner" class="screen">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Personalized Diet Planner</h2>
-          <p style="font-size: 14px; color: var(--neutral-300);">Generate science-grounded 3-day meal frameworks tailored to your metabolic objectives.</p>
+      <!-- =================================================================== -->
+      <!-- SCREEN 3: INTERNATIONAL FOOD EXPLORER                               -->
+      <!-- =================================================================== -->
+      <section id="screen-explorer" class="screen">
+        <div class="screen-header">
+          <h2>International Food Explorer</h2>
+          <p>Explore 64 scientifically categorized foods with full macronutrient, micronutrient, and glycemic profiles.</p>
         </div>
 
-        <div class="m3-card">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px;">
-            <div>
-              <label style="font-size: 12px; font-weight: 700; color: var(--neutral-400); display: block; margin-bottom: 6px;">PRIMARY GOAL</label>
-              <select id="plan-goal-select" style="width: 100%; background: var(--navy-850); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: var(--radius-sm); color: var(--pure-white); font-size: 13px;">
-                <option value="Balanced Nutrition">Balanced Nutrition & Daily Vitality</option>
-                <option value="Muscle Maintenance">Muscle Protein Synthesis & Strength</option>
-                <option value="Gut Microbiome">Gut Microbiome & Fiber Diversity</option>
-                <option value="Cardiometabolic">Cardiovascular & Blood Glucose Health</option>
-              </select>
-            </div>
-
-            <div>
-              <label style="font-size: 12px; font-weight: 700; color: var(--neutral-400); display: block; margin-bottom: 6px;">DIETARY PATTERN</label>
-              <select id="plan-type-select" style="width: 100%; background: var(--navy-850); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: var(--radius-sm); color: var(--pure-white); font-size: 13px;">
-                <option value="Omnivore / Balanced">Omnivore / Balanced Whole Foods</option>
-                <option value="Mediterranean Pattern">Mediterranean High-Polyphenol Pattern</option>
-                <option value="Vegetarian / Plant-Rich">Vegetarian (Lacto-Ovo / South Asian)</option>
-                <option value="100% Plant-Based (Vegan)">100% Plant-Based (Vegan)</option>
-                <option value="Pescatarian">Pescatarian (Seafood & Plants)</option>
-              </select>
-            </div>
+        <!-- Search & Filter Controls -->
+        <div class="explorer-filter-bar">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="food-search-input" placeholder="Search by name, category, or dietary tag (e.g. Quinoa, Vegan)..." oninput="VitaVue.filterFoods()">
+            <button id="food-search-clear" class="search-clear-btn" onclick="VitaVue.clearFoodSearch()" style="display: none;">✕</button>
           </div>
 
-          <button id="generate-plan-btn" class="btn btn-emerald" style="width: 100%;">
-            ⚡ Generate 3-Day Nutrition Framework
-          </button>
+          <!-- Category Filter Pills -->
+          <div id="food-category-pills" class="category-pills-row">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Secondary Filters Row -->
+          <div class="secondary-filters-row">
+            <div class="filter-group">
+              <label for="filter-dietary-tag">Dietary Pattern:</label>
+              <select id="filter-dietary-tag" onchange="VitaVue.filterFoods()">
+                <option value="all">All Patterns</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Gluten-Free">Gluten-Free</option>
+                <option value="High-Protein">High-Protein</option>
+                <option value="Heart-Healthy">Heart-Healthy</option>
+                <option value="High-Fiber">High-Fiber</option>
+                <option value="Keto-Friendly">Keto-Friendly</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filter-glycemic-index">Glycemic Index:</label>
+              <select id="filter-glycemic-index" onchange="VitaVue.filterFoods()">
+                <option value="all">All GI Levels</option>
+                <option value="Low">Low GI</option>
+                <option value="Medium">Medium GI</option>
+                <option value="High">High GI</option>
+              </select>
+            </div>
+
+            <span id="food-results-count" class="results-count-badge">Showing 64 Foods</span>
+          </div>
         </div>
 
-        <div id="plan-result-container"></div>
+        <!-- Food Grid -->
+        <div id="food-grid-container" class="food-card-grid">
+          <!-- Dynamically populated -->
+        </div>
       </section>
 
-      <!-- SCREEN: MY NUTRITION & PROFILE -->
-      <section id="screen-my-nutrition" class="screen">
-        <div style="margin-bottom: 20px;">
-          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">My Nutrition & Settings</h2>
-          <p style="font-size: 14px; color: var(--neutral-300);">Your saved foods, meal history, and local privacy management.</p>
+      <!-- =================================================================== -->
+      <!-- SCREEN 4: NUTRITION HUB & MYTH BUSTERS                              -->
+      <!-- =================================================================== -->
+      <section id="screen-learn" class="screen">
+        <div class="screen-header">
+          <h2>Evidence-Based Nutrition Hub</h2>
+          <p>Peer-reviewed science, nutritional biochemistry, and clinical deconstructions of widespread diet myths.</p>
         </div>
 
-        <div class="m3-card">
-          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 18px;">
-            <div style="width: 56px; height: 56px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--teal-500), var(--emerald-500)); display: flex; align-items: center; justify-content: center; font-size: 26px;">
-              👤
-            </div>
-            <div>
-              <h3 style="font-size: 18px; font-weight: 800; color: var(--pure-white);">Nutrition Explorer</h3>
-              <p style="font-size: 12px; color: var(--teal-300);">VitaVue Intelligence Client</p>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
-            <div style="background: var(--navy-850); padding: 12px; border-radius: var(--radius-md);">
-              <div id="profile-saved-count" style="font-size: 20px; font-weight: 800; color: var(--teal-300);">0</div>
-              <div style="font-size: 11px; color: var(--neutral-400);">Saved Foods</div>
-            </div>
-            <div style="background: var(--navy-850); padding: 12px; border-radius: var(--radius-md);">
-              <div id="profile-bookmark-count" style="font-size: 20px; font-weight: 800; color: var(--amber-300);">0</div>
-              <div style="font-size: 11px; color: var(--neutral-400);">Bookmarked Guides</div>
-            </div>
-            <div style="background: var(--navy-850); padding: 12px; border-radius: var(--radius-md);">
-              <div id="profile-logs-count" style="font-size: 20px; font-weight: 800; color: var(--emerald-300);">0</div>
-              <div style="font-size: 11px; color: var(--neutral-400);">Meals Analyzed</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="m3-card">
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--pure-white); margin-bottom: 8px;">🔒 Data Privacy & Architecture</h4>
-          <p style="font-size: 13px; color: var(--neutral-300); line-height: 1.5; margin-bottom: 12px;">
-            VitaVue Web stores your nutrition logs, meal analyses, and saved items locally in your browser's private secure storage, mirroring the Android Room database architecture.
-          </p>
-          <button class="btn btn-secondary btn-sm" onclick="localStorage.clear(); location.reload();">
-            Clear Local Data Cache
+        <!-- Hub Sub-navigation Pills -->
+        <div class="hub-tab-bar">
+          <button id="tab-btn-articles" class="hub-tab-btn active" onclick="VitaVue.switchLearnSubtab('articles')">
+            📖 Science Articles (8)
           </button>
+          <button id="tab-btn-myths" class="hub-tab-btn" onclick="VitaVue.switchLearnSubtab('myths')">
+            💥 Myth Busters (8)
+          </button>
+        </div>
+
+        <!-- SUBTAB 1: ARTICLES -->
+        <div id="learn-subtab-articles" class="learn-subtab-content active">
+          <!-- Article Category Pills -->
+          <div id="article-category-pills" class="category-pills-row" style="margin-bottom: 16px;">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div id="articles-grid-container" class="articles-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- SUBTAB 2: MYTH BUSTERS -->
+        <div id="learn-subtab-myths" class="learn-subtab-content">
+          <div class="myth-intro-card">
+            <h3 style="color: var(--pure-white); font-size: 16px; font-weight: 800;">Deconstructing Nutritional Misconceptions</h3>
+            <p style="color: var(--neutral-300); font-size: 13px; margin-top: 4px;">Click any card to reveal the evidence-based scientific fact, physiological mechanism, and practical daily habit.</p>
+          </div>
+
+          <div id="myths-grid-container" class="myths-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- SCREEN 5: AI NUTRITION AGENT                                        -->
+      <!-- =================================================================== -->
+      <section id="screen-agent" class="screen">
+        <div class="screen-header">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2>VitaVue Intelligence Agent</h2>
+              <p>Conversational food biochemistry, leucine thresholds, and evidence-grounded nutritional reasoning.</p>
+            </div>
+            <button class="btn btn-outline btn-chip" onclick="VitaVue.clearChatHistory()">
+              🗑️ Clear Chat
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Context Banner (If meal or food loaded) -->
+        <div id="agent-context-banner" class="context-banner" style="display: none;">
+          <div class="context-info">
+            <span class="context-tag">📌 Active Meal Context:</span>
+            <strong id="agent-context-title">Grilled Salmon Bowl</strong>
+          </div>
+          <button class="btn-text-close" onclick="VitaVue.clearAgentContext()">✕ Remove</button>
+        </div>
+
+        <!-- Agent Main Layout -->
+        <div class="chat-container-card m3-card">
+          <!-- Quick Question Starter Chips -->
+          <div class="prompt-starters-wrapper">
+            <span class="starters-label">Ask about:</span>
+            <div class="prompt-chips-row">
+              <button class="prompt-chip" onclick="VitaVue.sendQuickPrompt('How can I improve the protein quality of this meal?')">
+                🥩 Protein Quality & Amino Acids
+              </button>
+              <button class="prompt-chip" onclick="VitaVue.sendQuickPrompt('Why does vitamin C improve non-heme iron absorption?')">
+                🍋 Vitamin C + Iron Synergy
+              </button>
+              <button class="prompt-chip" onclick="VitaVue.sendQuickPrompt('Explain leucine and muscle protein synthesis.')">
+                ⚡ Leucine Threshold
+              </button>
+              <button class="prompt-chip" onclick="VitaVue.sendQuickPrompt('What is the difference between glycemic index and glycemic load?')">
+                📉 GI vs Glycemic Load
+              </button>
+              <button class="prompt-chip" onclick="VitaVue.sendQuickPrompt('How should I balance carbohydrates, protein, fat and fiber?')">
+                ⚖️ The Balanced Plate Method
+              </button>
+              <button class="prompt-chip" onclick="VitaVue.sendQuickPrompt('How can I improve this meal for a vegetarian diet?')">
+                🌱 Plant-Based Swaps
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat Messages Area -->
+          <div id="chat-messages-container" class="chat-messages-scroll">
+            <!-- Dynamically populated with chat history -->
+          </div>
+
+          <!-- Typing Indicator -->
+          <div id="agent-typing-indicator" class="typing-indicator" style="display: none;">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <span style="margin-left: 8px; font-size: 12px; color: var(--teal-300);">VitaVue Intelligence is reasoning...</span>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="chat-input-bar">
+            <textarea id="chat-input" placeholder="Ask any science-backed question about nutrition, meal synergies, or metabolism..." rows="1"></textarea>
+            <button id="chat-send-btn" class="btn btn-primary send-btn" title="Send message">
+              ➤
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- SCREEN 6: PERSONALIZED DIET PLANNER                                 -->
+      <!-- =================================================================== -->
+      <section id="screen-planner" class="screen">
+        <div class="screen-header">
+          <h2>Personalized Diet Planner</h2>
+          <p>Science-backed 3-day meal frameworks customized for your specific metabolic targets.</p>
+        </div>
+
+        <!-- Goal Selection Cards -->
+        <div class="planner-goals-grid">
+          <div class="goal-card active" data-goal="muscle_synthesis" onclick="VitaVue.selectPlannerGoal('muscle_synthesis')">
+            <div class="goal-icon">💪</div>
+            <h4>Muscle Synthesis</h4>
+            <p>Leucine-optimized protein distribution for recovery & lean tissue.</p>
+          </div>
+
+          <div class="goal-card" data-goal="metabolic_health" onclick="VitaVue.selectPlannerGoal('metabolic_health')">
+            <div class="goal-icon">📉</div>
+            <h4>Glucose Stability</h4>
+            <p>Low-GI complex carbs, polyphenols, and healthy lipids.</p>
+          </div>
+
+          <div class="goal-card" data-goal="plant_vitality" onclick="VitaVue.selectPlannerGoal('plant_vitality')">
+            <div class="goal-icon">🌿</div>
+            <h4>Plant Diversity</h4>
+            <p>30+ plant species weekly optimizing microbiome SCFAs.</p>
+          </div>
+
+          <div class="goal-card" data-goal="mediterranean_longevity" onclick="VitaVue.selectPlannerGoal('mediterranean_longevity')">
+            <div class="goal-icon">🫒</div>
+            <h4>Mediterranean Longevity</h4>
+            <p>EVOO, wild fish, legumes, and vascular endothelial protection.</p>
+          </div>
+        </div>
+
+        <!-- Daily Target Blueprint Card -->
+        <div class="m3-card m3-card-accent" style="margin-top: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div>
+              <h3 id="plan-title" style="font-size: 16px; font-weight: 800; color: var(--pure-white);">Muscle Synthesis & Athletic Recovery</h3>
+              <p id="plan-tagline" style="font-size: 12px; color: var(--neutral-400);">High-protein distribution hitting the leucine threshold across all meals.</p>
+            </div>
+            <span class="confidence-badge" style="background: rgba(0, 194, 203, 0.15); color: var(--teal-300);">3-Day Framework</span>
+          </div>
+
+          <div class="macro-grid">
+            <div class="macro-box calories">
+              <span class="macro-label">Daily Calories</span>
+              <span id="plan-cals" class="macro-val">2,350 kcal</span>
+            </div>
+            <div class="macro-box protein">
+              <span class="macro-label">Target Protein</span>
+              <span id="plan-protein" class="macro-val">165g</span>
+            </div>
+            <div class="macro-box carbs">
+              <span class="macro-label">Target Carbs</span>
+              <span id="plan-carbs" class="macro-val">250g</span>
+            </div>
+            <div class="macro-box fats">
+              <span class="macro-label">Target Fats</span>
+              <span id="plan-fats" class="macro-val">75g</span>
+            </div>
+            <div class="macro-box fiber">
+              <span class="macro-label">Target Fiber</span>
+              <span id="plan-fiber" class="macro-val">38g</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day Selector Tabs -->
+        <div class="day-selector-row">
+          <button class="day-btn active" data-day="1" onclick="VitaVue.selectPlannerDay(1)">Day 1</button>
+          <button class="day-btn" data-day="2" onclick="VitaVue.selectPlannerDay(2)">Day 2</button>
+          <button class="day-btn" data-day="3" onclick="VitaVue.selectPlannerDay(3)">Day 3</button>
+        </div>
+
+        <!-- Meals List for Selected Day -->
+        <div id="planner-meals-list" class="planner-meals-container">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Send to AI Agent for Customization -->
+        <div class="planner-footer-bar">
+          <button class="btn btn-secondary" onclick="VitaVue.sendPlanToAgent()">
+            💬 Ask AI Nutritionist to Customize this Meal Plan
+          </button>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- SCREEN 7: MY NUTRITION & PROFILE                                    -->
+      <!-- =================================================================== -->
+      <section id="screen-my-nutrition" class="screen">
+        <div class="screen-header">
+          <h2>My Nutrition & Platform Settings</h2>
+          <p>Personal food log, saved items, reading bookmarks, and secure intelligence settings.</p>
+        </div>
+
+        <!-- User Profile Card -->
+        <div class="m3-card m3-card-accent">
+          <div class="profile-header-row">
+            <div class="profile-avatar">
+              <img src="assets/vitavue_logo.jpg" alt="User Profile" class="profile-avatar-img">
+            </div>
+            <div class="profile-meta">
+              <h3 id="user-display-name">Nutrition Explorer</h3>
+              <p id="user-display-goal" style="color: var(--teal-300); font-size: 13px; font-weight: 600;">Balanced Nutrition & Energy</p>
+              <div class="profile-stats-row">
+                <span><strong id="stat-logged-count">0</strong> Logged Meals</span> • 
+                <span><strong id="stat-saved-foods">0</strong> Saved Foods</span> • 
+                <span><strong id="stat-bookmarked-articles">0</strong> Bookmarks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Logged Meals -->
+        <div class="m3-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h4 class="subcard-title">📅 Today's Meal Log</h4>
+            <button class="btn-chip" onclick="VitaVue.clearLoggedMeals()">Clear Log</button>
+          </div>
+          <div id="user-meals-log-list" class="logged-meals-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Saved Foods & Articles Grid -->
+        <div class="two-col-grid">
+          <!-- Saved Favorite Foods -->
+          <div class="m3-card">
+            <h4 class="subcard-title">⭐ Saved Favorite Foods</h4>
+            <div id="user-saved-foods-list" class="saved-items-compact-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Bookmarked Articles -->
+          <div class="m3-card">
+            <h4 class="subcard-title">🔖 Bookmarked Science Guides</h4>
+            <div id="user-bookmarks-list" class="saved-items-compact-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Intelligence Engine Settings Card -->
+        <div class="m3-card">
+          <h4 class="subcard-title">⚙️ Intelligence Engine & Security</h4>
+          <p style="font-size: 13px; color: var(--neutral-300); margin-bottom: 14px;">
+            VitaVue uses a secure, server-safe architecture. API keys are never exposed in frontend code or client bundles. You can use the built-in offline intelligence engine or optionally connect a personal Gemini API Key stored strictly in your browser session.
+          </p>
+
+          <div class="api-key-input-row">
+            <input type="password" id="user-gemini-key" placeholder="Enter optional Gemini API Key (AIzaSy...)" class="key-input">
+            <button class="btn btn-secondary" onclick="VitaVue.saveCustomApiKey()">Save Key</button>
+          </div>
+          <p id="api-key-status" style="font-size: 11px; color: var(--teal-400); margin-top: 6px;">
+            Active Engine: Built-in High-Fidelity Scientific Intelligence Engine (Offline & Private)
+          </p>
+        </div>
+
+        <!-- Platform & Developer Attribution Card -->
+        <div class="m3-card attribution-card">
+          <div class="brand-badge-row">
+            <img src="assets/vitavue_logo.jpg" alt="VitaVue Logo" class="attribution-logo-img">
+            <div>
+              <h3 style="color: var(--pure-white); font-size: 16px; font-weight: 800;">VitaVue Platform</h3>
+              <p style="color: var(--teal-300); font-size: 12px; font-weight: 700;">Where Nutrition Meets Intelligence</p>
+            </div>
+          </div>
+          <p style="font-size: 13px; color: var(--neutral-300); margin: 12px 0;">
+            Independent multimodal food intelligence platform combining visual portion analysis, evidence-based biochemistry, and personalized dietary frameworks.
+          </p>
+          <div style="font-size: 12px; color: var(--neutral-400); line-height: 1.6;">
+            <strong>Lead Developer:</strong> Muhammad Ahsan Shahzad<br>
+            <strong>Version:</strong> 1.0 Production Web Release<br>
+            <strong>Core Philosophy:</strong> SEE → ANALYZE → UNDERSTAND → LEARN → PLAN → PRACTICE → IMPROVE
+          </div>
         </div>
       </section>
 
     </main>
 
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+      <a class="bottom-nav-item active" data-tab="home">
+        <span class="icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a class="bottom-nav-item" data-tab="analyzer">
+        <span class="icon">📸</span>
+        <span>Analyze</span>
+      </a>
+      <a class="bottom-nav-item" data-tab="explorer">
+        <span class="icon">🔍</span>
+        <span>Foods</span>
+      </a>
+      <a class="bottom-nav-item" data-tab="agent">
+        <span class="icon">💬</span>
+        <span>AI Agent</span>
+      </a>
+      <a class="bottom-nav-item" data-tab="learn">
+        <span class="icon">📚</span>
+        <span>Hub</span>
+      </a>
+    </nav>
+
   </div>
 
-  <!-- Mobile Bottom Navigation Bar -->
-  <nav class="bottom-nav">
-    <a class="bottom-nav-item active" data-tab="home">
-      <div class="nav-icon-container">🏠</div>
-      <span>Home</span>
-    </a>
-    <a class="bottom-nav-item" data-tab="analyzer">
-      <div class="nav-icon-container">📸</div>
-      <span>Analyzer</span>
-    </a>
-    <a class="bottom-nav-item" data-tab="explorer">
-      <div class="nav-icon-container">🔍</div>
-      <span>Foods</span>
-    </a>
-    <a class="bottom-nav-item" data-tab="learn">
-      <div class="nav-icon-container">📚</div>
-      <span>Learn</span>
-    </a>
-    <a class="bottom-nav-item" data-tab="agent">
-      <div class="nav-icon-container">💬</div>
-      <span>AI Agent</span>
-    </a>
-  </nav>
+  <!-- ===================================================================== -->
+  <!-- GLOBAL MODALS                                                         -->
+  <!-- ===================================================================== -->
 
-  <!-- Global Modal Sheet -->
-  <div id="global-modal-backdrop" class="modal-backdrop">
-    <div class="modal-content">
-      <button id="modal-close-btn" class="modal-close-btn">✕</button>
-      <div id="modal-body-container"></div>
+  <!-- Modal Backdrop -->
+  <div id="global-modal-backdrop" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <button id="modal-close-btn" class="modal-close-button">✕</button>
+      <div id="modal-content-container">
+        <!-- Dynamically populated with Food Details or Article Reader -->
+      </div>
     </div>
   </div>
 
-  <!-- Application Logic & Data -->
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
   <script src="data.js"></script>
   <script src="app.js"></script>
-
 </body>
 </html>

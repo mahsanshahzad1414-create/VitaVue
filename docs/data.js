@@ -1,5 +1,7 @@
+// ==========================================================================
 // VitaVue International Nutrition & Evidence-Based Knowledge Base
-// Replicated with exact fidelity from the Android Kotlin DataSource
+// Replicated with exact fidelity from the Android Kotlin DataSource (64 Foods)
+// ==========================================================================
 
 const FOOD_CATEGORIES = [
   { id: "all", displayName: "All Foods", icon: "🍱" },
@@ -16,758 +18,2480 @@ const FOOD_CATEGORIES = [
 ];
 
 const ALL_FOODS = [
-  // --- FRUITS ---
   {
-    id: "fruit_apple", name: "Apple", category: "Fruits", servingSize: "1 medium (182g)",
-    calories: 95, proteinGrams: 0.5, carbsGrams: 25.0, fatGrams: 0.3, fiberGrams: 4.4,
-    micronutrients: [
-      { name: "Vitamin C", amount: "8.4 mg", dailyValuePercent: 9, benefit: "Antioxidant & immunity" },
-      { name: "Potassium", amount: "195 mg", dailyValuePercent: 4, benefit: "Electrolyte balance" },
-      { name: "Quercetin", amount: "4.4 mg", dailyValuePercent: null, benefit: "Flavonoid antioxidant" }
+    "id": "fruit_apple",
+    "name": "Apple",
+    "category": "Fruits",
+    "servingSize": "1 medium (182g)",
+    "calories": 95,
+    "proteinGrams": 0.5,
+    "carbsGrams": 25,
+    "fatGrams": 0.3,
+    "fiberGrams": 4.4,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "8.4 mg",
+        "dailyValuePercent": 9,
+        "benefit": "Antioxidant & immunity"
+      },
+      {
+        "name": "Potassium",
+        "amount": "195 mg",
+        "dailyValuePercent": 4,
+        "benefit": "Electrolyte & heart health"
+      },
+      {
+        "name": "Quercetin",
+        "amount": "4.4 mg",
+        "dailyValuePercent": null,
+        "benefit": "Flavonoid antioxidant"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Fat", "High-Fiber"],
-    description: "Crisp pome fruit rich in soluble pectin fiber supporting gut microbiome diversity and steady postprandial glucose.",
-    culinaryNotes: "Best eaten raw with peel intact to preserve insoluble cellulose and bioactive polyphenols.",
-    culturalOrigin: "Central Asia / Global", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Fat",
+      "High-Fiber"
+    ],
+    "description": "Crisp, sweet pome fruit rich in soluble pectin fiber that supports gut microbiome diversity and steady blood glucose.",
+    "culinaryNotes": "Best eaten raw with peel intact to preserve insoluble fiber and polyphenol concentration.",
+    "culturalOrigin": "Central Asia / Global",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_banana", name: "Banana", category: "Fruits", servingSize: "1 medium (118g)",
-    calories: 105, proteinGrams: 1.3, carbsGrams: 27.0, fatGrams: 0.4, fiberGrams: 3.1,
-    micronutrients: [
-      { name: "Potassium", amount: "422 mg", dailyValuePercent: 9, benefit: "Neuromuscular signaling" },
-      { name: "Vitamin B6", amount: "0.4 mg", dailyValuePercent: 25, benefit: "Neurotransmitter synthesis" },
-      { name: "Vitamin C", amount: "10.3 mg", dailyValuePercent: 11, benefit: "Cellular defense" }
+    "id": "fruit_banana",
+    "name": "Banana",
+    "category": "Fruits",
+    "servingSize": "1 medium (118g)",
+    "calories": 105,
+    "proteinGrams": 1.3,
+    "carbsGrams": 27,
+    "fatGrams": 0.4,
+    "fiberGrams": 3.1,
+    "micronutrients": [
+      {
+        "name": "Potassium",
+        "amount": "422 mg",
+        "dailyValuePercent": 9,
+        "benefit": "Supports neuromuscular signaling"
+      },
+      {
+        "name": "Vitamin B6",
+        "amount": "0.4 mg",
+        "dailyValuePercent": 25,
+        "benefit": "Neurotransmitter synthesis"
+      },
+      {
+        "name": "Vitamin C",
+        "amount": "10.3 mg",
+        "dailyValuePercent": 11,
+        "benefit": "Cellular defense"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Fat", "Energy-Dense"],
-    description: "Natural energy source rich in potassium and prebiotic resistant starch (especially when slightly green).",
-    culinaryNotes: "Convenient pre-workout or breakfast carb fuel; blends smoothly in smoothies and oats.",
-    culturalOrigin: "Southeast Asia / Tropical", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Fat"
+    ],
+    "description": "Natural energy source rich in potassium and prebiotic resistant starch (especially when slightly green).",
+    "culinaryNotes": "Convenient pre-workout or breakfast carb source.",
+    "culturalOrigin": "Southeast Asia / Tropical",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "fruit_orange", name: "Orange", category: "Fruits", servingSize: "1 medium (131g)",
-    calories: 62, proteinGrams: 1.2, carbsGrams: 15.4, fatGrams: 0.2, fiberGrams: 3.1,
-    micronutrients: [
-      { name: "Vitamin C", amount: "69.7 mg", dailyValuePercent: 77, benefit: "Immune defense & collagen" },
-      { name: "Folate (B9)", amount: "40 mcg", dailyValuePercent: 10, benefit: "Cell division" },
-      { name: "Hesperidin", amount: "24 mg", dailyValuePercent: null, benefit: "Cardiovascular flavonoid" }
+    "id": "fruit_orange",
+    "name": "Orange",
+    "category": "Fruits",
+    "servingSize": "1 medium (131g)",
+    "calories": 62,
+    "proteinGrams": 1.2,
+    "carbsGrams": 15.4,
+    "fatGrams": 0.2,
+    "fiberGrams": 3.1,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "69.7 mg",
+        "dailyValuePercent": 77,
+        "benefit": "Immune defense & collagen"
+      },
+      {
+        "name": "Hesperidin",
+        "amount": "24 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cardiovascular flavonoid"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Fat", "High-Vitamin-C"],
-    description: "Citrus staple renowned for ascorbic acid (vitamin C) and bioavailable hesperidin flavonoids.",
-    culinaryNotes: "Eating whole slices provides dietary fiber that moderates natural fructose absorption.",
-    culturalOrigin: "Southern China / Mediterranean", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Fat",
+      "High-Vitamin-C"
+    ],
+    "description": "Citrus staple renowned for high ascorbic acid (vitamin C) and bioavailable hesperidin flavonoids.",
+    "culinaryNotes": "Eating whole slices provides dietary fiber that moderates natural fructose absorption.",
+    "culturalOrigin": "Southern China / Mediterranean",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_mango", name: "Mango", category: "Fruits", servingSize: "1 cup sliced (165g)",
-    calories: 99, proteinGrams: 1.4, carbsGrams: 24.7, fatGrams: 0.6, fiberGrams: 2.6,
-    micronutrients: [
-      { name: "Vitamin C", amount: "60 mg", dailyValuePercent: 67, benefit: "Antioxidant protection" },
-      { name: "Vitamin A", amount: "89 mcg", dailyValuePercent: 10, benefit: "Eye & skin epithelial health" },
-      { name: "Mangiferin", amount: "3.2 mg", dailyValuePercent: null, benefit: "Bioactive polyphenol" }
+    "id": "fruit_mango",
+    "name": "Mango",
+    "category": "Fruits",
+    "servingSize": "1 cup sliced (165g)",
+    "calories": 99,
+    "proteinGrams": 1.4,
+    "carbsGrams": 24.7,
+    "fatGrams": 0.6,
+    "fiberGrams": 2.6,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "60 mg",
+        "dailyValuePercent": 67,
+        "benefit": "Antioxidant protection"
+      },
+      {
+        "name": "Vitamin A",
+        "amount": "89 mcg",
+        "dailyValuePercent": 10,
+        "benefit": "Eye & skin epithelial health"
+      },
+      {
+        "name": "Mangiferin",
+        "amount": "3.2 mg",
+        "dailyValuePercent": null,
+        "benefit": "Bioactive polyphenol"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Tropical"],
-    description: "Aromatic stone fruit bursting with beta-carotene, vitamin C, and unique digestive amylase enzymes.",
-    culinaryNotes: "Beloved across South Asia, Southeast Asia, and Latin America. Excellent in salsas and curries.",
-    culturalOrigin: "South Asia", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Tropical"
+    ],
+    "description": "Aromatic stone fruit bursting with beta-carotene, vitamin C, and unique digestive enzymes (amylases).",
+    "culinaryNotes": "Beloved across South Asia, Southeast Asia, and Latin America. Excellent in salsas and salads.",
+    "culturalOrigin": "South Asia",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "fruit_avocado", name: "Avocado", category: "Fruits", servingSize: "1/2 medium (100g)",
-    calories: 160, proteinGrams: 2.0, carbsGrams: 8.5, fatGrams: 14.7, fiberGrams: 6.7,
-    micronutrients: [
-      { name: "Potassium", amount: "485 mg", dailyValuePercent: 10, benefit: "Blood pressure regulation" },
-      { name: "Folate", amount: "81 mcg", dailyValuePercent: 20, benefit: "DNA methylation" },
-      { name: "Vitamin E", amount: "2.1 mg", dailyValuePercent: 14, benefit: "Lipid membrane antioxidant" }
+    "id": "fruit_avocado",
+    "name": "Avocado",
+    "category": "Fruits",
+    "servingSize": "1/2 medium (100g)",
+    "calories": 160,
+    "proteinGrams": 2,
+    "carbsGrams": 8.5,
+    "fatGrams": 14.7,
+    "fiberGrams": 6.7,
+    "micronutrients": [
+      {
+        "name": "Potassium",
+        "amount": "485 mg",
+        "dailyValuePercent": 10,
+        "benefit": "Electrolyte balance"
+      },
+      {
+        "name": "Vitamin E",
+        "amount": "2.1 mg",
+        "dailyValuePercent": 14,
+        "benefit": "Lipophilic antioxidant"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Keto-Friendly", "High-Fiber", "Heart-Healthy"],
-    description: "Botanical berry dense in monounsaturated oleic acid, lutein, and soluble/insoluble fiber.",
-    culinaryNotes: "Enhances absorption of fat-soluble carotenoids (lycopene, beta-carotene) when added to salads.",
-    culturalOrigin: "Mesoamerica", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Heart-Healthy",
+      "High-Fiber"
+    ],
+    "description": "Nutrient-dense unique fruit packed with monounsaturated oleic acid, lutein, and prebiotic fiber.",
+    "culinaryNotes": "Enhances carotenoid absorption from accompanying vegetables when added to meals.",
+    "culturalOrigin": "Mesoamerica",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_blueberries", name: "Blueberries", category: "Fruits", servingSize: "1 cup (148g)",
-    calories: 84, proteinGrams: 1.1, carbsGrams: 21.4, fatGrams: 0.5, fiberGrams: 3.6,
-    micronutrients: [
-      { name: "Anthocyanins", amount: "163 mg", dailyValuePercent: null, benefit: "Neuroprotective antioxidant" },
-      { name: "Vitamin K1", amount: "28.6 mcg", dailyValuePercent: 24, benefit: "Coagulation & bone health" },
-      { name: "Manganese", amount: "0.5 mg", dailyValuePercent: 22, benefit: "Enzymatic SOD cofactor" }
+    "id": "fruit_blueberry",
+    "name": "Blueberry",
+    "category": "Fruits",
+    "servingSize": "1 cup (148g)",
+    "calories": 84,
+    "proteinGrams": 1.1,
+    "carbsGrams": 21.4,
+    "fatGrams": 0.5,
+    "fiberGrams": 3.6,
+    "micronutrients": [
+      {
+        "name": "Anthocyanins",
+        "amount": "163 mg",
+        "dailyValuePercent": null,
+        "benefit": "Potent neurological antioxidant"
+      },
+      {
+        "name": "Vitamin K1",
+        "amount": "28.6 mcg",
+        "dailyValuePercent": 24,
+        "benefit": "Bone & coagulation"
+      },
+      {
+        "name": "Manganese",
+        "amount": "0.5 mg",
+        "dailyValuePercent": 22,
+        "benefit": "Enzymatic cofactor"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Glycemic", "Antioxidant-Rich"],
-    description: "Wild or cultivated berry rich in anthocyanins shown in clinical trials to benefit vascular and cognitive functions.",
-    culinaryNotes: "Add to morning porridge or enjoy fresh to maximize heat-sensitive polyphenol bioavailability.",
-    culturalOrigin: "North America / Global", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-GI",
+      "High-Antioxidant"
+    ],
+    "description": "Superfood berry with top-tier ORAC antioxidant capacity from anthocyanin pigments.",
+    "culinaryNotes": "Retains beneficial polyphenol profiles whether fresh or flash-frozen.",
+    "culturalOrigin": "North America",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_strawberries", name: "Strawberries", category: "Fruits", servingSize: "1 cup (152g)",
-    calories: 49, proteinGrams: 1.0, carbsGrams: 11.7, fatGrams: 0.5, fiberGrams: 3.0,
-    micronutrients: [
-      { name: "Vitamin C", amount: "89.4 mg", dailyValuePercent: 99, benefit: "Collagen synthesis" },
-      { name: "Ellagic Acid", amount: "1.8 mg", dailyValuePercent: null, benefit: "Polyphenol protection" },
-      { name: "Folate", amount: "36.5 mcg", dailyValuePercent: 9, benefit: "Cell regeneration" }
+    "id": "fruit_strawberry",
+    "name": "Strawberry",
+    "category": "Fruits",
+    "servingSize": "1 cup sliced (166g)",
+    "calories": 53,
+    "proteinGrams": 1.1,
+    "carbsGrams": 12.7,
+    "fatGrams": 0.5,
+    "fiberGrams": 3.3,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "97.6 mg",
+        "dailyValuePercent": 108,
+        "benefit": "Exceptional antioxidant"
+      },
+      {
+        "name": "Manganese",
+        "amount": "0.6 mg",
+        "dailyValuePercent": 26,
+        "benefit": "Metabolism"
+      },
+      {
+        "name": "Ellagic Acid",
+        "amount": "2.5 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cellular protection"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Calorie", "Low-Glycemic"],
-    description: "Low-calorie berry providing complete daily vitamin C requirement in a single cup.",
-    culinaryNotes: "Pair with dark cacao or Greek yogurt for improved satiety.",
-    culturalOrigin: "Global / Europe", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Calorie",
+      "Low-Sugar"
+    ],
+    "description": "Hydrating berry providing over 100% daily vitamin C in one cup with minimal glycemic load.",
+    "culinaryNotes": "Pairs naturally with Greek yogurt or chia seeds for balanced macro distribution.",
+    "culturalOrigin": "Europe / Americas",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_pomegranate", name: "Pomegranate Arils", category: "Fruits", servingSize: "1/2 cup (87g)",
-    calories: 72, proteinGrams: 1.5, carbsGrams: 16.3, fatGrams: 1.0, fiberGrams: 3.5,
-    micronutrients: [
-      { name: "Punicalagins", amount: "120 mg", dailyValuePercent: null, benefit: "Potent anti-inflammatory tannin" },
-      { name: "Vitamin K", amount: "14.3 mcg", dailyValuePercent: 12, benefit: "Bone matrix mineralization" },
-      { name: "Potassium", amount: "205 mg", dailyValuePercent: 4, benefit: "Vascular flexibility" }
+    "id": "fruit_watermelon",
+    "name": "Watermelon",
+    "category": "Fruits",
+    "servingSize": "1 wedge (286g)",
+    "calories": 86,
+    "proteinGrams": 1.7,
+    "carbsGrams": 21.6,
+    "fatGrams": 0.4,
+    "fiberGrams": 1.1,
+    "micronutrients": [
+      {
+        "name": "Lycopene",
+        "amount": "12.7 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cardioprotective carotenoid"
+      },
+      {
+        "name": "L-Citrulline",
+        "amount": "1.1 g",
+        "dailyValuePercent": null,
+        "benefit": "Nitric oxide precursor"
+      },
+      {
+        "name": "Vitamin A",
+        "amount": "80 mcg",
+        "dailyValuePercent": 9,
+        "benefit": "Vision & immunity"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Heart-Healthy"],
-    description: "Ruby jewel fruit rich in punicalagins and punicic acid that support nitric oxide endothelial dilation.",
-    culinaryNotes: "Garnish for Middle Eastern pilafs, grain bowls, and crisp salads.",
-    culturalOrigin: "Persia / Middle East", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Hydrating"
+    ],
+    "description": "Over 92% water content with high natural L-citrulline and lycopene for cellular hydration.",
+    "culinaryNotes": "Excellent post-exercise refreshment.",
+    "culturalOrigin": "Northeast Africa",
+    "glycemicIndex": "High"
   },
   {
-    id: "fruit_papaya", name: "Papaya", category: "Fruits", servingSize: "1 cup cubed (145g)",
-    calories: 62, proteinGrams: 0.7, carbsGrams: 15.7, fatGrams: 0.4, fiberGrams: 2.5,
-    micronutrients: [
-      { name: "Vitamin C", amount: "88.3 mg", dailyValuePercent: 98, benefit: "Immune booster" },
-      { name: "Papain Enzyme", amount: "Active", dailyValuePercent: null, benefit: "Protein digestion aid" },
-      { name: "Lycopene", amount: "2.6 mg", dailyValuePercent: null, benefit: "Carotenoid defense" }
+    "id": "fruit_pomegranate",
+    "name": "Pomegranate Arils",
+    "category": "Fruits",
+    "servingSize": "1/2 cup (87g)",
+    "calories": 72,
+    "proteinGrams": 1.5,
+    "carbsGrams": 16.3,
+    "fatGrams": 1,
+    "fiberGrams": 3.5,
+    "micronutrients": [
+      {
+        "name": "Punicalagins",
+        "amount": "120 mg",
+        "dailyValuePercent": null,
+        "benefit": "Potent vascular antioxidant"
+      },
+      {
+        "name": "Vitamin K",
+        "amount": "14.3 mcg",
+        "dailyValuePercent": 12,
+        "benefit": "Vascular integrity"
+      },
+      {
+        "name": "Folate",
+        "amount": "33 mcg",
+        "dailyValuePercent": 8,
+        "benefit": "DNA maintenance"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Digestive-Aid"],
-    description: "Tropical digestive fruit providing papain enzymes that gently assist protein breakdown in the stomach.",
-    culinaryNotes: "Squeeze fresh lime juice over ripe wedges for traditional Latin/South Asian preparation.",
-    culturalOrigin: "Central America / Tropical", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Heart-Healthy"
+    ],
+    "description": "Jewel-toned seed arils containing punicalagins that support arterial elasticity and gut microbiome.",
+    "culinaryNotes": "Traditional Middle Eastern & South Asian garnish for savory rice, salads, and raita.",
+    "culturalOrigin": "Persia / Mediterranean",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_guava", name: "Guava", category: "Fruits", servingSize: "1 fruit (55g)",
-    calories: 37, proteinGrams: 1.4, carbsGrams: 7.9, fatGrams: 0.5, fiberGrams: 3.0,
-    micronutrients: [
-      { name: "Vitamin C", amount: "125.6 mg", dailyValuePercent: 140, benefit: "Mega-dosed antioxidant" },
-      { name: "Lycopene", amount: "2.9 mg", dailyValuePercent: null, benefit: "Prostate & skin health" },
-      { name: "Potassium", amount: "229 mg", dailyValuePercent: 5, benefit: "Cell hydration" }
+    "id": "fruit_guava",
+    "name": "Guava",
+    "category": "Fruits",
+    "servingSize": "1 fruit (55g)",
+    "calories": 37,
+    "proteinGrams": 1.4,
+    "carbsGrams": 7.9,
+    "fatGrams": 0.5,
+    "fiberGrams": 3,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "126 mg",
+        "dailyValuePercent": 140,
+        "benefit": "Extreme vitamin C density"
+      },
+      {
+        "name": "Lycopene",
+        "amount": "2.9 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cellular defense"
+      },
+      {
+        "name": "Potassium",
+        "amount": "229 mg",
+        "dailyValuePercent": 5,
+        "benefit": "Blood pressure support"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "High-Fiber", "Superfood"],
-    description: "Contains over 4x the vitamin C of an orange with high insoluble seed fiber and pink lycopene.",
-    culinaryNotes: "Enjoy sliced with a pinch of pink rock salt and chili powder in South Asian and Caribbean styles.",
-    culturalOrigin: "Tropical Americas / South Asia", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Fiber",
+      "High-Vitamin-C"
+    ],
+    "description": "Tropical nutritional powerhouse packing quadruple the vitamin C concentration of standard oranges.",
+    "culinaryNotes": "Can be eaten whole including edible seeds and skin.",
+    "culturalOrigin": "Central & South America",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_dates", name: "Medjool Dates", category: "Fruits", servingSize: "2 dates (48g)",
-    calories: 133, proteinGrams: 0.9, carbsGrams: 36.0, fatGrams: 0.1, fiberGrams: 3.2,
-    micronutrients: [
-      { name: "Potassium", amount: "334 mg", dailyValuePercent: 7, benefit: "Endurance electrolyte" },
-      { name: "Copper", amount: "0.18 mg", dailyValuePercent: 20, benefit: "Iron utilization" },
-      { name: "Magnesium", amount: "26 mg", dailyValuePercent: 6, benefit: "Muscle relaxation" }
+    "id": "fruit_papaya",
+    "name": "Papaya",
+    "category": "Fruits",
+    "servingSize": "1 cup chunks (145g)",
+    "calories": 62,
+    "proteinGrams": 0.7,
+    "carbsGrams": 15.7,
+    "fatGrams": 0.4,
+    "fiberGrams": 2.5,
+    "micronutrients": [
+      {
+        "name": "Papain",
+        "amount": "25 mg",
+        "dailyValuePercent": null,
+        "benefit": "Proteolytic digestive enzyme"
+      },
+      {
+        "name": "Vitamin C",
+        "amount": "88.3 mg",
+        "dailyValuePercent": 98,
+        "benefit": "Immune and tissue support"
+      },
+      {
+        "name": "Beta-Carotene",
+        "amount": "397 mcg",
+        "dailyValuePercent": null,
+        "benefit": "Provitamin A"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Energy-Dense", "Whole-Food-Sweetener"],
-    description: "Caramel-sweet desert fruit offering rapid glycogen replenishment without refined sugar additives.",
-    culinaryNotes: "Stuff with walnuts or almond butter for a balanced pre-workout or post-fasting energy bite.",
-    culturalOrigin: "Middle East / North Africa", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Digestive-Aid"
+    ],
+    "description": "Tropical fruit with soothing papain enzymes that aid protein digestion and reduce bloating.",
+    "culinaryNotes": "Popular in tropical breakfasts and green papaya savory salads across Southeast Asia.",
+    "culturalOrigin": "Mesoamerica",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "fruit_watermelon", name: "Watermelon", category: "Fruits", servingSize: "1 cup diced (152g)",
-    calories: 46, proteinGrams: 0.9, carbsGrams: 11.5, fatGrams: 0.2, fiberGrams: 0.6,
-    micronutrients: [
-      { name: "L-Citrulline", amount: "250 mg", dailyValuePercent: null, benefit: "Nitric oxide vasodilator" },
-      { name: "Lycopene", amount: "6.9 mg", dailyValuePercent: null, benefit: "Cellular antioxidant" },
-      { name: "Water Content", amount: "92%", dailyValuePercent: null, benefit: "Electrolyte hydration" }
+    "id": "fruit_pineapple",
+    "name": "Pineapple",
+    "category": "Fruits",
+    "servingSize": "1 cup chunks (165g)",
+    "calories": 82,
+    "proteinGrams": 0.9,
+    "carbsGrams": 21.6,
+    "fatGrams": 0.2,
+    "fiberGrams": 2.3,
+    "micronutrients": [
+      {
+        "name": "Bromelain",
+        "amount": "40 mg",
+        "dailyValuePercent": null,
+        "benefit": "Anti-inflammatory enzyme"
+      },
+      {
+        "name": "Manganese",
+        "amount": "1.5 mg",
+        "dailyValuePercent": 65,
+        "benefit": "Metabolic enzyme cofactor"
+      },
+      {
+        "name": "Vitamin C",
+        "amount": "78.9 mg",
+        "dailyValuePercent": 88,
+        "benefit": "Antioxidant"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Hydrating", "Low-Calorie"],
-    description: "Ultra-hydrating summer melon dense in L-citrulline which aids athletic recovery and circulation.",
-    culinaryNotes: "Pair with fresh mint and feta in Mediterranean salads for electrolyte replenishment.",
-    culturalOrigin: "North Africa", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Anti-Inflammatory"
+    ],
+    "description": "Sweet tropical fruit containing bromelain, a proteolytic enzyme studied for anti-inflammatory benefits.",
+    "culinaryNotes": "Great natural meat tenderizer in marinades.",
+    "culturalOrigin": "South America",
+    "glycemicIndex": "High"
   },
   {
-    id: "fruit_kiwi", name: "Kiwi Fruit", category: "Fruits", servingSize: "1 fruit (69g)",
-    calories: 42, proteinGrams: 0.8, carbsGrams: 10.1, fatGrams: 0.4, fiberGrams: 2.1,
-    micronutrients: [
-      { name: "Vitamin C", amount: "64 mg", dailyValuePercent: 71, benefit: "Immunity & collagen" },
-      { name: "Actinidin", amount: "Active", dailyValuePercent: null, benefit: "Proteolytic digestive enzyme" },
-      { name: "Serotonin precursors", amount: "Trace", dailyValuePercent: null, benefit: "Sleep quality promotion" }
+    "id": "fruit_kiwi",
+    "name": "Kiwi",
+    "category": "Fruits",
+    "servingSize": "1 medium (69g)",
+    "calories": 42,
+    "proteinGrams": 0.8,
+    "carbsGrams": 10.1,
+    "fatGrams": 0.4,
+    "fiberGrams": 2.1,
+    "micronutrients": [
+      {
+        "name": "Actinidin",
+        "amount": "18 mg",
+        "dailyValuePercent": null,
+        "benefit": "Digestive enzyme"
+      },
+      {
+        "name": "Vitamin C",
+        "amount": "64 mg",
+        "dailyValuePercent": 71,
+        "benefit": "Immune strength"
+      },
+      {
+        "name": "Serotonin Precursors",
+        "amount": "12 mcg",
+        "dailyValuePercent": null,
+        "benefit": "Sleep quality support"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Digestive-Aid"],
-    description: "Emerald fruit rich in actinidin enzyme and natural antioxidants associated in clinical trials with improved sleep.",
-    culinaryNotes: "Eating 2 kiwis in the evening supports circadian neurotransmitter synthesis.",
-    culturalOrigin: "Eastern Asia / New Zealand", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Calorie"
+    ],
+    "description": "Emerald fruit loaded with actinidin and natural compounds that promote restful sleep and gastrointestinal motility.",
+    "culinaryNotes": "The fuzzy skin is fully edible and triples the total fiber content.",
+    "culturalOrigin": "China / New Zealand",
+    "glycemicIndex": "Low"
   },
   {
-    id: "fruit_grapes", name: "Red Grapes", category: "Fruits", servingSize: "1 cup (151g)",
-    calories: 104, proteinGrams: 1.1, carbsGrams: 27.3, fatGrams: 0.2, fiberGrams: 1.4,
-    micronutrients: [
-      { name: "Resveratrol", amount: "0.3 mg", dailyValuePercent: null, benefit: "Sirtuin longevity activator" },
-      { name: "Vitamin K", amount: "22 mcg", dailyValuePercent: 18, benefit: "Coagulation cascade" },
-      { name: "Copper", amount: "0.19 mg", dailyValuePercent: 21, benefit: "Connective tissue" }
+    "id": "fruit_dates",
+    "name": "Medjool Dates",
+    "category": "Fruits",
+    "servingSize": "2 dates (48g)",
+    "calories": 133,
+    "proteinGrams": 0.9,
+    "carbsGrams": 36,
+    "fatGrams": 0.1,
+    "fiberGrams": 3.2,
+    "micronutrients": [
+      {
+        "name": "Potassium",
+        "amount": "334 mg",
+        "dailyValuePercent": 7,
+        "benefit": "Quick electrolyte replenish"
+      },
+      {
+        "name": "Copper",
+        "amount": "0.2 mg",
+        "dailyValuePercent": 22,
+        "benefit": "Energy metabolism"
+      },
+      {
+        "name": "Polyphenols",
+        "amount": "85 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cellular defense"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Heart-Healthy"],
-    description: "Contains resveratrol concentrated in the red/purple skin that supports microvascular circulation.",
-    culinaryNotes: "Freeze for a crisp, refreshing, whole-food frozen summer treat.",
-    culturalOrigin: "Near East / Mediterranean", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Natural-Sweetener",
+      "High-Energy"
+    ],
+    "description": "Ancient Middle Eastern date palm fruit offering rapid natural energy, potassium, and rich caramel flavor.",
+    "culinaryNotes": "Traditional food to break fasts in Islamic traditions (Iftar) due to gentle digestive assimilation.",
+    "culturalOrigin": "Middle East / North Africa",
+    "glycemicIndex": "High"
   },
   {
-    id: "fruit_lemon", name: "Lemon & Lime Juice", category: "Fruits", servingSize: "1 fruit (48g)",
-    calories: 17, proteinGrams: 0.4, carbsGrams: 5.4, fatGrams: 0.1, fiberGrams: 1.6,
-    micronutrients: [
-      { name: "Citric Acid", amount: "1.4 g", dailyValuePercent: null, benefit: "Kidney stone prevention" },
-      { name: "Vitamin C", amount: "30.7 mg", dailyValuePercent: 34, benefit: "Plant iron absorption booster" },
-      { name: "Eriocitrin", amount: "8 mg", dailyValuePercent: null, benefit: "Flavonoid antioxidant" }
+    "id": "fruit_figs",
+    "name": "Fresh Figs",
+    "category": "Fruits",
+    "servingSize": "2 medium (100g)",
+    "calories": 74,
+    "proteinGrams": 0.8,
+    "carbsGrams": 19.2,
+    "fatGrams": 0.3,
+    "fiberGrams": 2.9,
+    "micronutrients": [
+      {
+        "name": "Calcium",
+        "amount": "35 mg",
+        "dailyValuePercent": 3,
+        "benefit": "Bone health"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "17 mg",
+        "dailyValuePercent": 4,
+        "benefit": "Muscular function"
+      },
+      {
+        "name": "Ficin",
+        "amount": "15 mg",
+        "dailyValuePercent": null,
+        "benefit": "Natural digestive enzyme"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Alkalizing-Effect", "Low-Calorie"],
-    description: "Citrus essential for increasing non-heme iron absorption from lentils and dark leafy greens by up to 300%.",
-    culinaryNotes: "Squeeze over all cooked pulses, curries, and salads just before serving.",
-    culturalOrigin: "Assam & Southeast Asia", glycemicIndex: "Low"
-  },
-
-  // --- VEGETABLES (15) ---
-  {
-    id: "veg_spinach", name: "Spinach (Palak)", category: "Vegetables", servingSize: "1 cup cooked (180g)",
-    calories: 41, proteinGrams: 5.3, carbsGrams: 6.7, fatGrams: 0.5, fiberGrams: 4.3,
-    micronutrients: [
-      { name: "Non-Heme Iron", amount: "6.4 mg", dailyValuePercent: 36, benefit: "Oxygen transport" },
-      { name: "Folate (B9)", amount: "263 mcg", dailyValuePercent: 66, benefit: "DNA synthesis & cellular growth" },
-      { name: "Lutein & Zeaxanthin", amount: "20.4 mg", dailyValuePercent: null, benefit: "Retinal macular pigment" }
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Mediterranean"
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Calorie", "Iron-Rich", "Keto-Friendly"],
-    description: "Nutrient-dense dark leafy green revered worldwide from Palak Paneer to Mediterranean Spanakopita.",
-    culinaryNotes: "Lightly steaming or sautéing reduces insoluble oxalates and enhances lutein bioavailability.",
-    culturalOrigin: "Ancient Persia / Global", glycemicIndex: "Low"
-  },
-  {
-    id: "veg_broccoli", name: "Broccoli Florets", category: "Vegetables", servingSize: "1 cup chopped (91g)",
-    calories: 31, proteinGrams: 2.6, carbsGrams: 6.0, fatGrams: 0.3, fiberGrams: 2.4,
-    micronutrients: [
-      { name: "Sulforaphane Precursors", amount: "Glucoraphanin", dailyValuePercent: null, benefit: "Nrf2 cellular defense" },
-      { name: "Vitamin C", amount: "81.2 mg", dailyValuePercent: 90, benefit: "Antioxidant & collagen synthesis" },
-      { name: "Vitamin K1", amount: "92.5 mcg", dailyValuePercent: 77, benefit: "Bone matrix regulation" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Cruciferous", "Cancer-Protective"],
-    description: "Cruciferous vegetable celebrated for enzymatic conversion to sulforaphane, a master Nrf2 pathway activator.",
-    culinaryNotes: "Chop 30 minutes before gentle steaming to allow myrosinase enzyme to synthesize sulforaphane.",
-    culturalOrigin: "Mediterranean / Italy", glycemicIndex: "Low"
-  },
-  {
-    id: "veg_kale", name: "Curly Kale", category: "Vegetables", servingSize: "1 cup chopped (67g)",
-    calories: 33, proteinGrams: 2.9, carbsGrams: 6.0, fatGrams: 0.6, fiberGrams: 1.3,
-    micronutrients: [
-      { name: "Vitamin K1", amount: "547 mcg", dailyValuePercent: 450, benefit: "Coagulation & bone health" },
-      { name: "Vitamin A (Carotenoids)", amount: "500 mcg", dailyValuePercent: 56, benefit: "Immune defense" },
-      { name: "Calcium", amount: "100 mg", dailyValuePercent: 8, benefit: "Bioavailable plant calcium" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Superfood", "Keto-Friendly"],
-    description: "Hardy brassica vegetable containing highly bioavailable non-dairy calcium with low oxalate interference.",
-    culinaryNotes: "Massage raw leaves with extra virgin olive oil and lemon juice for 2 minutes to tenderize cellulose.",
-    culturalOrigin: "Eastern Mediterranean / Europe", glycemicIndex: "Low"
+    "description": "Delicate Mediterranean fruit with edible crunchy seeds, soluble pectin, and mild natural laxative properties.",
+    "culinaryNotes": "Pairs exceptionally with walnuts, goat cheese, and balsamic reduction.",
+    "culturalOrigin": "Mediterranean / Levant",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "veg_garlic", name: "Garlic", category: "Vegetables", servingSize: "3 cloves (9g)",
-    calories: 13, proteinGrams: 0.6, carbsGrams: 3.0, fatGrams: 0.0, fiberGrams: 0.2,
-    micronutrients: [
-      { name: "Allicin", amount: "Bioactive", dailyValuePercent: null, benefit: "Broad-spectrum antimicrobial" },
-      { name: "S-Allyl Cysteine", amount: "Active", dailyValuePercent: null, benefit: "Cardiovascular arterial elasticity" },
-      { name: "Manganese", amount: "0.15 mg", dailyValuePercent: 7, benefit: "Antioxidant enzyme cofactor" }
+    "id": "fruit_dragonfruit",
+    "name": "Dragon Fruit (Pitaya)",
+    "category": "Fruits",
+    "servingSize": "1 cup cubed (227g)",
+    "calories": 136,
+    "proteinGrams": 3,
+    "carbsGrams": 29,
+    "fatGrams": 0,
+    "fiberGrams": 7,
+    "micronutrients": [
+      {
+        "name": "Iron",
+        "amount": "1.9 mg",
+        "dailyValuePercent": 11,
+        "benefit": "Oxygen transport"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "41 mg",
+        "dailyValuePercent": 10,
+        "benefit": "Energy production"
+      },
+      {
+        "name": "Betalains",
+        "amount": "45 mg",
+        "dailyValuePercent": null,
+        "benefit": "Antioxidant pigment"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Prebiotic", "Heart-Healthy"],
-    description: "Medicinal allium bulb forming allicin upon crushing, documented to support blood pressure and immunity.",
-    culinaryNotes: "Crush or mince and let rest for 10 minutes before cooking to maximize allicin synthesis.",
-    culturalOrigin: "Central Asia / Global", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Fiber"
+    ],
+    "description": "Striking cactus fruit packed with 7g of prebiotic fiber, magnesium, and plant-based iron.",
+    "culinaryNotes": "Mild, slightly sweet flavor similar to a cross between kiwi and pear.",
+    "culturalOrigin": "Central America / Southeast Asia",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_ginger", name: "Fresh Ginger Root", category: "Vegetables", servingSize: "1 tbsp minced (6g)",
-    calories: 5, proteinGrams: 0.1, carbsGrams: 1.1, fatGrams: 0.0, fiberGrams: 0.1,
-    micronutrients: [
-      { name: "Gingerols (6-gingerol)", amount: "Bioactive", dailyValuePercent: null, benefit: "Anti-nausea & anti-inflammatory" },
-      { name: "Shogaols", amount: "Formed upon heat", dailyValuePercent: null, benefit: "Analgesic signaling modulation" }
+    "id": "veg_spinach",
+    "name": "Spinach (Fresh / Cooked)",
+    "category": "Vegetables",
+    "servingSize": "1 cup cooked (180g)",
+    "calories": 41,
+    "proteinGrams": 5.3,
+    "carbsGrams": 6.7,
+    "fatGrams": 0.5,
+    "fiberGrams": 4.3,
+    "micronutrients": [
+      {
+        "name": "Vitamin K",
+        "amount": "888 mcg",
+        "dailyValuePercent": 740,
+        "benefit": "Coagulation & bone matrix"
+      },
+      {
+        "name": "Iron",
+        "amount": "6.4 mg",
+        "dailyValuePercent": 36,
+        "benefit": "Hemoglobin synthesis"
+      },
+      {
+        "name": "Lutein & Zeaxanthin",
+        "amount": "20.4 mg",
+        "dailyValuePercent": null,
+        "benefit": "Macular protection"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Digestive-Aid", "Anti-Inflammatory"],
-    description: "Rhizome prized in Ayurvedic, East Asian, and global traditional systems for calming gastric motility and easing joint stiffness.",
-    culinaryNotes: "Simmer in hot water with lemon or use as base aromatic for curries and stir-fries.",
-    culturalOrigin: "Maritime Southeast Asia / South Asia", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Iron-Rich",
+      "Superfood"
+    ],
+    "description": "Premier dark leafy green offering concentrated non-heme iron, lutein, and chlorophyll.",
+    "culinaryNotes": "Cooking reduces oxalate binding and drastically boosts iron and calcium bioavailability. Fundamental in Palak Paneer and Mediterranean sautés.",
+    "culturalOrigin": "Ancient Persia / Global",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_bell_pepper", name: "Red Bell Pepper", category: "Vegetables", servingSize: "1 medium (119g)",
-    calories: 37, proteinGrams: 1.2, carbsGrams: 7.2, fatGrams: 0.4, fiberGrams: 2.5,
-    micronutrients: [
-      { name: "Vitamin C", amount: "152 mg", dailyValuePercent: 169, benefit: "Supercharged antioxidant" },
-      { name: "Capsanthin", amount: "Carotenoid", dailyValuePercent: null, benefit: "Lipid peroxidation inhibitor" },
-      { name: "Vitamin B6", amount: "0.3 mg", dailyValuePercent: 18, benefit: "Energy metabolism" }
+    "id": "veg_broccoli",
+    "name": "Broccoli",
+    "category": "Vegetables",
+    "servingSize": "1 cup chopped (91g)",
+    "calories": 31,
+    "proteinGrams": 2.6,
+    "carbsGrams": 6,
+    "fatGrams": 0.3,
+    "fiberGrams": 2.4,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "81 mg",
+        "dailyValuePercent": 90,
+        "benefit": "Collagen & immune defense"
+      },
+      {
+        "name": "Chromium",
+        "amount": "18 mcg",
+        "dailyValuePercent": 51,
+        "benefit": "Glucose tolerance factor"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Calorie", "High-Vitamin-C"],
-    description: "Contains nearly three times more ascorbic acid (vitamin C) per weight than typical citrus oranges.",
-    culinaryNotes: "Stir-fry lightly with olive oil to preserve heat-sensitive vitamin C while releasing fat-soluble capsanthin.",
-    culturalOrigin: "Mesoamerica / Global", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Carb",
+      "Detox-Support"
+    ],
+    "description": "Cruciferous staple famous for sulforaphane, an organosulfur compound that triggers cellular antioxidant enzymes.",
+    "culinaryNotes": "Lightly steaming for 3-4 minutes preserves myrosinase enzyme activity needed to form sulforaphane.",
+    "culturalOrigin": "Mediterranean / Italy",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_sweet_potato", name: "Sweet Potato (Shakarkandi)", category: "Vegetables", servingSize: "1 medium baked (114g)",
-    calories: 103, proteinGrams: 2.3, carbsGrams: 23.6, fatGrams: 0.2, fiberGrams: 3.8,
-    micronutrients: [
-      { name: "Beta-Carotene (Vitamin A)", amount: "1096 mcg", dailyValuePercent: 122, benefit: "Epithelial integrity & night vision" },
-      { name: "Potassium", amount: "542 mg", dailyValuePercent: 12, benefit: "Vascular balance" },
-      { name: "Manganese", amount: "0.5 mg", dailyValuePercent: 22, benefit: "Bone matrix formation" }
+    "id": "veg_sweet_potato",
+    "name": "Sweet Potato",
+    "category": "Vegetables",
+    "servingSize": "1 medium baked (114g)",
+    "calories": 103,
+    "proteinGrams": 2.3,
+    "carbsGrams": 23.6,
+    "fatGrams": 0.2,
+    "fiberGrams": 3.8,
+    "micronutrients": [
+      {
+        "name": "Vitamin A",
+        "amount": "1096 mcg",
+        "dailyValuePercent": 122,
+        "benefit": "Skin & visual cycle"
+      },
+      {
+        "name": "Potassium",
+        "amount": "542 mg",
+        "dailyValuePercent": 12,
+        "benefit": "Blood pressure regulation"
+      },
+      {
+        "name": "Manganese",
+        "amount": "0.5 mg",
+        "dailyValuePercent": 22,
+        "benefit": "Antioxidant enzyme SOD"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Complex-Carb", "Okinawa-Staple"],
-    description: "Slow-burning complex tuber that served as the primary caloric cornerstone of traditional centenarians in Okinawa.",
-    culinaryNotes: "Bake whole with skin on and serve with a dash of cinnamon or extra virgin olive oil.",
-    culturalOrigin: "Central and South America", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Complex-Carb",
+      "High-Fiber"
+    ],
+    "description": "Complex carbohydrate tuber loaded with carotenoids and resistant starch with a low glycemic index when boiled or baked.",
+    "culinaryNotes": "Pairing with healthy fats (like olive oil) enhances beta-carotene assimilation by over 300%.",
+    "culturalOrigin": "Central & South America",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "veg_carrots", name: "Carrots", category: "Vegetables", servingSize: "1 cup chopped (128g)",
-    calories: 52, proteinGrams: 1.2, carbsGrams: 12.3, fatGrams: 0.3, fiberGrams: 3.6,
-    micronutrients: [
-      { name: "Beta-Carotene", amount: "10,605 mcg", dailyValuePercent: 118, benefit: "Pro-vitamin A retinal synthesis" },
-      { name: "Lutein", amount: "330 mcg", dailyValuePercent: null, benefit: "Ocular lens protection" },
-      { name: "Biotin", amount: "6 mcg", dailyValuePercent: 20, benefit: "Keratin structural support" }
+    "id": "veg_carrot",
+    "name": "Carrot",
+    "category": "Vegetables",
+    "servingSize": "1 medium (61g)",
+    "calories": 25,
+    "proteinGrams": 0.6,
+    "carbsGrams": 5.8,
+    "fatGrams": 0.1,
+    "fiberGrams": 1.7,
+    "micronutrients": [
+      {
+        "name": "Beta-Carotene",
+        "amount": "5059 mcg",
+        "dailyValuePercent": null,
+        "benefit": "Retinol precursor"
+      },
+      {
+        "name": "Lutein",
+        "amount": "256 mcg",
+        "dailyValuePercent": null,
+        "benefit": "Eye protection"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Calorie"],
-    description: "Crunchy root vegetable providing abundant carotenoids that convert into active retinol in the liver.",
-    culinaryNotes: "Light cooking and pairing with healthy lipids increases carotenoid absorption by 400%.",
-    culturalOrigin: "Persia (Afghanistan / Iran)", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Calorie"
+    ],
+    "description": "Root vegetable revered for eye health from provitamin A carotenoids and versatile crunchy texture.",
+    "culinaryNotes": "Grated raw in salads or simmered in stews and South Asian halwas.",
+    "culturalOrigin": "Persia / Afghanistan",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_tomato", name: "Tomato", category: "Vegetables", servingSize: "1 medium (123g)",
-    calories: 22, proteinGrams: 1.1, carbsGrams: 4.8, fatGrams: 0.2, fiberGrams: 1.5,
-    micronutrients: [
-      { name: "Lycopene", amount: "3.0 mg", dailyValuePercent: null, benefit: "Prostate & vascular antioxidant" },
-      { name: "Vitamin C", amount: "17 mg", dailyValuePercent: 19, benefit: "Cell defense" },
-      { name: "Potassium", amount: "292 mg", dailyValuePercent: 6, benefit: "Cardiovascular health" }
+    "id": "veg_garlic",
+    "name": "Garlic",
+    "category": "Vegetables",
+    "servingSize": "3 cloves (9g)",
+    "calories": 13,
+    "proteinGrams": 0.6,
+    "carbsGrams": 3,
+    "fatGrams": 0,
+    "fiberGrams": 0.2,
+    "micronutrients": [
+      {
+        "name": "Allicin",
+        "amount": "12 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cardiovascular and antimicrobial sulfur compound"
+      },
+      {
+        "name": "Manganese",
+        "amount": "0.15 mg",
+        "dailyValuePercent": 7,
+        "benefit": "Connective tissue"
+      },
+      {
+        "name": "Vitamin B6",
+        "amount": "0.11 mg",
+        "dailyValuePercent": 6,
+        "benefit": "Metabolism"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Calorie", "Heart-Healthy"],
-    description: "Botanical fruit consumed as vegetable, celebrated for lycopene which becomes significantly more bioavailable when cooked.",
-    culinaryNotes: "Cooking with olive oil in sauces (like Italian Marinara or South Asian Curry gravy) maximizes trans-to-cis lycopene isomer conversion.",
-    culturalOrigin: "South America / Andes", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Heart-Healthy",
+      "Aromatic"
+    ],
+    "description": "Aromatic culinary cornerstone with active organosulfur allicin proven to support vascular nitric oxide production.",
+    "culinaryNotes": "Crush or chop and allow to rest for 10 minutes before cooking to activate alliinase enzyme synthesis.",
+    "culturalOrigin": "Central Asia",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_cauliflower", name: "Cauliflower", category: "Vegetables", servingSize: "1 cup chopped (107g)",
-    calories: 27, proteinGrams: 2.1, carbsGrams: 5.3, fatGrams: 0.3, fiberGrams: 2.1,
-    micronutrients: [
-      { name: "Choline", amount: "47.4 mg", dailyValuePercent: 9, benefit: "Cell membrane & acetylcholine neurotransmitter" },
-      { name: "Vitamin C", amount: "51.6 mg", dailyValuePercent: 57, benefit: "Immune defense" },
-      { name: "Glucosinolates", amount: "Active", dailyValuePercent: null, benefit: "Hepatic Phase II detoxification" }
+    "id": "veg_onion",
+    "name": "Red / Yellow Onion",
+    "category": "Vegetables",
+    "servingSize": "1 medium (110g)",
+    "calories": 44,
+    "proteinGrams": 1.2,
+    "carbsGrams": 10.3,
+    "fatGrams": 0.1,
+    "fiberGrams": 1.9,
+    "micronutrients": [
+      {
+        "name": "Quercetin",
+        "amount": "32 mg",
+        "dailyValuePercent": null,
+        "benefit": "Antihistamine & antioxidant flavonoid"
+      },
+      {
+        "name": "Inulin",
+        "amount": "1.5 g",
+        "dailyValuePercent": null,
+        "benefit": "Prebiotic fructooligosaccharide"
+      },
+      {
+        "name": "Chromium",
+        "amount": "12 mcg",
+        "dailyValuePercent": 34,
+        "benefit": "Insulin sensitivity"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Keto-Friendly", "Low-Carb"],
-    description: "Versatile brassica flower head providing choline for cognitive function; excellent low-carb grain substitute.",
-    culinaryNotes: "Roast with turmeric and cumin (Aloo Gobi style) or pulse into cauliflower rice.",
-    culturalOrigin: "Cyprus / Mediterranean", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Prebiotic",
+      "Aromatic"
+    ],
+    "description": "Global culinary base delivering prebiotic inulin fiber to feed beneficial bifidobacteria in the gut.",
+    "culinaryNotes": "The outer colored layers possess the highest quercetin concentration.",
+    "culturalOrigin": "Central Asia / Global",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_cucumber", name: "Cucumber (Kheera)", category: "Vegetables", servingSize: "1 cup sliced (104g)",
-    calories: 16, proteinGrams: 0.7, carbsGrams: 3.8, fatGrams: 0.1, fiberGrams: 0.5,
-    micronutrients: [
-      { name: "Silica", amount: "Bioavailable", dailyValuePercent: null, benefit: "Collagen connective tissue" },
-      { name: "Cucurbitacins", amount: "Active", dailyValuePercent: null, benefit: "Anti-inflammatory signaling" },
-      { name: "Water Content", amount: "95%", dailyValuePercent: null, benefit: "Intracellular hydration" }
+    "id": "veg_bell_pepper",
+    "name": "Red Bell Pepper",
+    "category": "Vegetables",
+    "servingSize": "1 medium (119g)",
+    "calories": 37,
+    "proteinGrams": 1.2,
+    "carbsGrams": 7.2,
+    "fatGrams": 0.4,
+    "fiberGrams": 2.5,
+    "micronutrients": [
+      {
+        "name": "Vitamin C",
+        "amount": "152 mg",
+        "dailyValuePercent": 169,
+        "benefit": "Highest amongst common vegetables"
+      },
+      {
+        "name": "Capsanthin",
+        "amount": "38 mg",
+        "dailyValuePercent": null,
+        "benefit": "Potent red antioxidant"
+      },
+      {
+        "name": "Vitamin B6",
+        "amount": "0.34 mg",
+        "dailyValuePercent": 20,
+        "benefit": "Neurochemistry"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Calorie", "Hydrating"],
-    description: "Cooling cucurbit containing 95% structured water, silica for skin hydration, and soothing electrolytes.",
-    culinaryNotes: "Core ingredient in South Asian Raita, Greek Tzatziki, and Middle Eastern Shirazi salad.",
-    culturalOrigin: "Ancient India / South Asia", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Vitamin-C",
+      "Low-Calorie"
+    ],
+    "description": "Sweet, vibrant pepper offering more than 1.5x daily vitamin C requirement in a single pepper.",
+    "culinaryNotes": "Essential in Mediterranean ratatouille, fajitas, stir-fries, and raw snacking.",
+    "culturalOrigin": "Mesoamerica",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_mushrooms", name: "Shiitake & Button Mushrooms", category: "Vegetables", servingSize: "1 cup sliced (70g)",
-    calories: 22, proteinGrams: 2.2, carbsGrams: 2.3, fatGrams: 0.2, fiberGrams: 1.4,
-    micronutrients: [
-      { name: "Beta-Glucans (Lentinan)", amount: "Active", dailyValuePercent: null, benefit: "Macrophage immune priming" },
-      { name: "Ergothioneine", amount: "1.2 mg", dailyValuePercent: null, benefit: "Mitochondrial longevity antioxidant" },
-      { name: "Selenium", amount: "6.5 mcg", dailyValuePercent: 12, benefit: "Thyroid deiodinase enzyme" }
+    "id": "veg_beetroot",
+    "name": "Beetroot",
+    "category": "Vegetables",
+    "servingSize": "1 cup cooked (170g)",
+    "calories": 75,
+    "proteinGrams": 2.9,
+    "carbsGrams": 16.9,
+    "fatGrams": 0.3,
+    "fiberGrams": 3.4,
+    "micronutrients": [
+      {
+        "name": "Dietary Inorganic Nitrates",
+        "amount": "250 mg",
+        "dailyValuePercent": null,
+        "benefit": "Vasodilation & stamina"
+      },
+      {
+        "name": "Betalains",
+        "amount": "42 mg",
+        "dailyValuePercent": null,
+        "benefit": "Liver support & antioxidant"
+      },
+      {
+        "name": "Folate",
+        "amount": "136 mcg",
+        "dailyValuePercent": 34,
+        "benefit": "Erythrocyte production"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Immune-Support", "Umami-Rich"],
-    description: "Culinary fungi packed with ergothioneine ('the longevity vitamin') and fungal polysaccharides that train immune cells.",
-    culinaryNotes: "Expose mushrooms to sunlight for 30 minutes prior to cooking to naturally generate dietary Vitamin D2.",
-    culturalOrigin: "East Asia / Global", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Athletic-Performance",
+      "Heart-Healthy"
+    ],
+    "description": "Deep ruby root prized by athletes for inorganic nitrates that boost endothelial nitric oxide and exercise efficiency.",
+    "culinaryNotes": "Roasting or juicing yields optimal bioavailable nitrates.",
+    "culturalOrigin": "Mediterranean coast",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "veg_onion", name: "Red & Yellow Onion (Piyaz)", category: "Vegetables", servingSize: "1 medium (110g)",
-    calories: 44, proteinGrams: 1.2, carbsGrams: 10.3, fatGrams: 0.1, fiberGrams: 1.9,
-    micronutrients: [
-      { name: "Quercetin", amount: "22 mg", dailyValuePercent: null, benefit: "Mast cell stabilization & anti-allergy" },
-      { name: "Inulin (Prebiotic)", amount: "1.8 g", dailyValuePercent: null, benefit: "Bifidobacteria microbiome fuel" },
-      { name: "Chromium", amount: "2.1 mcg", dailyValuePercent: 6, benefit: "Insulin receptor sensitization" }
+    "id": "veg_cauliflower",
+    "name": "Cauliflower",
+    "category": "Vegetables",
+    "servingSize": "1 cup chopped (107g)",
+    "calories": 27,
+    "proteinGrams": 2.1,
+    "carbsGrams": 5.3,
+    "fatGrams": 0.3,
+    "fiberGrams": 2.1,
+    "micronutrients": [
+      {
+        "name": "Choline",
+        "amount": "47 mg",
+        "dailyValuePercent": 9,
+        "benefit": "Cell membrane & brain health"
+      },
+      {
+        "name": "Indole-3-Carbinol",
+        "amount": "18 mg",
+        "dailyValuePercent": null,
+        "benefit": "Hormone metabolism support"
+      },
+      {
+        "name": "Vitamin C",
+        "amount": "51.6 mg",
+        "dailyValuePercent": 57,
+        "benefit": "Antioxidant"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Prebiotic", "Aromatic"],
-    description: "Fundamental aromatic vegetable providing rich stores of inulin prebiotics and quercetin bioflavonoids.",
-    culinaryNotes: "Outer reddish layers contain the highest concentration of quercetin; avoid peeling too deeply.",
-    culturalOrigin: "Central Asia / Global", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Carb",
+      "Keto-Friendly"
+    ],
+    "description": "Versatile brassica rich in choline, used widely as a nutrient-dense low-carb alternative for rice or dough.",
+    "culinaryNotes": "Featured globally in Aloo Gobi (South Asian spiced cauliflower) and modern roasted florets.",
+    "culturalOrigin": "Mediterranean / Asia Minor",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_bitter_gourd", name: "Bitter Gourd (Karela)", category: "Vegetables", servingSize: "1 cup cooked (124g)",
-    calories: 24, proteinGrams: 1.0, carbsGrams: 5.4, fatGrams: 0.2, fiberGrams: 2.5,
-    micronutrients: [
-      { name: "Charantin", amount: "Bioactive", dailyValuePercent: null, benefit: "AMPK glucose uptake stimulator" },
-      { name: "Polypeptide-p", amount: "Plant insulin analog", dailyValuePercent: null, benefit: "Glycemic moderation" },
-      { name: "Momordicin", amount: "Bitter principle", dailyValuePercent: null, benefit: "Digestive bile secretion" }
+    "id": "veg_mushroom",
+    "name": "Cremini / Portobello Mushrooms",
+    "category": "Vegetables",
+    "servingSize": "1 cup sliced (70g)",
+    "calories": 15,
+    "proteinGrams": 2.2,
+    "carbsGrams": 2.3,
+    "fatGrams": 0.2,
+    "fiberGrams": 0.7,
+    "micronutrients": [
+      {
+        "name": "Selenium",
+        "amount": "18.2 mcg",
+        "dailyValuePercent": 33,
+        "benefit": "Thyroid and antioxidant enzymes"
+      },
+      {
+        "name": "Beta-Glucans",
+        "amount": "1.2 g",
+        "dailyValuePercent": null,
+        "benefit": "Immune modulating polysaccharide"
+      },
+      {
+        "name": "Ergothioneine",
+        "amount": "4.8 mg",
+        "dailyValuePercent": null,
+        "benefit": "Longevity antioxidant"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Glycemic-Control", "Ayurvedic"],
-    description: "Celebrated in Ayurvedic and traditional Chinese systems for active charantin and polypeptide-p which activate cellular glucose transporters.",
-    culinaryNotes: "Sauté with onions, mustard seeds, and amchur (dry mango powder) to balance intense medicinal bitterness.",
-    culturalOrigin: "South Asia / Tropical", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Low-Calorie",
+      "Umami-Rich"
+    ],
+    "description": "Fungal superfood providing unique ergothioneine and selenium, adding savory umami without sodium.",
+    "culinaryNotes": "Sautéing with garlic and herbs unlocks deep savory glutamates.",
+    "culturalOrigin": "Global",
+    "glycemicIndex": "Low"
   },
   {
-    id: "veg_cabbage", name: "Green & Red Cabbage (Band Gobi)", category: "Vegetables", servingSize: "1 cup shredded (89g)",
-    calories: 22, proteinGrams: 1.1, carbsGrams: 5.2, fatGrams: 0.1, fiberGrams: 2.2,
-    micronutrients: [
-      { name: "Glutamine", amount: "Bioactive", dailyValuePercent: null, benefit: "Intestinal mucosal barrier repair" },
-      { name: "Vitamin C", amount: "32.6 mg", dailyValuePercent: 36, benefit: "Collagen integrity" },
-      { name: "Vitamin K", amount: "67.6 mcg", dailyValuePercent: 56, benefit: "Vascular homeostasis" }
+    "id": "grain_quinoa",
+    "name": "Quinoa (Cooked)",
+    "category": "Grains & Breads",
+    "servingSize": "1 cup cooked (185g)",
+    "calories": 222,
+    "proteinGrams": 8.1,
+    "carbsGrams": 39.4,
+    "fatGrams": 3.6,
+    "fiberGrams": 5.2,
+    "micronutrients": [
+      {
+        "name": "Complete Amino Acid Score",
+        "amount": "100%",
+        "dailyValuePercent": null,
+        "benefit": "All 9 essential amino acids"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "118 mg",
+        "dailyValuePercent": 28,
+        "benefit": "Muscle & nerve homeostasis"
+      },
+      {
+        "name": "Iron",
+        "amount": "2.8 mg",
+        "dailyValuePercent": 15,
+        "benefit": "Cellular oxygen transport"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Gut-Health", "Low-Calorie"],
-    description: "Economical brassica powerhouse containing L-glutamine which fuels the rapid renewal of intestinal epithelial cells.",
-    culinaryNotes: "Ferment into Sauerkraut or Kimchi to introduce billions of live probiotic lactic acid bacteria.",
-    culturalOrigin: "European & Mediterranean", glycemicIndex: "Low"
-  },
-
-  // --- GRAINS & BREADS (10) ---
-  {
-    id: "grain_quinoa", name: "Quinoa", category: "Grains & Breads", servingSize: "1 cup cooked (185g)",
-    calories: 222, proteinGrams: 8.1, carbsGrams: 39.4, fatGrams: 3.6, fiberGrams: 5.2,
-    micronutrients: [
-      { name: "Magnesium", amount: "118 mg", dailyValuePercent: 28, benefit: "ATP cellular energy production" },
-      { name: "Complete EAAs", amount: "All 9 amino acids", dailyValuePercent: null, benefit: "Full protein spectrum" },
-      { name: "Iron", amount: "2.8 mg", dailyValuePercent: 15, benefit: "Hemoglobin synthesis" }
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Complete-Protein",
+      "High-Fiber"
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Complete-Protein", "Ancient-Grain"],
-    description: "Andean pseudo-cereal containing all 9 essential amino acids in optimal human physiological ratios.",
-    culinaryNotes: "Rinse thoroughly to remove bitter outer saponin layer; cook 1:2 in water for fluffy nutty grains.",
-    culturalOrigin: "Andes Mountains (Bolivia/Peru)", glycemicIndex: "Low"
-  },
-  {
-    id: "grain_oats", name: "Rolled Oats (Jowar/Dalia)", category: "Grains & Breads", servingSize: "1/2 cup dry (40g)",
-    calories: 150, proteinGrams: 5.0, carbsGrams: 27.0, fatGrams: 3.0, fiberGrams: 4.0,
-    micronutrients: [
-      { name: "Beta-Glucan", amount: "2.0 g", dailyValuePercent: null, benefit: "Lowers LDL blood cholesterol" },
-      { name: "Avenanthramides", amount: "Polyphenol", dailyValuePercent: null, benefit: "Endothelial anti-itch and vascular calm" },
-      { name: "Manganese", amount: "1.4 mg", dailyValuePercent: 61, benefit: "Antioxidant enzyme defenses" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Heart-Healthy", "High-Fiber"],
-    description: "Whole grain dense in viscous beta-glucan soluble fiber that binds bile acids and stabilizes morning glucose.",
-    culinaryNotes: "Prepare as overnight oats with chia and berries or cook into savory spiced South Asian Khichdi-style oats.",
-    culturalOrigin: "Fertile Crescent / Northern Europe", glycemicIndex: "Low"
-  },
-  {
-    id: "grain_brown_rice", name: "Brown Basmati Rice", category: "Grains & Breads", servingSize: "1 cup cooked (195g)",
-    calories: 216, proteinGrams: 5.0, carbsGrams: 44.8, fatGrams: 1.8, fiberGrams: 3.5,
-    micronutrients: [
-      { name: "Manganese", amount: "1.8 mg", dailyValuePercent: 78, benefit: "Mitochondrial superoxide dismutase" },
-      { name: "Selenium", amount: "19 mcg", dailyValuePercent: 35, benefit: "Thyroid hormone activation" },
-      { name: "Magnesium", amount: "84 mg", dailyValuePercent: 20, benefit: "Neuromuscular function" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Whole-Grain"],
-    description: "Long-grain aromatic rice retaining the nutritious bran germ and aleurone layer for sustained glycemic release.",
-    culinaryNotes: "Soak for 30 minutes before cooking with green cardamom, cloves, and bay leaf for authentic royal aroma.",
-    culturalOrigin: "Indian Subcontinent (Indus Valley)", glycemicIndex: "Medium"
+    "description": "Ancient Andean pseudo-grain containing all 9 essential amino acids in optimal human proportion.",
+    "culinaryNotes": "Rinse before boiling to remove natural bitter saponins on outer coating.",
+    "culturalOrigin": "Andean Region of South America",
+    "glycemicIndex": "Low"
   },
   {
-    id: "grain_whole_wheat_roti", name: "Whole Wheat Roti / Chapati (Chakki Atta)", category: "Grains & Breads", servingSize: "1 roti (40g)",
-    calories: 110, proteinGrams: 3.8, carbsGrams: 22.0, fatGrams: 0.6, fiberGrams: 3.5,
-    micronutrients: [
-      { name: "Insoluble Fiber", amount: "3.2 g", dailyValuePercent: 12, benefit: "Colonic motility and fullness" },
-      { name: "Thiamine (B1)", amount: "0.15 mg", dailyValuePercent: 13, benefit: "Carbohydrate energy utilization" },
-      { name: "Phosphorus", amount: "98 mg", dailyValuePercent: 8, benefit: "Cellular membrane phospholipids" }
+    "id": "grain_oats",
+    "name": "Rolled Oats (Dry)",
+    "category": "Grains & Breads",
+    "servingSize": "1/2 cup dry (40g)",
+    "calories": 150,
+    "proteinGrams": 5,
+    "carbsGrams": 27,
+    "fatGrams": 2.5,
+    "fiberGrams": 4,
+    "micronutrients": [
+      {
+        "name": "Beta-Glucan",
+        "amount": "2.0 g",
+        "dailyValuePercent": null,
+        "benefit": "Reduces LDL cholesterol & stabilizes glucose"
+      },
+      {
+        "name": "Avenanthramides",
+        "amount": "14 mg",
+        "dailyValuePercent": null,
+        "benefit": "Anti-inflammatory avenanthramides"
+      },
+      {
+        "name": "Manganese",
+        "amount": "1.4 mg",
+        "dailyValuePercent": 61,
+        "benefit": "Metabolic enzyme activity"
+      }
     ],
-    dietaryTags: ["Vegan", "Whole-Grain", "Traditional-Staple"],
-    description: "Stone-ground (100% Chakki) unrefined flatbread containing natural bran fiber that slows digestion.",
-    culinaryNotes: "Cook on a heavy cast-iron tawa and puff over flame without oil; optionally brush with 1/2 tsp desi ghee.",
-    culturalOrigin: "South Asia / Ancient Harappa", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free-Certified",
+      "Heart-Healthy",
+      "High-Fiber"
+    ],
+    "description": "Gold-standard breakfast grain with clinically proven beta-glucan soluble fiber that binds digestive bile acids.",
+    "culinaryNotes": "Overnight soaking improves starch digestibility and phytate breakdown.",
+    "culturalOrigin": "Fertile Crescent / Europe",
+    "glycemicIndex": "Low"
   },
   {
-    id: "grain_sourdough", name: "Artisan Sourdough Bread", category: "Grains & Breads", servingSize: "1 slice (50g)",
-    calories: 120, proteinGrams: 4.5, carbsGrams: 24.0, fatGrams: 0.8, fiberGrams: 1.8,
-    micronutrients: [
-      { name: "Lactic Acid", amount: "Fermentation product", dailyValuePercent: null, benefit: "Reduces glycemic peak" },
-      { name: "Degraded Phytates", amount: "70% broken down", dailyValuePercent: null, benefit: "Increases zinc & magnesium absorption" }
+    "id": "grain_basmati_rice",
+    "name": "Brown Basmati Rice (Cooked)",
+    "category": "Grains & Breads",
+    "servingSize": "1 cup cooked (195g)",
+    "calories": 216,
+    "proteinGrams": 5,
+    "carbsGrams": 45,
+    "fatGrams": 1.8,
+    "fiberGrams": 3.5,
+    "micronutrients": [
+      {
+        "name": "Manganese",
+        "amount": "1.8 mg",
+        "dailyValuePercent": 78,
+        "benefit": "Antioxidant defense"
+      },
+      {
+        "name": "Selenium",
+        "amount": "19 mcg",
+        "dailyValuePercent": 35,
+        "benefit": "Thyroid hormone activation"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "84 mg",
+        "dailyValuePercent": 20,
+        "benefit": "Glycemic control"
+      }
     ],
-    dietaryTags: ["Vegan", "Slow-Fermented", "Gut-Friendly"],
-    description: "Slow-fermented wild yeast loaf whose lactic acid bacteria pre-digest gluten proteins and neutralize mineral-binding phytic acid.",
-    culinaryNotes: "Toast and top with smashed avocado, poached eggs, or extra virgin olive oil and za'atar.",
-    culturalOrigin: "Ancient Egypt / Mediterranean", glycemicIndex: "Medium"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Whole-Grain"
+    ],
+    "description": "Aromatic long-grain rice with intact bran layer providing sustained complex carbohydrates and nutty fragrance.",
+    "culinaryNotes": "Standard wholesome carbohydrate backbone across South Asian, Persian, and Middle Eastern gastronomy.",
+    "culturalOrigin": "Himalayan Foothills / South Asia",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "grain_barley", name: "Pearl & Hulled Barley (Jau)", category: "Grains & Breads", servingSize: "1 cup cooked (157g)",
-    calories: 193, proteinGrams: 3.6, carbsGrams: 44.3, fatGrams: 0.7, fiberGrams: 6.0,
-    micronutrients: [
-      { name: "Beta-Glucan", amount: "2.5 g", dailyValuePercent: null, benefit: "Metabolic and lipid regulator" },
-      { name: "Selenium", amount: "13.5 mcg", dailyValuePercent: 25, benefit: "Antioxidant enzyme defenses" },
-      { name: "Niacin (B3)", amount: "3.2 mg", dailyValuePercent: 20, benefit: "DNA repair & mitochondrial NAD+" }
+    "id": "grain_roti_chapati",
+    "name": "Whole Wheat Roti / Chapati",
+    "category": "Grains & Breads",
+    "servingSize": "1 medium roti (40g)",
+    "calories": 110,
+    "proteinGrams": 3.8,
+    "carbsGrams": 22,
+    "fatGrams": 0.8,
+    "fiberGrams": 3.2,
+    "micronutrients": [
+      {
+        "name": "Complex Carbs",
+        "amount": "18 g",
+        "dailyValuePercent": null,
+        "benefit": "Slow release energy"
+      },
+      {
+        "name": "B-Complex Vitamins",
+        "amount": "0.2 mg",
+        "dailyValuePercent": 15,
+        "benefit": "Energy metabolism"
+      },
+      {
+        "name": "Iron",
+        "amount": "1.2 mg",
+        "dailyValuePercent": 7,
+        "benefit": "Oxygenation"
+      }
     ],
-    dietaryTags: ["Vegan", "High-Fiber", "Ancient-Grain"],
-    description: "Ancient grain boasting the lowest glycemic index among common cereals and rich in soluble beta-glucan.",
-    culinaryNotes: "Add to hearty vegetable soups, winter stews, or brew as cooling South Asian Jau Sattu water.",
-    culturalOrigin: "Fertile Crescent", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Whole-Grain",
+      "Low-Fat",
+      "Traditional"
+    ],
+    "description": "Traditional unleavened stone-ground flatbread (atta) cooked on a dry tawa pan without saturated fats.",
+    "culinaryNotes": "Fundamental daily staple across Pakistan and Northern India, ideally paired with dals and sabzis.",
+    "culturalOrigin": "South Asia",
+    "glycemicIndex": "Medium"
   },
   {
-    id: "grain_buckwheat", name: "Buckwheat (Kuttu)", category: "Grains & Breads", servingSize: "1 cup cooked (168g)",
-    calories: 155, proteinGrams: 5.7, carbsGrams: 33.5, fatGrams: 1.0, fiberGrams: 4.5,
-    micronutrients: [
-      { name: "Rutin", amount: "Bioactive", dailyValuePercent: null, benefit: "Strengthens capillary walls" },
-      { name: "D-Chiro-Inositol", amount: "Bioactive", dailyValuePercent: null, benefit: "Improves insulin sensitivity in PCOS" },
-      { name: "Magnesium", amount: "86 mg", dailyValuePercent: 20, benefit: "Glycemic cofactor" }
+    "id": "grain_barley",
+    "name": "Pearl / Hulled Barley",
+    "category": "Grains & Breads",
+    "servingSize": "1 cup cooked (157g)",
+    "calories": 193,
+    "proteinGrams": 3.6,
+    "carbsGrams": 44.3,
+    "fatGrams": 0.7,
+    "fiberGrams": 6,
+    "micronutrients": [
+      {
+        "name": "Soluble Fiber",
+        "amount": "3.0 g",
+        "dailyValuePercent": null,
+        "benefit": "Cholesterol reduction"
+      },
+      {
+        "name": "Selenium",
+        "amount": "13.5 mcg",
+        "dailyValuePercent": 25,
+        "benefit": "Antioxidant protection"
+      },
+      {
+        "name": "Molybdenum",
+        "amount": "12 mcg",
+        "dailyValuePercent": 27,
+        "benefit": "Sulfur amino acid breakdown"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Low-Glycemic", "Heart-Healthy"],
-    description: "Gluten-free seed grain dense in rutin and D-chiro-inositol, traditionally consumed during South Asian Navratri fasts.",
-    culinaryNotes: "Use buckwheat flour for galettes, soba noodles, or make hearty porridge.",
-    culturalOrigin: "Southeast Asia / Central Asia", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "High-Fiber",
+      "Low-GI"
+    ],
+    "description": "Ancient hearty grain with the lowest glycemic index among cereal grains (GI ~28).",
+    "culinaryNotes": "Superb in Middle Eastern soups, stews, and grain salads.",
+    "culturalOrigin": "Fertile Crescent",
+    "glycemicIndex": "Low"
   },
   {
-    id: "grain_millet", name: "Foxtail & Pearl Millet (Bajra/Kangni)", category: "Grains & Breads", servingSize: "1 cup cooked (174g)",
-    calories: 207, proteinGrams: 6.1, carbsGrams: 41.2, fatGrams: 1.7, fiberGrams: 2.3,
-    micronutrients: [
-      { name: "Iron", amount: "3.0 mg", dailyValuePercent: 17, benefit: "Oxygen transport" },
-      { name: "Zinc", amount: "1.7 mg", dailyValuePercent: 15, benefit: "Immune defense & protein synthesis" },
-      { name: "Phosphorus", amount: "174 mg", dailyValuePercent: 14, benefit: "Bone matrix formation" }
+    "id": "legume_chickpeas",
+    "name": "Chickpeas (Garbanzo Beans)",
+    "category": "Legumes & Pulses",
+    "servingSize": "1 cup cooked (164g)",
+    "calories": 269,
+    "proteinGrams": 14.5,
+    "carbsGrams": 45,
+    "fatGrams": 4.2,
+    "fiberGrams": 12.5,
+    "micronutrients": [
+      {
+        "name": "Iron",
+        "amount": "4.7 mg",
+        "dailyValuePercent": 26,
+        "benefit": "Oxygen carriage"
+      },
+      {
+        "name": "Manganese",
+        "amount": "1.7 mg",
+        "dailyValuePercent": 74,
+        "benefit": "Mitochondrial antioxidant SOD2"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Climate-Resilient", "Ancient-Grain"],
-    description: "Drought-hardy super-grain high in resistant starch and iron, celebrated by the UN International Year of Millets.",
-    culinaryNotes: "Bajra roti paired with sarson ka saag or spiced lentil soup is a winter nutritional powerhouse.",
-    culturalOrigin: "African Sahel & Indus Valley", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "High-Fiber",
+      "Heart-Healthy"
+    ],
+    "description": "Nutty legume providing 12.5g of fiber and 14.5g of protein, backing iconic dishes like hummus, falafel, and chana masala.",
+    "culinaryNotes": "Aquafaba (chickpea soaking water) serves as an effective vegan egg white substitute.",
+    "culturalOrigin": "Middle East / Mediterranean",
+    "glycemicIndex": "Low"
   },
   {
-    id: "grain_chia_seeds", name: "Chia Seeds", category: "Nuts & Seeds", servingSize: "2 tbsp (28g)",
-    calories: 138, proteinGrams: 4.7, carbsGrams: 12.0, fatGrams: 8.7, fiberGrams: 9.8,
-    micronutrients: [
-      { name: "ALA Omega-3", amount: "5.0 g", dailyValuePercent: 312, benefit: "Anti-inflammatory plant lipid" },
-      { name: "Calcium", amount: "179 mg", dailyValuePercent: 14, benefit: "Plant-based bone mineral" },
-      { name: "Phosphorus", amount: "244 mg", dailyValuePercent: 20, benefit: "Cellular phosphorylation" }
+    "id": "legume_red_lentils",
+    "name": "Red Lentils (Masoor Dal)",
+    "category": "Legumes & Pulses",
+    "servingSize": "1 cup cooked (198g)",
+    "calories": 230,
+    "proteinGrams": 17.9,
+    "carbsGrams": 39.9,
+    "fatGrams": 0.8,
+    "fiberGrams": 15.6,
+    "micronutrients": [
+      {
+        "name": "Folate",
+        "amount": "358 mcg",
+        "dailyValuePercent": 90,
+        "benefit": "Cell proliferation"
+      },
+      {
+        "name": "Iron",
+        "amount": "6.6 mg",
+        "dailyValuePercent": 37,
+        "benefit": "Plant-based heme precursor"
+      },
+      {
+        "name": "Zinc",
+        "amount": "2.5 mg",
+        "dailyValuePercent": 23,
+        "benefit": "Immunity & protein synthesis"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "High-Fiber", "Omega-3", "Keto-Friendly"],
-    description: "Hydrophilic seeds that absorb up to 12x their weight in water, forming a soothing digestive mucilage gel.",
-    culinaryNotes: "Soak in almond or oat milk with pure vanilla for a slow-digesting chia pudding.",
-    culturalOrigin: "Mesoamerica (Aztec/Mayan)", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "High-Fiber",
+      "Low-Fat"
+    ],
+    "description": "Quick-cooking hulled lentils that break down into a creamy, protein-dense stew without soaking.",
+    "culinaryNotes": "Cornerstone of South Asian comforting Dal Tadka, seasoned with cumin, turmeric, and garlic.",
+    "culturalOrigin": "South Asia / Levant",
+    "glycemicIndex": "Low"
   },
   {
-    id: "grain_flaxseeds", name: "Ground Flaxseeds (Alsi)", category: "Nuts & Seeds", servingSize: "2 tbsp (14g)",
-    calories: 75, proteinGrams: 2.6, carbsGrams: 4.0, fatGrams: 6.0, fiberGrams: 3.8,
-    micronutrients: [
-      { name: "Lignans (SDG)", amount: "40 mg", dailyValuePercent: null, benefit: "Phytoestrogen hormone balancer" },
-      { name: "ALA Omega-3", amount: "3.2 g", dailyValuePercent: 200, benefit: "Cardiovascular inflammation defense" }
+    "id": "legume_black_beans",
+    "name": "Black Beans",
+    "category": "Legumes & Pulses",
+    "servingSize": "1 cup cooked (172g)",
+    "calories": 227,
+    "proteinGrams": 15.2,
+    "carbsGrams": 40.8,
+    "fatGrams": 0.9,
+    "fiberGrams": 15,
+    "micronutrients": [
+      {
+        "name": "Anthocyanin Bioflavonoids",
+        "amount": "45 mg",
+        "dailyValuePercent": null,
+        "benefit": "Dark seed coat antioxidant"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "120 mg",
+        "dailyValuePercent": 29,
+        "benefit": "Metabolic regulation"
+      },
+      {
+        "name": "Folate",
+        "amount": "256 mcg",
+        "dailyValuePercent": 64,
+        "benefit": "Cardiovascular homocysteine control"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Hormone-Health", "Omega-3"],
-    description: "Richest known dietary source of plant lignans (SDG), which support estrogen metabolism and vascular elasticity.",
-    culinaryNotes: "Must be consumed ground (flaxseed meal) rather than whole to enable intestinal absorption of internal lipids.",
-    culturalOrigin: "Fertile Crescent / Ancient Egypt", glycemicIndex: "Low"
-  },
-
-  // --- LEGUMES & PULSES (10) ---
-  {
-    id: "legume_lentils", name: "Red & Brown Lentils (Masoor/Moong Dal)", category: "Legumes & Pulses", servingSize: "1 cup cooked (198g)",
-    calories: 230, proteinGrams: 17.9, carbsGrams: 39.9, fatGrams: 0.8, fiberGrams: 15.6,
-    micronutrients: [
-      { name: "Folate (B9)", amount: "358 mcg", dailyValuePercent: 90, benefit: "Neural development & DNA synthesis" },
-      { name: "Non-Heme Iron", amount: "6.6 mg", dailyValuePercent: 37, benefit: "Red blood cell production" },
-      { name: "Potassium", amount: "731 mg", dailyValuePercent: 16, benefit: "Blood pressure regulation" }
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "High-Fiber"
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "High-Protein", "High-Fiber", "Heart-Healthy"],
-    description: "Foundational pulse of global civilization providing nearly 18g protein and 16g fiber per cooked cup.",
-    culinaryNotes: "Cook with turmeric and cumin tadka, finish with fresh lemon juice to amplify iron bioavailability.",
-    culturalOrigin: "Fertile Crescent / South Asia", glycemicIndex: "Low"
-  },
-  {
-    id: "legume_chickpeas", name: "Chickpeas / Garbanzo Beans (Chana)", category: "Legumes & Pulses", servingSize: "1 cup cooked (164g)",
-    calories: 269, proteinGrams: 14.5, carbsGrams: 45.0, fatGrams: 4.2, fiberGrams: 12.5,
-    micronutrients: [
-      { name: "Manganese", amount: "1.7 mg", dailyValuePercent: 74, benefit: "Antioxidant enzyme defenses" },
-      { name: "Folate", amount: "282 mcg", dailyValuePercent: 71, benefit: "Cellular regeneration" },
-      { name: "Tryptophan", amount: "150 mg", dailyValuePercent: null, benefit: "Serotonin and melatonin precursor" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "High-Protein", "High-Fiber"],
-    description: "Versatile legume cornerstone of Mediterranean Hummus, Middle Eastern Falafel, and South Asian Chana Masala.",
-    culinaryNotes: "Simmer with bay leaves and garlic; save chickpea cooking liquid (aquafaba) as vegan egg-white alternative.",
-    culturalOrigin: "Middle East / Turkey", glycemicIndex: "Low"
-  },
-  {
-    id: "legume_black_beans", name: "Black Turtle Beans", category: "Legumes & Pulses", servingSize: "1 cup cooked (172g)",
-    calories: 227, proteinGrams: 15.2, carbsGrams: 40.8, fatGrams: 0.9, fiberGrams: 15.0,
-    micronutrients: [
-      { name: "Anthocyanins", amount: "Pigments", dailyValuePercent: null, benefit: "Vascular endothelial defense" },
-      { name: "Molybdenum", amount: "130 mcg", dailyValuePercent: 289, benefit: "Sulfur amino acid detoxification" },
-      { name: "Magnesium", amount: "120 mg", dailyValuePercent: 29, benefit: "Glycemic and nerve regulator" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "High-Fiber", "Antioxidant-Rich"],
-    description: "Dark-pigmented legume revered in Latin American cuisines for anthocyanin content matching blackberries.",
-    culinaryNotes: "Simmer with cumin, oregano, and sweet bell peppers; serve with brown rice for a complete amino acid profile.",
-    culturalOrigin: "Mesoamerica / South America", glycemicIndex: "Low"
+    "description": "Latin American staple loaded with resistant starch and polyphenols that promote gut short-chain fatty acids (SCFAs).",
+    "culinaryNotes": "Pairs naturally with brown rice to form a complete dietary protein with balanced leucine.",
+    "culturalOrigin": "Central & South America",
+    "glycemicIndex": "Low"
   },
   {
-    id: "legume_kidney_beans", name: "Kidney Beans (Rajma)", category: "Legumes & Pulses", servingSize: "1 cup cooked (177g)",
-    calories: 225, proteinGrams: 15.3, carbsGrams: 40.4, fatGrams: 0.9, fiberGrams: 13.1,
-    micronutrients: [
-      { name: "Iron", amount: "5.2 mg", dailyValuePercent: 29, benefit: "Cellular energy synthesis" },
-      { name: "Copper", amount: "0.4 mg", dailyValuePercent: 44, benefit: "Superoxide dismutase cofactor" },
-      { name: "Resistant Starch", amount: "4.8 g", dailyValuePercent: null, benefit: "Colonic butyrate generation" }
+    "id": "legume_mung_beans",
+    "name": "Green Mung Beans (Moong)",
+    "category": "Legumes & Pulses",
+    "servingSize": "1 cup cooked (202g)",
+    "calories": 212,
+    "proteinGrams": 14.2,
+    "carbsGrams": 38.7,
+    "fatGrams": 0.8,
+    "fiberGrams": 15.4,
+    "micronutrients": [
+      {
+        "name": "Potassium",
+        "amount": "537 mg",
+        "dailyValuePercent": 11,
+        "benefit": "Cardiovascular health"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "97 mg",
+        "dailyValuePercent": 23,
+        "benefit": "Nerve conduction"
+      },
+      {
+        "name": "Vitexin & Isovitexin",
+        "amount": "22 mg",
+        "dailyValuePercent": null,
+        "benefit": "Heat stroke & oxidative defense"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "High-Protein", "High-Fiber"],
-    description: "Hearty red bean renowned in South Asian Rajma Chawal and American Creole red beans and rice.",
-    culinaryNotes: "Must be soaked and boiled vigorously for at least 10 minutes to completely deactivate phytohaemagglutinin lectins.",
-    culturalOrigin: "Central & South America", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Easy-Digest",
+      "High-Fiber"
+    ],
+    "description": "Easiest-to-digest legume widely prescribed in Ayurvedic traditions (as Kitchari) for gentle gut restoration.",
+    "culinaryNotes": "Can be sprouted in 48 hours to multiply vitamin C and enzyme availability.",
+    "culturalOrigin": "South Asia",
+    "glycemicIndex": "Low"
   },
   {
-    id: "legume_edamame", name: "Edamame & Organic Tofu", category: "Legumes & Pulses", servingSize: "1 cup shelled (155g)",
-    calories: 188, proteinGrams: 18.5, carbsGrams: 13.8, fatGrams: 8.1, fiberGrams: 8.1,
-    micronutrients: [
-      { name: "Soy Isoflavones (Genistein)", amount: "35 mg", dailyValuePercent: null, benefit: "Cardiometabolic & lipid modulator" },
-      { name: "Complete EAAs", amount: "Full score", dailyValuePercent: null, benefit: "Complete muscle protein synthesis" },
-      { name: "Folate", amount: "482 mcg", dailyValuePercent: 120, benefit: "Cell division and methylation" }
+    "id": "legume_kidney_beans",
+    "name": "Kidney Beans (Rajma)",
+    "category": "Legumes & Pulses",
+    "servingSize": "1 cup cooked (177g)",
+    "calories": 225,
+    "proteinGrams": 15.3,
+    "carbsGrams": 40.4,
+    "fatGrams": 0.9,
+    "fiberGrams": 13.1,
+    "micronutrients": [
+      {
+        "name": "Molybdenum",
+        "amount": "130 mcg",
+        "dailyValuePercent": 289,
+        "benefit": "Detoxification of sulfites"
+      },
+      {
+        "name": "Iron",
+        "amount": "3.9 mg",
+        "dailyValuePercent": 22,
+        "benefit": "Energy levels"
+      },
+      {
+        "name": "Folate",
+        "amount": "230 mcg",
+        "dailyValuePercent": 58,
+        "benefit": "Cellular division"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Complete-Protein", "High-Protein"],
-    description: "Young green soybeans providing a complete plant protein spectrum with high digestibility and beneficial isoflavones.",
-    culinaryNotes: "Steam in pods with sea salt for a snack or press firm tofu and sear with ginger-soy glaze.",
-    culturalOrigin: "East Asia (China/Japan)", glycemicIndex: "Low"
-  },
-
-  // --- PROTEINS & SEAFOOD (8) ---
-  {
-    id: "protein_salmon", name: "Wild Alaskan Salmon", category: "Proteins & Seafood", servingSize: "3.5 oz / 100g cooked",
-    calories: 182, proteinGrams: 25.4, carbsGrams: 0.0, fatGrams: 8.1, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "EPA & DHA Omega-3", amount: "2,260 mg", dailyValuePercent: 141, benefit: "Brain lipid structure & anti-inflammation" },
-      { name: "Vitamin D3", amount: "570 IU", dailyValuePercent: 71, benefit: "Bone matrix & immune modulation" },
-      { name: "Astaxanthin", amount: "3.5 mg", dailyValuePercent: null, benefit: "Marine carotenoid antioxidant" },
-      { name: "Vitamin B12", amount: "3.2 mcg", dailyValuePercent: 133, benefit: "Nerve myelin sheath integrity" }
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "High-Fiber"
     ],
-    dietaryTags: ["Pescatarian", "Gluten-Free", "Keto-Friendly", "Omega-3", "High-Protein"],
-    description: "Cold-water fatty fish prized for marine omega-3 lipids (EPA/DHA) and pink astaxanthin carotenoid.",
-    culinaryNotes: "Pan-sear with skin-on in a touch of olive oil, seasoned with sea salt, lemon, and fresh dill.",
-    culturalOrigin: "North Pacific / Scandinavia", glycemicIndex: "Low"
-  },
-  {
-    id: "protein_eggs", name: "Pasture-Raised Eggs", category: "Proteins & Seafood", servingSize: "2 large eggs (100g)",
-    calories: 144, proteinGrams: 12.6, carbsGrams: 0.8, fatGrams: 9.9, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "Choline", amount: "294 mg", dailyValuePercent: 53, benefit: "Acetylcholine neurotransmitter & liver export" },
-      { name: "Lutein & Zeaxanthin", amount: "500 mcg", dailyValuePercent: null, benefit: "Highly bioavailable eye protection" },
-      { name: "Vitamin B12", amount: "1.8 mcg", dailyValuePercent: 75, benefit: "Red cell maturation" },
-      { name: "Leucine", amount: "1.1 g", dailyValuePercent: null, benefit: "Muscle synthesis trigger" }
-    ],
-    dietaryTags: ["Vegetarian", "Gluten-Free", "Keto-Friendly", "High-Protein", "Complete-Protein"],
-    description: "Nature's nutrient multivitamin providing the gold standard reference protein score (DIAAS > 1.1) and essential brain choline.",
-    culinaryNotes: "Soft-boiling or poaching preserves delicate yolk lipids and prevents cholesterol oxidation.",
-    culturalOrigin: "Global / Southeast Asia", glycemicIndex: "Low"
+    "description": "Robust red bean essential in Rajma Masala, chili con carne, and Mediterranean minestrone.",
+    "culinaryNotes": "Must be boiled thoroughly (10+ minutes) to deactivate phytohaemagglutinin lectins.",
+    "culturalOrigin": "Central America / South Asia",
+    "glycemicIndex": "Low"
   },
   {
-    id: "protein_chicken_breast", name: "Skinless Chicken Breast", category: "Proteins & Seafood", servingSize: "3.5 oz / 100g cooked",
-    calories: 165, proteinGrams: 31.0, carbsGrams: 0.0, fatGrams: 3.6, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "Niacin (B3)", amount: "13.7 mg", dailyValuePercent: 86, benefit: "Cellular energy conversion" },
-      { name: "Vitamin B6", amount: "0.6 mg", dailyValuePercent: 35, benefit: "Amino acid transamination" },
-      { name: "Phosphorus", amount: "228 mg", dailyValuePercent: 23, benefit: "Bone structure & ATP" }
+    "id": "nut_almonds",
+    "name": "Raw / Roasted Almonds",
+    "category": "Nuts & Seeds",
+    "servingSize": "1 oz (28g / ~23 nuts)",
+    "calories": 164,
+    "proteinGrams": 6,
+    "carbsGrams": 6.1,
+    "fatGrams": 14.2,
+    "fiberGrams": 3.5,
+    "micronutrients": [
+      {
+        "name": "Magnesium",
+        "amount": "77 mg",
+        "dailyValuePercent": 18,
+        "benefit": "Muscle relaxation"
+      }
     ],
-    dietaryTags: ["High-Protein", "Low-Fat", "Keto-Friendly", "Gluten-Free"],
-    description: "Ultra-lean high-density animal protein delivering 31g of bioavailable amino acids per 100g serving.",
-    culinaryNotes: "Marinate in yogurt, lemon, garlic, and ginger (Tandoori/Tikka style) to keep moisture without adding saturated fats.",
-    culturalOrigin: "Global / Indus Valley", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Heart-Healthy",
+      "Brain-Food"
+    ],
+    "description": "Nutrient-dense tree nut providing 50% daily Vitamin E per ounce to shield cell membranes from lipid peroxidation.",
+    "culinaryNotes": "Soaking overnight softens texture and reduces enzyme inhibitor phytic acid.",
+    "culturalOrigin": "Middle East / Mediterranean",
+    "glycemicIndex": "Low"
   },
   {
-    id: "protein_greek_yogurt", name: "Plain Greek Yogurt (0% or 2%)", category: "Dairy & Alternatives", servingSize: "1 cup (200g)",
-    calories: 146, proteinGrams: 20.0, carbsGrams: 7.8, fatGrams: 3.8, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "Calcium", amount: "230 mg", dailyValuePercent: 18, benefit: "Bone mineral density" },
-      { name: "Probiotic Cultures", amount: "Billions CFU", dailyValuePercent: null, benefit: "L. bulgaricus & S. thermophilus" },
-      { name: "Vitamin B12", amount: "1.0 mcg", dailyValuePercent: 42, benefit: "Neurological health" }
+    "id": "nut_walnuts",
+    "name": "Walnuts",
+    "category": "Nuts & Seeds",
+    "servingSize": "1 oz (28g / 14 halves)",
+    "calories": 185,
+    "proteinGrams": 4.3,
+    "carbsGrams": 3.9,
+    "fatGrams": 18.5,
+    "fiberGrams": 1.9,
+    "micronutrients": [
+      {
+        "name": "Polyphenols",
+        "amount": "180 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cognitive and endothelial protection"
+      },
+      {
+        "name": "Copper",
+        "amount": "0.45 mg",
+        "dailyValuePercent": 50,
+        "benefit": "Collagen & iron metabolism"
+      }
     ],
-    dietaryTags: ["Vegetarian", "Gluten-Free", "High-Protein", "Probiotic", "Keto-Friendly"],
-    description: "Strained cultured dairy with whey removed, concentrating casein and bioactive peptides with twice the protein of normal yogurt.",
-    culinaryNotes: "Top with raw walnuts, blueberries, and a drizzle of raw honey for an optimal protein-antioxidant bowl.",
-    culturalOrigin: "Eastern Mediterranean / Greece", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Omega-3-Rich",
+      "Keto-Friendly",
+      "Brain-Food"
+    ],
+    "description": "The premier tree nut source of plant-based ALA Omega-3 fatty acids, shaped like human cerebral hemispheres.",
+    "culinaryNotes": "Store in refrigeration to prevent delicate polyunsaturated fats from oxidizing.",
+    "culturalOrigin": "Persia / Mediterranean",
+    "glycemicIndex": "Low"
   },
   {
-    id: "protein_sardines", name: "Sardines in Olive Oil", category: "Proteins & Seafood", servingSize: "1 can drained (85g)",
-    calories: 177, proteinGrams: 21.0, carbsGrams: 0.0, fatGrams: 9.8, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "Calcium (Soft Bones)", amount: "325 mg", dailyValuePercent: 25, benefit: "Skeletal scaffolding" },
-      { name: "Omega-3 (EPA/DHA)", amount: "1,500 mg", dailyValuePercent: 94, benefit: "Cardiovascular health" },
-      { name: "Vitamin B12", amount: "7.6 mcg", dailyValuePercent: 317, benefit: "Nerve myelin integrity" }
+    "id": "nut_chia_seeds",
+    "name": "Chia Seeds",
+    "category": "Nuts & Seeds",
+    "servingSize": "2 tbsp (28g)",
+    "calories": 138,
+    "proteinGrams": 4.7,
+    "carbsGrams": 12,
+    "fatGrams": 8.7,
+    "fiberGrams": 9.8,
+    "micronutrients": [
+      {
+        "name": "ALA Omega-3",
+        "amount": "5.0 g",
+        "dailyValuePercent": 312,
+        "benefit": "Unprecedented plant omega-3 density"
+      },
+      {
+        "name": "Calcium",
+        "amount": "179 mg",
+        "dailyValuePercent": 14,
+        "benefit": "Non-dairy bone mineral"
+      },
+      {
+        "name": "Soluble Mucilage Fiber",
+        "amount": "5.2 g",
+        "dailyValuePercent": null,
+        "benefit": "Forms hydrophilic gel"
+      }
     ],
-    dietaryTags: ["Pescatarian", "Gluten-Free", "Keto-Friendly", "High-Protein", "Omega-3", "Sustainable"],
-    description: "Small sustainable cold-water fish at the bottom of the marine trophic pyramid, virtually free of heavy metal accumulation.",
-    culinaryNotes: "Mash on whole grain sourdough toast with lemon juice, cracked black pepper, and capers.",
-    culturalOrigin: "Mediterranean / Atlantic", glycemicIndex: "Low"
-  },
-
-  // --- NUTS, SEEDS & OILS (8) ---
-  {
-    id: "nut_walnuts", name: "English Walnuts", category: "Nuts & Seeds", servingSize: "1 oz / 14 halves (28g)",
-    calories: 185, proteinGrams: 4.3, carbsGrams: 3.9, fatGrams: 18.5, fiberGrams: 1.9,
-    micronutrients: [
-      { name: "ALA Omega-3", amount: "2.5 g", dailyValuePercent: 156, benefit: "Brain lipid structure" },
-      { name: "Polyphenols (Pedunculagin)", amount: "Bioactive", dailyValuePercent: null, benefit: "Microvascular elasticity" },
-      { name: "Copper", amount: "0.45 mg", dailyValuePercent: 50, benefit: "Collagen & elastin cross-linking" }
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Fiber",
+      "Omega-3-Rich",
+      "Superfood"
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Keto-Friendly", "Omega-3", "Brain-Health"],
-    description: "Brain-shaped nut uniquely high in alpha-linolenic acid (ALA) and ellagitannin polyphenols that support vascular tone.",
-    culinaryNotes: "Store in refrigerator to prevent polyunsaturated fats from oxidizing; toss into salads or morning porridge.",
-    culturalOrigin: "Persia / Central Asia", glycemicIndex: "Low"
-  },
-  {
-    id: "nut_almonds", name: "Raw Almonds (Badam)", category: "Nuts & Seeds", servingSize: "1 oz / 23 almonds (28g)",
-    calories: 164, proteinGrams: 6.0, carbsGrams: 6.1, fatGrams: 14.2, fiberGrams: 3.5,
-    micronutrients: [
-      { name: "Vitamin E (Alpha-tocopherol)", amount: "7.3 mg", dailyValuePercent: 49, benefit: "Master lipid antioxidant" },
-      { name: "Magnesium", amount: "76 mg", dailyValuePercent: 18, benefit: "Muscle & nerve homeostasis" },
-      { name: "Riboflavin (B2)", amount: "0.3 mg", dailyValuePercent: 23, benefit: "Mitochondrial energy" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Keto-Friendly", "Heart-Healthy"],
-    description: "Dense in alpha-tocopherol (vitamin E) that protects LDL particles and cell membranes from oxidative stress.",
-    culinaryNotes: "Ayurvedic tradition recommends soaking in water overnight and peeling outer skins for enhanced digestive ease.",
-    culturalOrigin: "Levant & South Asia", glycemicIndex: "Low"
-  },
-  {
-    id: "oil_evoo", name: "Extra Virgin Olive Oil (EVOO)", category: "Oils & Healthy Fats", servingSize: "1 tbsp (15 ml)",
-    calories: 119, proteinGrams: 0.0, carbsGrams: 0.0, fatGrams: 13.5, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "Oleocanthal", amount: "Polyphenol", dailyValuePercent: null, benefit: "Natural COX-1/COX-2 enzyme inhibitor" },
-      { name: "Oleic Acid (Omega-9)", amount: "10 g", dailyValuePercent: null, benefit: "Endothelial nitric oxide enhancement" },
-      { name: "Vitamin E", amount: "1.9 mg", dailyValuePercent: 13, benefit: "Membrane defense" }
-    ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Keto-Friendly", "Heart-Healthy", "Anti-Inflammatory"],
-    description: "Cold-extracted olive fruit juice rich in oleocanthal, an anti-inflammatory polyphenol providing the hallmark peppery throat sensation.",
-    culinaryNotes: "Use generously as a raw dressing or finishing oil over warm dishes to preserve volatile aroma compounds.",
-    culturalOrigin: "Mediterranean Basin", glycemicIndex: "Low"
+    "description": "Aztec super-seed capable of absorbing 12x its weight in liquid, creating a prebiotic hydrophilic gel.",
+    "culinaryNotes": "Stir into almond milk with cocoa or berries to make nutritious Chia Pudding.",
+    "culturalOrigin": "Mesoamerica",
+    "glycemicIndex": "Low"
   },
   {
-    id: "nut_pumpkin_seeds", name: "Pumpkin Seeds (Pepitas)", category: "Nuts & Seeds", servingSize: "1 oz (28g)",
-    calories: 151, proteinGrams: 7.0, carbsGrams: 5.0, fatGrams: 13.0, fiberGrams: 1.7,
-    micronutrients: [
-      { name: "Magnesium", amount: "150 mg", dailyValuePercent: 37, benefit: "Over 300 biochemical enzymes" },
-      { name: "Zinc", amount: "2.2 mg", dailyValuePercent: 20, benefit: "Immunity and testosterone pathways" },
-      { name: "Phytosterols", amount: "75 mg", dailyValuePercent: null, benefit: "Cholesterol absorption inhibition" }
+    "id": "nut_flaxseeds",
+    "name": "Ground Flaxseeds (Linseed)",
+    "category": "Nuts & Seeds",
+    "servingSize": "2 tbsp ground (14g)",
+    "calories": 75,
+    "proteinGrams": 2.6,
+    "carbsGrams": 4,
+    "fatGrams": 6,
+    "fiberGrams": 3.8,
+    "micronutrients": [
+      {
+        "name": "ALA Omega-3",
+        "amount": "3.2 g",
+        "dailyValuePercent": 200,
+        "benefit": "Vascular health"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Keto-Friendly", "Mineral-Dense"],
-    description: "One of the most magnesium- and zinc-dense plant foods on the planet, crucial for cellular energy and hormonal balance.",
-    culinaryNotes: "Toast lightly on dry skillet with sea salt, smoked paprika, and lime juice.",
-    culturalOrigin: "Mesoamerica (Olmec/Mayan)", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Hormone-Balance",
+      "Omega-3"
+    ],
+    "description": "Richest dietary source of lignan phytoestrogens that support healthy estrogen metabolism and cardiovascular elasticity.",
+    "culinaryNotes": "Must be ground (milled) because human enzymes cannot breach the tough outer whole seed hull.",
+    "culturalOrigin": "Fertile Crescent",
+    "glycemicIndex": "Low"
   },
-
-  // --- BEVERAGES & HEALTHY HERBALS (6) ---
   {
-    id: "bev_green_tea", name: "Matcha & Sencha Green Tea", category: "Beverages", servingSize: "1 cup brewed (240 ml)",
-    calories: 2, proteinGrams: 0.2, carbsGrams: 0.4, fatGrams: 0.0, fiberGrams: 0.0,
-    micronutrients: [
-      { name: "EGCG (Epigallocatechin Gallate)", amount: "150-300 mg", dailyValuePercent: null, benefit: "Potent metabolic & cellular antioxidant" },
-      { name: "L-Theanine", amount: "25 mg", dailyValuePercent: null, benefit: "Promotes alpha brain waves and calm focus" },
-      { name: "Natural Caffeine", amount: "30-50 mg", dailyValuePercent: null, benefit: "Sustained alertness without jitters" }
+    "id": "nut_pumpkin_seeds",
+    "name": "Pumpkin Seeds (Pepitas)",
+    "category": "Nuts & Seeds",
+    "servingSize": "1 oz (28g)",
+    "calories": 158,
+    "proteinGrams": 8.6,
+    "carbsGrams": 3,
+    "fatGrams": 13.9,
+    "fiberGrams": 1.7,
+    "micronutrients": [
+      {
+        "name": "Magnesium",
+        "amount": "156 mg",
+        "dailyValuePercent": 37,
+        "benefit": "Deep sleep & neuromuscular function"
+      },
+      {
+        "name": "Zinc",
+        "amount": "2.2 mg",
+        "dailyValuePercent": 20,
+        "benefit": "Immune and testosterone synthesis"
+      },
+      {
+        "name": "L-Tryptophan",
+        "amount": "160 mg",
+        "dailyValuePercent": null,
+        "benefit": "Serotonin and melatonin precursor"
+      }
     ],
-    dietaryTags: ["Vegan", "Gluten-Free", "Zero-Calorie", "Nootropic", "Longevity"],
-    description: "Rich in EGCG catechins and L-theanine which synergize to promote relaxed yet acute cognitive focus.",
-    culinaryNotes: "Brew water at 70-80°C (not boiling) for 2-3 minutes to extract catechins without harsh bitter tannins.",
-    culturalOrigin: "China & Japan", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "High-Zinc",
+      "Sleep-Support"
+    ],
+    "description": "Dark green seed delivering nearly 9g of plant protein per ounce and unparalleled natural magnesium and zinc.",
+    "culinaryNotes": "Toasted lightly with sea salt and smoked paprika as a nutrient-packed crunchy snack.",
+    "culturalOrigin": "North America / Mexico",
+    "glycemicIndex": "Low"
   },
   {
-    id: "bev_turmeric_latte", name: "Turmeric Golden Milk (Haldi Doodh)", category: "Beverages", servingSize: "1 cup (240 ml)",
-    calories: 120, proteinGrams: 4.0, carbsGrams: 10.0, fatGrams: 6.0, fiberGrams: 1.0,
-    micronutrients: [
-      { name: "Curcuminoids", amount: "200 mg", dailyValuePercent: null, benefit: "Downregulates NF-kB inflammatory cascade" },
-      { name: "Piperine (Black Pepper)", amount: "Active", dailyValuePercent: null, benefit: "Boosts curcumin absorption by 2000%" },
-      { name: "Calcium", amount: "250 mg", dailyValuePercent: 20, benefit: "Skeletal support" }
+    "id": "dairy_greek_yogurt",
+    "name": "Plain Greek Yogurt (0-2% Fat)",
+    "category": "Dairy & Alternatives",
+    "servingSize": "1 cup (200g)",
+    "calories": 146,
+    "proteinGrams": 20,
+    "carbsGrams": 7,
+    "fatGrams": 3.8,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Live Probiotics",
+        "amount": "10 Billion CFU",
+        "dailyValuePercent": null,
+        "benefit": "L. bulgaricus & S. thermophilus"
+      },
+      {
+        "name": "Calcium",
+        "amount": "200 mg",
+        "dailyValuePercent": 15,
+        "benefit": "Bone & muscle contraction"
+      },
+      {
+        "name": "Vitamin B12",
+        "amount": "1.0 mcg",
+        "dailyValuePercent": 42,
+        "benefit": "Nerve myelination"
+      }
     ],
-    dietaryTags: ["Vegetarian", "Gluten-Free", "Ayurvedic", "Anti-Inflammatory"],
-    description: "Ancient Indian restorative elixir combining turmeric, black pepper (piperine), and lipids for maximum curcumin bioavailability.",
-    culinaryNotes: "Warm gently with grass-fed dairy or coconut milk, a pinch of black pepper, and cinnamon.",
-    culturalOrigin: "Vedic India / South Asia", glycemicIndex: "Low"
+    "dietaryTags": [
+      "Vegetarian",
+      "Gluten-Free",
+      "High-Protein",
+      "Probiotic",
+      "Low-Sugar"
+    ],
+    "description": "Strained cultured yogurt with double the protein concentration of regular yogurt and live probiotic colonies.",
+    "culinaryNotes": "Traditional foundation of Mediterranean Tzatziki and high-protein breakfast parfaits.",
+    "culturalOrigin": "Eastern Mediterranean / Balkans",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dairy_cottage_cheese",
+    "name": "Low-Fat Cottage Cheese / Paneer",
+    "category": "Dairy & Alternatives",
+    "servingSize": "1 cup (226g)",
+    "calories": 163,
+    "proteinGrams": 28,
+    "carbsGrams": 6.2,
+    "fatGrams": 2.3,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Micellar Casein Protein",
+        "amount": "24 g",
+        "dailyValuePercent": null,
+        "benefit": "Slow continuous amino acid release"
+      },
+      {
+        "name": "Phosphorus",
+        "amount": "303 mg",
+        "dailyValuePercent": 24,
+        "benefit": "Bone mineralization"
+      },
+      {
+        "name": "Selenium",
+        "amount": "20 mcg",
+        "dailyValuePercent": 36,
+        "benefit": "Antioxidant enzyme glutathione peroxidase"
+      }
+    ],
+    "dietaryTags": [
+      "Vegetarian",
+      "Gluten-Free",
+      "High-Protein",
+      "Slow-Release"
+    ],
+    "description": "Concentrated casein curd protein that digests slowly over 6-8 hours, providing sustained muscular amino acid delivery.",
+    "culinaryNotes": "Paneer is the unsalted South Asian variant essential in Saag Paneer and Matar Paneer.",
+    "culturalOrigin": "Central Europe / South Asia",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dairy_soy_milk",
+    "name": "Fortified Organic Soy Milk",
+    "category": "Dairy & Alternatives",
+    "servingSize": "1 cup (240ml)",
+    "calories": 100,
+    "proteinGrams": 7.5,
+    "carbsGrams": 4,
+    "fatGrams": 4,
+    "fiberGrams": 1.5,
+    "micronutrients": [
+      {
+        "name": "Vitamin D2/D3",
+        "amount": "2.5 mcg",
+        "dailyValuePercent": 13,
+        "benefit": "Calcium absorption"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Dairy-Free",
+      "High-Protein"
+    ],
+    "description": "The only plant-based milk alternative matching dairy milk's complete protein profile gram-for-gram.",
+    "culinaryNotes": "Foams exceptionally well in coffee drinks due to natural soybean lecithin.",
+    "culturalOrigin": "China / East Asia",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dairy_kefir",
+    "name": "Kefir (Fermented Milk)",
+    "category": "Dairy & Alternatives",
+    "servingSize": "1 cup (243g)",
+    "calories": 110,
+    "proteinGrams": 9,
+    "carbsGrams": 12,
+    "fatGrams": 2.5,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Probiotic Strains",
+        "amount": "30+ Bacterial/Yeast Strains",
+        "dailyValuePercent": null,
+        "benefit": "Diverse microflora colonizer"
+      },
+      {
+        "name": "Kefiran",
+        "amount": "1.5 g",
+        "dailyValuePercent": null,
+        "benefit": "Antimicrobial exopolysaccharide"
+      }
+    ],
+    "dietaryTags": [
+      "Vegetarian",
+      "Gluten-Free",
+      "Probiotic-Superfood",
+      "99%-Lactose-Free"
+    ],
+    "description": "Centuries-old fermented probiotic drink with 3x the microbial diversity of standard yogurt.",
+    "culinaryNotes": "Naturally effervescent with a refreshing tart flavor.",
+    "culturalOrigin": "Caucasus Mountains",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "protein_salmon",
+    "name": "Wild Atlantic / Sockeye Salmon",
+    "category": "Proteins & Seafood",
+    "servingSize": "3.5 oz cooked (100g)",
+    "calories": 208,
+    "proteinGrams": 22,
+    "carbsGrams": 0,
+    "fatGrams": 12.5,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "EPA & DHA Omega-3",
+        "amount": "2.2 g",
+        "dailyValuePercent": null,
+        "benefit": "Cardiovascular and neuronal membranes"
+      },
+      {
+        "name": "Astaxanthin",
+        "amount": "3.0 mg",
+        "dailyValuePercent": null,
+        "benefit": "Potent carotenoid marine antioxidant"
+      },
+      {
+        "name": "Vitamin D3",
+        "amount": "14.2 mcg",
+        "dailyValuePercent": 71,
+        "benefit": "Immunity & hormone regulation"
+      },
+      {
+        "name": "Vitamin B12",
+        "amount": "3.2 mcg",
+        "dailyValuePercent": 133,
+        "benefit": "DNA & nerve health"
+      }
+    ],
+    "dietaryTags": [
+      "Pescatarian",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Omega-3-Rich",
+      "High-Protein"
+    ],
+    "description": "Premier fatty fish loaded with marine EPA/DHA omega-3s, natural astaxanthin, and bioavailable Vitamin D3.",
+    "culinaryNotes": "Pan-searing skin-down locks in moisture and crisps omega-rich skin.",
+    "culturalOrigin": "North Pacific / Atlantic",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "protein_chicken_breast",
+    "name": "Skinless Chicken Breast",
+    "category": "Proteins & Seafood",
+    "servingSize": "3.5 oz cooked (100g)",
+    "calories": 165,
+    "proteinGrams": 31,
+    "carbsGrams": 0,
+    "fatGrams": 3.6,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Phosphorus",
+        "amount": "228 mg",
+        "dailyValuePercent": 18,
+        "benefit": "ATP structure"
+      },
+      {
+        "name": "Selenium",
+        "amount": "27.6 mcg",
+        "dailyValuePercent": 50,
+        "benefit": "Thyroid protection"
+      }
+    ],
+    "dietaryTags": [
+      "Halal",
+      "Gluten-Free",
+      "High-Protein",
+      "Low-Fat",
+      "Lean-Meat"
+    ],
+    "description": "Gold-standard lean animal protein offering 31g of high biological value protein with minimal saturated fat.",
+    "culinaryNotes": "Brining in saltwater with herbs before grilling prevents dry texture.",
+    "culturalOrigin": "Global",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "protein_egg",
+    "name": "Whole Pasture-Raised Egg",
+    "category": "Proteins & Seafood",
+    "servingSize": "1 large egg (50g)",
+    "calories": 72,
+    "proteinGrams": 6.3,
+    "carbsGrams": 0.4,
+    "fatGrams": 4.8,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Choline",
+        "amount": "147 mg",
+        "dailyValuePercent": 27,
+        "benefit": "Acetylcholine neurotransmitter & liver"
+      },
+      {
+        "name": "Lutein & Zeaxanthin",
+        "amount": "252 mcg",
+        "dailyValuePercent": null,
+        "benefit": "Retinal macula protection"
+      },
+      {
+        "name": "Biotin",
+        "amount": "10 mcg",
+        "dailyValuePercent": 33,
+        "benefit": "Cell growth & metabolic enzyme"
+      }
+    ],
+    "dietaryTags": [
+      "Vegetarian-Friendly",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Complete-Protein"
+    ],
+    "description": "Nature's nutrient multivitamin encapsulating all essential vitamins (except C) and vital brain-boosting choline.",
+    "culinaryNotes": "Poaching or soft-boiling keeps yolk lipids unoxidized.",
+    "culturalOrigin": "Global",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "protein_tofu",
+    "name": "Organic Firm Tofu",
+    "category": "Proteins & Seafood",
+    "servingSize": "1/2 cup (126g)",
+    "calories": 117,
+    "proteinGrams": 15,
+    "carbsGrams": 2.8,
+    "fatGrams": 7,
+    "fiberGrams": 2,
+    "micronutrients": [
+      {
+        "name": "Iron",
+        "amount": "3.4 mg",
+        "dailyValuePercent": 19,
+        "benefit": "Oxygen carriage"
+      },
+      {
+        "name": "Isoflavones",
+        "amount": "35 mg",
+        "dailyValuePercent": null,
+        "benefit": "Antioxidant & lipid balance"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "Plant-Based"
+    ],
+    "description": "Soy curd staple delivering complete plant protein, calcium, and iron with zero cholesterol.",
+    "culinaryNotes": "Press out excess water and marinate in soy sauce, ginger, and garlic before pan-crisping.",
+    "culturalOrigin": "Ancient China",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "protein_tempeh",
+    "name": "Fermented Soy Tempeh",
+    "category": "Proteins & Seafood",
+    "servingSize": "3 oz (85g)",
+    "calories": 160,
+    "proteinGrams": 18,
+    "carbsGrams": 8,
+    "fatGrams": 9,
+    "fiberGrams": 5,
+    "micronutrients": [
+      {
+        "name": "Prebiotic Isoflavones",
+        "amount": "45 mg",
+        "dailyValuePercent": null,
+        "benefit": "Fermentation-enhanced bioactivity"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "65 mg",
+        "dailyValuePercent": 15,
+        "benefit": "Cellular ATP"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "High-Protein",
+      "High-Fiber",
+      "Fermented"
+    ],
+    "description": "Traditional Indonesian whole fermented soybean cake with 18g protein and 5g fiber per serving.",
+    "culinaryNotes": "Nutty, firm texture that absorbs rich spices, curries, and peanut sauces.",
+    "culturalOrigin": "Java, Indonesia",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "oil_olive",
+    "name": "Extra Virgin Olive Oil (EVOO)",
+    "category": "Oils & Healthy Fats",
+    "servingSize": "1 tbsp (15ml / 14g)",
+    "calories": 119,
+    "proteinGrams": 0,
+    "carbsGrams": 0,
+    "fatGrams": 13.5,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Oleocanthal & Oleuropein",
+        "amount": "30 mg",
+        "dailyValuePercent": null,
+        "benefit": "COX-1/COX-2 inhibiting polyphenols"
+      },
+      {
+        "name": "Vitamin E",
+        "amount": "1.9 mg",
+        "dailyValuePercent": 13,
+        "benefit": "Antioxidant"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Mediterranean",
+      "Heart-Healthy"
+    ],
+    "description": "Crown jewel of the Mediterranean Diet, cold-pressed with natural oleocanthal that mimics gentle anti-inflammatory pathways.",
+    "culinaryNotes": "Best drizzled fresh over finished dishes, salads, and steamed legumes to protect delicate polyphenols.",
+    "culturalOrigin": "Mediterranean Basin",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "oil_ghee",
+    "name": "Grass-Fed Desi Ghee (Clarified Butter)",
+    "category": "Oils & Healthy Fats",
+    "servingSize": "1 tbsp (14g)",
+    "calories": 120,
+    "proteinGrams": 0,
+    "carbsGrams": 0,
+    "fatGrams": 14,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "Vitamin A",
+        "amount": "120 mcg",
+        "dailyValuePercent": 13,
+        "benefit": "Fat-soluble vitamin"
+      }
+    ],
+    "dietaryTags": [
+      "Vegetarian",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Lactose-Free",
+      "Ayurvedic"
+    ],
+    "description": "Slow-simmered clarified butter with milk solids removed, packed with short-chain butyrate for colon mucosal lining.",
+    "culinaryNotes": "High smoke point (485°F / 250°C), iconic aroma in South Asian curries, dals, and khichdi.",
+    "culturalOrigin": "Ancient South Asia",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "bev_green_tea",
+    "name": "Matcha / Green Tea",
+    "category": "Beverages",
+    "servingSize": "1 cup (240ml)",
+    "calories": 2,
+    "proteinGrams": 0.2,
+    "carbsGrams": 0.4,
+    "fatGrams": 0,
+    "fiberGrams": 0,
+    "micronutrients": [
+      {
+        "name": "L-Theanine",
+        "amount": "25 mg",
+        "dailyValuePercent": null,
+        "benefit": "Promotes alpha brain waves and calm focus"
+      },
+      {
+        "name": "Caffeine",
+        "amount": "35 mg",
+        "dailyValuePercent": null,
+        "benefit": "Gentle metabolic stimulation"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Zero-Calorie",
+      "Nootropic",
+      "Antioxidant"
+    ],
+    "description": "Steeped Camellia sinensis leaves loaded with EGCG and L-Theanine for calm, sustained cognitive alertness without jitters.",
+    "culinaryNotes": "Brew at 175°F (80°C) rather than boiling water to avoid scorching delicate tea catechins.",
+    "culturalOrigin": "China / Japan",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "bev_coconut_water",
+    "name": "Fresh Coconut Water",
+    "category": "Beverages",
+    "servingSize": "1 cup (240ml)",
+    "calories": 45,
+    "proteinGrams": 1.7,
+    "carbsGrams": 8.9,
+    "fatGrams": 0.5,
+    "fiberGrams": 2.6,
+    "micronutrients": [
+      {
+        "name": "Potassium",
+        "amount": "600 mg",
+        "dailyValuePercent": 13,
+        "benefit": "Natural isotonic electrolyte"
+      },
+      {
+        "name": "Sodium",
+        "amount": "252 mg",
+        "dailyValuePercent": 11,
+        "benefit": "Hydration balance"
+      },
+      {
+        "name": "Magnesium",
+        "amount": "60 mg",
+        "dailyValuePercent": 14,
+        "benefit": "Electrolyte homeostasis"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Isotonic",
+      "Hydration"
+    ],
+    "description": "Natural isotonic fluid containing the 5 essential human electrolytes: potassium, sodium, magnesium, calcium, and phosphorus.",
+    "culinaryNotes": "Ideal natural post-workout rehydration beverage without artificial colorings or refined syrups.",
+    "culturalOrigin": "Tropical Regions / South & Southeast Asia",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_chicken_biryani",
+    "name": "Chicken Biryani with Mint Raita",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 plate (350g)",
+    "calories": 520,
+    "proteinGrams": 32,
+    "carbsGrams": 68,
+    "fatGrams": 14,
+    "fiberGrams": 4.2,
+    "micronutrients": [
+      {
+        "name": "Saffron Crocin",
+        "amount": "8 mg",
+        "dailyValuePercent": null,
+        "benefit": "Mood and neurological support"
+      },
+      {
+        "name": "Iron",
+        "amount": "3.2 mg",
+        "dailyValuePercent": 18,
+        "benefit": "Oxygenation"
+      }
+    ],
+    "dietaryTags": [
+      "Halal",
+      "High-Protein",
+      "South-Asian",
+      "Aromatic-Spices"
+    ],
+    "description": "Celebrated South Asian fragrant basmati rice layered with tender spiced marinated chicken, saffron, mint, and cooling yogurt raita.",
+    "culinaryNotes": "Pairing with cucumber-mint raita cools capsaicin and adds live probiotic enzymes that ease grain digestion.",
+    "culturalOrigin": "South Asia (Mughlai / Hyderabadi / Pakistani)",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_chana_masala",
+    "name": "Chana Masala with Whole Wheat Roti",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 bowl chana + 1 roti (300g)",
+    "calories": 380,
+    "proteinGrams": 16.5,
+    "carbsGrams": 62,
+    "fatGrams": 7.5,
+    "fiberGrams": 14,
+    "micronutrients": [
+      {
+        "name": "Dietary Fiber",
+        "amount": "14 g",
+        "dailyValuePercent": 50,
+        "benefit": "Half of daily fiber requirement"
+      },
+      {
+        "name": "Folate",
+        "amount": "220 mcg",
+        "dailyValuePercent": 55,
+        "benefit": "Cellular division"
+      },
+      {
+        "name": "Gingerol & Piperine",
+        "amount": "15 mg",
+        "dailyValuePercent": null,
+        "benefit": "Digestive enzyme stimulants"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "High-Fiber",
+      "South-Asian",
+      "Plant-Protein"
+    ],
+    "description": "Tender chickpeas simmered in a spiced tomato, ginger, garlic, and amchur (dry mango) gravy, served with handmade atta roti.",
+    "culinaryNotes": "A complete nutritional synergy: legumes supply lysine while wheat provides methionine for balanced amino acid intake.",
+    "culturalOrigin": "Northern South Asia (Punjab)",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_dal_tadka",
+    "name": "Yellow Lentil Dal Tadka with Steamed Rice & Salad",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 serving (320g)",
+    "calories": 340,
+    "proteinGrams": 15,
+    "carbsGrams": 56,
+    "fatGrams": 6,
+    "fiberGrams": 9.5,
+    "micronutrients": [
+      {
+        "name": "Iron",
+        "amount": "4.8 mg",
+        "dailyValuePercent": 27,
+        "benefit": "Energy and hemoglobin"
+      },
+      {
+        "name": "Turmeric Curcumin",
+        "amount": "35 mg",
+        "dailyValuePercent": null,
+        "benefit": "Cellular protection"
+      },
+      {
+        "name": "Potassium",
+        "amount": "580 mg",
+        "dailyValuePercent": 12,
+        "benefit": "Blood pressure balance"
+      }
+    ],
+    "dietaryTags": [
+      "Vegetarian",
+      "Gluten-Free-Option",
+      "South-Asian",
+      "Heart-Healthy"
+    ],
+    "description": "Comforting golden lentils tempered with aromatic cumin seeds, garlic, ghee, and fresh cilantro, served with crisp cucumber-tomato kachumber.",
+    "culinaryNotes": "A daily balanced meal in millions of South Asian homes, rich in polyphenols and gentle prebiotic fiber.",
+    "culturalOrigin": "South Asia",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_chicken_karahi",
+    "name": "Chicken Karahi (Pakistani Style)",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 portion (250g)",
+    "calories": 360,
+    "proteinGrams": 34,
+    "carbsGrams": 8,
+    "fatGrams": 21,
+    "fiberGrams": 2.4,
+    "micronutrients": [
+      {
+        "name": "Gingerol",
+        "amount": "18 mg",
+        "dailyValuePercent": null,
+        "benefit": "Digestive stimulant"
+      }
+    ],
+    "dietaryTags": [
+      "Halal",
+      "High-Protein",
+      "Low-Carb",
+      "South-Asian"
+    ],
+    "description": "Tender chicken wok-cooked with ripe tomatoes, ginger juliennes, green chilies, and black pepper without heavy onions or flour thickeners.",
+    "culinaryNotes": "High in bioavailable lean protein and lycopene synthesized by cooking tomatoes in healthy oil.",
+    "culturalOrigin": "Pakistan (Khyber Pakhtunkhwa / Lahore)",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_hummus_falafel",
+    "name": "Mediterranean Hummus & Baked Falafel Bowl",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 bowl (320g)",
+    "calories": 410,
+    "proteinGrams": 18,
+    "carbsGrams": 48,
+    "fatGrams": 17,
+    "fiberGrams": 13,
+    "micronutrients": [
+      {
+        "name": "Folate",
+        "amount": "240 mcg",
+        "dailyValuePercent": 60,
+        "benefit": "DNA repair"
+      },
+      {
+        "name": "Calcium",
+        "amount": "165 mg",
+        "dailyValuePercent": 13,
+        "benefit": "Bone health"
+      }
+    ],
+    "dietaryTags": [
+      "Vegan",
+      "Gluten-Free",
+      "Mediterranean",
+      "High-Fiber"
+    ],
+    "description": "Crispy herb-infused chickpea falafels served over creamy tahini hummus, kalamata olives, cucumber, and fresh parsley.",
+    "culinaryNotes": "Tahini (sesame paste) adds essential minerals like calcium, zinc, and healthy unsaturated fatty acids.",
+    "culturalOrigin": "Levant / Middle East",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_shawarma_plate",
+    "name": "Grilled Chicken Shawarma Plate with Fattoush",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 plate (340g)",
+    "calories": 460,
+    "proteinGrams": 36,
+    "carbsGrams": 32,
+    "fatGrams": 20,
+    "fiberGrams": 5.5,
+    "micronutrients": [
+      {
+        "name": "Sumac Polyphenols",
+        "amount": "32 mg",
+        "dailyValuePercent": null,
+        "benefit": "Antioxidant spice profile"
+      },
+      {
+        "name": "Vitamin C",
+        "amount": "45 mg",
+        "dailyValuePercent": 50,
+        "benefit": "Tissue synthesis"
+      },
+      {
+        "name": "Zinc",
+        "amount": "3.4 mg",
+        "dailyValuePercent": 31,
+        "benefit": "Immune resilience"
+      }
+    ],
+    "dietaryTags": [
+      "Halal",
+      "High-Protein",
+      "Middle-Eastern",
+      "Balanced"
+    ],
+    "description": "Cardamom and sumac spiced chicken breast paired with garlic toum, pickled turnip, and sumac-dressed crunchy fattoush salad.",
+    "culinaryNotes": "Sumac is one of the highest ORAC antioxidant spices in the world, providing natural tartness.",
+    "culturalOrigin": "Levant / Middle East",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_ramen_chashu",
+    "name": "Japanese Ramen with Soft-Boiled Egg & Bok Choy",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 large bowl (450g)",
+    "calories": 490,
+    "proteinGrams": 24,
+    "carbsGrams": 62,
+    "fatGrams": 16,
+    "fiberGrams": 4,
+    "micronutrients": [
+      {
+        "name": "Glutamate Umami",
+        "amount": "1.2 g",
+        "dailyValuePercent": null,
+        "benefit": "Natural savory satiety signaling"
+      }
+    ],
+    "dietaryTags": [
+      "East-Asian",
+      "Satiating",
+      "Umami-Rich"
+    ],
+    "description": "Wheat ramen noodles in rich savory broth topped with soft ajitsuke tamago egg, tender protein, nori seaweed, and steamed bok choy.",
+    "culinaryNotes": "Adding nutrient-dense nori and bok choy supplies trace marine iodine and carotenoids.",
+    "culturalOrigin": "Japan",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_salmon_sushi",
+    "name": "Salmon Nigiri & Avocado Roll Set",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "8 pieces (220g)",
+    "calories": 360,
+    "proteinGrams": 19,
+    "carbsGrams": 46,
+    "fatGrams": 11,
+    "fiberGrams": 3.5,
+    "micronutrients": [
+      {
+        "name": "Vitamin B12",
+        "amount": "2.1 mcg",
+        "dailyValuePercent": 88,
+        "benefit": "Nerve conduction"
+      }
+    ],
+    "dietaryTags": [
+      "Pescatarian",
+      "High-Omega-3",
+      "East-Asian",
+      "Clean-Eating"
+    ],
+    "description": "Fresh raw sashimi-grade salmon over seasoned sushi rice with avocado slices and mineral-rich nori sheets.",
+    "culinaryNotes": "Wasabi provides natural isothiocyanates with antimicrobial and anti-inflammatory properties.",
+    "culturalOrigin": "Japan",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_greek_salad_tzatziki",
+    "name": "Mediterranean Greek Salad with Kalamata & Feta",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 large bowl (280g)",
+    "calories": 290,
+    "proteinGrams": 9,
+    "carbsGrams": 12,
+    "fatGrams": 23,
+    "fiberGrams": 4.5,
+    "micronutrients": [
+      {
+        "name": "EVOO Polyphenols",
+        "amount": "40 mg",
+        "dailyValuePercent": null,
+        "benefit": "Vascular health"
+      },
+      {
+        "name": "Lycopene",
+        "amount": "8.5 mg",
+        "dailyValuePercent": null,
+        "benefit": "Antioxidant protection"
+      },
+      {
+        "name": "Calcium",
+        "amount": "240 mg",
+        "dailyValuePercent": 18,
+        "benefit": "Bone mineral"
+      }
+    ],
+    "dietaryTags": [
+      "Vegetarian",
+      "Gluten-Free",
+      "Keto-Friendly",
+      "Mediterranean",
+      "Low-Carb"
+    ],
+    "description": "Crisp cucumbers, vine tomatoes, red onions, kalamata olives, and sheep's milk feta tossed in cold-pressed extra virgin olive oil and wild oregano.",
+    "culinaryNotes": "Classic representation of raw vegetable polyphenol absorption mediated by monounsaturated fats.",
+    "culturalOrigin": "Greece / Mediterranean",
+    "glycemicIndex": "Low"
+  },
+  {
+    "id": "dish_burrito_bowl",
+    "name": "Chipotle-Style Chicken & Black Bean Quinoa Bowl",
+    "category": "Prepared Cultural Dishes",
+    "servingSize": "1 bowl (360g)",
+    "calories": 480,
+    "proteinGrams": 35,
+    "carbsGrams": 52,
+    "fatGrams": 14,
+    "fiberGrams": 11,
+    "micronutrients": [
+      {
+        "name": "Plant & Animal Protein Matrix",
+        "amount": "35 g",
+        "dailyValuePercent": null,
+        "benefit": "Optimal leucine and branched-chain aminos"
+      },
+      {
+        "name": "Dietary Fiber",
+        "amount": "11 g",
+        "dailyValuePercent": 39,
+        "benefit": "Microbiome fuel"
+      },
+      {
+        "name": "Potassium",
+        "amount": "720 mg",
+        "dailyValuePercent": 15,
+        "benefit": "Electrolyte balance"
+      }
+    ],
+    "dietaryTags": [
+      "Gluten-Free",
+      "High-Protein",
+      "High-Fiber",
+      "Latin-American"
+    ],
+    "description": "Grilled adobo chicken served over tri-color quinoa, black beans, charred corn salsa, avocado chunks, and cilantro lime dressing.",
+    "culinaryNotes": "Balancing high fiber beans with lean chicken and avocado creates hours of steady glycemic satiety.",
+    "culturalOrigin": "Mexico / Americas",
+    "glycemicIndex": "Low"
   }
 ];
 
 const ARTICLE_CATEGORIES = [
-  { id: "all", title: "All Disciplines", icon: "📚" },
-  { id: "FUNDAMENTALS", title: "Fundamentals", icon: "🧬" },
-  { id: "MACRONUTRIENTS", title: "Macronutrients", icon: "🥩" },
-  { id: "VITAMINS", title: "Vitamins", icon: "🍊" },
-  { id: "MINERALS", title: "Minerals", icon: "⚡" },
-  { id: "PRACTICAL", title: "Practical Nutrition", icon: "🍽️" },
-  { id: "PATTERNS", title: "Dietary Patterns", icon: "🥗" },
-  { id: "ACTIVE", title: "Active Lifestyle", icon: "🏃" },
-  { id: "LIFE_STAGES", title: "Life-Stage Nutrition", icon: "🌱" }
+  { id: "all", displayName: "All Topics" },
+  { id: "MACRONUTRIENTS", displayName: "Macronutrients" },
+  { id: "MINERALS", displayName: "Minerals & Vitamins" },
+  { id: "PRACTICAL", displayName: "Practical Habits" },
+  { id: "PATTERNS", displayName: "Dietary Patterns" },
+  { id: "ACTIVE", displayName: "Performance & Hydration" }
 ];
 
 const ALL_ARTICLES = [
@@ -1059,3 +2783,142 @@ const NUTRITION_MYTHS = [
     category: "Food Literacy"
   }
 ];
+
+const DIET_PLANNER_PRESETS = {
+  "muscle_synthesis": {
+    name: "Muscle Synthesis & Athletic Recovery",
+    tagline: "High-protein distribution hitting the leucine threshold across all meals.",
+    dailyTargets: { calories: 2350, protein: 165, carbs: 250, fats: 75, fiber: 38 },
+    days: [
+      {
+        dayNumber: 1,
+        meals: [
+          { type: "Breakfast", title: "3-Egg Omelet with Spinach, Feta & Sourdough", calories: 480, p: 32, c: 38, f: 22, fib: 5, notes: "Rich in choline, bioavailable leucine, and lutein." },
+          { type: "Lunch", title: "Grilled Salmon, Quinoa & Steamed Broccoli Bowl", calories: 620, p: 44, c: 52, f: 24, fib: 9, notes: "Provides 1800mg EPA/DHA marine omega-3s for myofibrillar recovery." },
+          { type: "Snack", title: "Greek Yogurt with Berries & Raw Pumpkin Seeds", calories: 280, p: 24, c: 22, f: 10, fib: 4, notes: "Delivers slow-digesting micellar casein and zinc." },
+          { type: "Dinner", title: "Herb-Roasted Chicken Breast with Sweet Potato & Asparagus", calories: 650, p: 52, c: 58, f: 18, fib: 8, notes: "Replenishes muscle glycogen and provides sustained amino acid release." }
+        ]
+      },
+      {
+        dayNumber: 2,
+        meals: [
+          { type: "Breakfast", title: "Overnight Rolled Oats with Whey Isolate, Chia & Blueberries", calories: 510, p: 36, c: 58, f: 14, fib: 11, notes: "Beta-glucan soluble fiber with fast and slow protein kinetics." },
+          { type: "Lunch", title: "Mediterranean Turkey & Chickpea Power Bowl", calories: 590, p: 46, c: 48, f: 22, fib: 10, notes: "Paired with tahini dressing and fresh parsley for non-heme iron absorption." },
+          { type: "Snack", title: "Cottage Cheese with Sliced Kiwi & Walnuts", calories: 260, p: 22, c: 16, f: 11, fib: 3, notes: "High in tryptophan and potassium for evening nervous system recovery." },
+          { type: "Dinner", title: "Grilled Sirloin Steak, Roasted Baby Potatoes & Sauteed Greens", calories: 680, p: 50, c: 54, f: 26, fib: 7, notes: "Natural creatine, heme iron, and B12 for energetic recharge." }
+        ]
+      },
+      {
+        dayNumber: 3,
+        meals: [
+          { type: "Breakfast", title: "Tofu & Egg White Scramble with Avocado Toast", calories: 460, p: 30, c: 36, f: 20, fib: 8, notes: "Balanced isoflavones, monounsaturated fats, and potassium." },
+          { type: "Lunch", title: "Tuna Niçoise Salad with Boiled Eggs, Olives & Green Beans", calories: 570, p: 48, c: 28, f: 28, fib: 7, notes: "Clean lean marine protein with healthy olive oil polyphenols." },
+          { type: "Snack", title: "Edamame Pods with Sea Salt & Apple Slices", calories: 230, p: 18, c: 26, f: 6, fib: 8, notes: "Whole soy protein providing all 9 essential amino acids." },
+          { type: "Dinner", title: "Chipotle-Style Chicken & Black Bean Quinoa Bowl", calories: 660, p: 48, c: 68, f: 20, fib: 12, notes: "Legume-grain synergy with antioxidant salsa and lime juice." }
+        ]
+      }
+    ]
+  },
+  "metabolic_health": {
+    name: "Metabolic Health & Glucose Stability",
+    tagline: "Low glycemic index, rich in prebiotic fiber, polyphenols, and healthy fats.",
+    dailyTargets: { calories: 1850, protein: 115, carbs: 145, fats: 85, fiber: 42 },
+    days: [
+      {
+        dayNumber: 1,
+        meals: [
+          { type: "Breakfast", title: "Chia Seed Pudding with Unsweetened Almond Milk & Raspberries", calories: 340, p: 12, c: 28, f: 18, fib: 14, notes: "Extremely low glycemic load with high mucilage soluble fiber." },
+          { type: "Lunch", title: "Mediterranean Lentil Salad with Feta, Cucumber & Olive Oil", calories: 520, p: 26, c: 48, f: 24, fib: 15, notes: "Slow-fermenting resistant starch stabilizing afternoon glucose." },
+          { type: "Snack", title: "Raw Walnuts & Celery Sticks with Almond Butter", calories: 240, p: 6, c: 8, f: 21, fib: 4, notes: "Zero sugar spike with cardioprotective alpha-linolenic acid." },
+          { type: "Dinner", title: "Pan-Seared Wild Salmon with Garlic Sautéed Spinach & Cauliflower Mash", calories: 580, p: 44, c: 18, f: 36, fib: 8, notes: "Rich in potassium, magnesium, and anti-inflammatory EPA/DHA." }
+        ]
+      },
+      {
+        dayNumber: 2,
+        meals: [
+          { type: "Breakfast", title: "Poached Eggs over Wilted Kale & Half Avocado", calories: 380, p: 18, c: 12, f: 28, fib: 7, notes: "Zero refined carbs to kickstart insulin sensitivity." },
+          { type: "Lunch", title: "Grilled Herb Chicken Breast with Greek Salad & Extra Virgin Olive Oil", calories: 540, p: 42, c: 16, f: 34, fib: 6, notes: "Polyphenol-rich kalamata olives and oregano." },
+          { type: "Snack", title: "Roasted Pumpkin Seeds with Green Tea", calories: 200, p: 10, c: 6, f: 16, fib: 3, notes: "High magnesium (37% DV) promoting insulin signaling pathways." },
+          { type: "Dinner", title: "Spiced Chickpea & Spinach Stew (Chana Palak) with Side Raita", calories: 560, p: 24, c: 64, f: 20, fib: 14, notes: "Turmeric curcumin and probiotic lactic acid bacteria." }
+        ]
+      },
+      {
+        dayNumber: 3,
+        meals: [
+          { type: "Breakfast", title: "Steel-Cut Oats with Cinnamon, Flaxseed & Crushed Pecans", calories: 370, p: 12, c: 42, f: 18, fib: 9, notes: "Cinnamaldehyde moderates postprandial glucose excursions." },
+          { type: "Lunch", title: "Baked Tempeh Buddha Bowl with Roasted Broccoli & Tahini", calories: 530, p: 32, c: 34, f: 28, fib: 12, notes: "Fermented prebiotic substrate with complete plant protein." },
+          { type: "Snack", title: "Dark Chocolate (85% Cacao) with Handful of Raw Almonds", calories: 220, p: 6, c: 12, f: 18, fib: 4, notes: "Flavanols supporting endothelial nitric oxide production." },
+          { type: "Dinner", title: "Grilled Cod Loin with Lemon, Asparagus & Herbed Wild Rice", calories: 540, p: 40, c: 42, f: 18, fib: 7, notes: "Lean marine protein paired with low-glycemic intact grains." }
+        ]
+      }
+    ]
+  },
+  "plant_vitality": {
+    name: "Plant-Based Vitality & Diverse Ecology",
+    tagline: "30+ plant species weekly, optimizing microbiome diversity and short-chain fatty acids.",
+    dailyTargets: { calories: 2050, protein: 105, carbs: 285, fats: 65, fiber: 52 },
+    days: [
+      {
+        dayNumber: 1,
+        meals: [
+          { type: "Breakfast", title: "Superfood Oatmeal with Hemp Seeds, Ground Flax & Mixed Berries", calories: 440, p: 18, c: 62, f: 14, fib: 14, notes: "Delivers 5 distinct plant species in a single bowl." },
+          { type: "Lunch", title: "Moroccan Spiced Chickpea & Butternut Squash Tagine", calories: 580, p: 22, c: 84, f: 16, fib: 18, notes: "Rich in beta-carotene, cumin, ginger, and prebiotic fiber." },
+          { type: "Snack", title: "Edamame & Carrot Sticks with Creamy Garlic Hummus", calories: 260, p: 14, c: 26, f: 11, fib: 8, notes: "Combines legumes, alliums, and root vegetables." },
+          { type: "Dinner", title: "Crispy Baked Tofu with Quinoa, Bok Choy & Ginger Tamari Glaze", calories: 620, p: 34, c: 68, f: 22, fib: 11, notes: "Complete essential amino acid score with brassica glucosinolates." }
+        ]
+      },
+      {
+        dayNumber: 2,
+        meals: [
+          { type: "Breakfast", title: "Spiced Golden Tofu Scramble with Sautéed Peppers & Sourdough", calories: 420, p: 26, c: 42, f: 16, fib: 7, notes: "Turmeric, nutritional yeast (B-complex), and lycopene." },
+          { type: "Lunch", title: "South Asian Yellow Dal Tadka with Brown Basmati & Tomato Kachumber", calories: 590, p: 24, c: 88, f: 14, fib: 16, notes: "Classic legume-grain pairing with fresh lemon for iron synergy." },
+          { type: "Snack", title: "Chia Berry Pudding with Toasted Almonds", calories: 250, p: 8, c: 22, f: 14, fib: 9, notes: "Soluble mucilage fibers soothing gut epithelial linings." },
+          { type: "Dinner", title: "Black Bean & Roasted Corn Enchilada Casserole with Guacamole", calories: 640, p: 26, c: 82, f: 22, fib: 17, notes: "High resistant starch yielding colonic butyrate production." }
+        ]
+      },
+      {
+        dayNumber: 3,
+        meals: [
+          { type: "Breakfast", title: "Green Smoothie Bowl with Spinach, Spirulina, Banana & Hemp Hearts", calories: 410, p: 18, c: 56, f: 12, fib: 10, notes: "Chlorophyll, bioavailable lutein, and magnesium." },
+          { type: "Lunch", title: "Tempeh Reuben Bowl with Warm Sauerkraut & Rye Croutons", calories: 560, p: 32, c: 48, f: 24, fib: 12, notes: "Living probiotic lactic acid bacteria supporting gut microbiota." },
+          { type: "Snack", title: "Roasted Spiced Chickpeas (Crispy Garbanzos)", calories: 220, p: 10, c: 30, f: 6, fib: 8, notes: "High-satiety crunchy snack rich in folate and manganese." },
+          { type: "Dinner", title: "Red Lentil Coconut Curry with Steamed Kale & Wild Rice", calories: 660, p: 28, c: 84, f: 22, fib: 14, notes: "Comforting, anti-inflammatory whole food plant matrix." }
+        ]
+      }
+    ]
+  },
+  "mediterranean_longevity": {
+    name: "Mediterranean Heart-Healthy Longevity",
+    tagline: "Extra virgin olive oil foundation, wild seafood, fresh herbs, and colorful produce.",
+    dailyTargets: { calories: 2100, protein: 125, carbs: 210, fats: 90, fiber: 40 },
+    days: [
+      {
+        dayNumber: 1,
+        meals: [
+          { type: "Breakfast", title: "Greek Yogurt with Fig Slices, Walnuts & Drizzle of Wild Honey", calories: 420, p: 24, c: 38, f: 18, fib: 5, notes: "Probiotic Lactobacillus paired with prebiotic polyphenols." },
+          { type: "Lunch", title: "Classic Greek Village Salad with Grilled Sardines & Sourdough", calories: 580, p: 38, c: 36, f: 30, fib: 7, notes: "Calcium from edible fish bones and oleic acid from Kalamata olives." },
+          { type: "Snack", title: "Fresh Orange Slices with Handful of Raw Pistachios", calories: 220, p: 6, c: 22, f: 13, fib: 5, notes: "Hesperidin citrus bioflavonoid supporting blood vessel elasticity." },
+          { type: "Dinner", title: "Mediterranean Baked Cod with Tomatoes, Capers, Garlic & Rosemary Potatoes", calories: 640, p: 44, c: 54, f: 26, fib: 8, notes: "Rich in allicin, rosemary rosmarinic acid, and clean lean protein." }
+        ]
+      },
+      {
+        dayNumber: 2,
+        meals: [
+          { type: "Breakfast", title: "Spanish Pan con Tomate with Soft-Boiled Eggs & Jamón / Olive Oil", calories: 450, p: 22, c: 34, f: 24, fib: 4, notes: "Lycopene bioavailability amplified by raw extra virgin olive oil." },
+          { type: "Lunch", title: "White Bean & Rosemary Stew (Ribollita) with Crusty Whole Grain Bread", calories: 560, p: 24, c: 72, f: 18, fib: 16, notes: "Tuscan longevity classic rich in slow-digesting complex carbs." },
+          { type: "Snack", title: "Pomegranate Arils with Crumbled Feta Cheese", calories: 190, p: 6, c: 20, f: 9, fib: 4, notes: "Punicalagin tannins promoting cardiovascular arterial flexibility." },
+          { type: "Dinner", title: "Grilled Herb Lamb Skewers with Tzatziki, Cucumber Salad & Bulgur Pilaf", calories: 670, p: 48, c: 46, f: 32, fib: 9, notes: "Natural zinc, carnosine, and cooling mint-garlic probiotics." }
+        ]
+      },
+      {
+        dayNumber: 3,
+        meals: [
+          { type: "Breakfast", title: "Herb Frittata with Leeks, Feta & Sliced Avocado", calories: 430, p: 24, c: 14, f: 30, fib: 6, notes: "High lutein/zeaxanthin eye protection with steady morning energy." },
+          { type: "Lunch", title: "Falafel & Hummus Plate with Tabbouleh (Parsley & Bulgur)", calories: 600, p: 22, c: 68, f: 28, fib: 14, notes: "Massive vitamin C dose from parsley enhancing chickpea iron." },
+          { type: "Snack", title: "Marinated Artichoke Hearts with Roasted Almonds", calories: 210, p: 6, c: 12, f: 16, fib: 6, notes: "Cynarin from artichokes stimulating healthy bile production." },
+          { type: "Dinner", title: "Seafood Paella with Mussels, Shrimp, Saffron & Sweet Peppers", calories: 650, p: 46, c: 62, f: 22, fib: 6, notes: "Saffron carotenoids (crocin) and dense marine iodine/selenium." }
+        ]
+      }
+    ]
+  }
+};
