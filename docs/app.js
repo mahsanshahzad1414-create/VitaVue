@@ -45,7 +45,7 @@ const VitaVue = (function() {
     isAgentTyping: false,
 
     // Diet Planner
-    activePlannerGoal: 'muscle_synthesis',
+    activePlannerGoal: 'healthy_maintenance',
     activePlannerDay: 1,
 
     // User Data (Persisted to localStorage)
@@ -416,13 +416,15 @@ const VitaVue = (function() {
       let result = null;
 
       if (directPreset) {
-        result = directPreset;
+        result = { ...directPreset, sourceMode: 'SAMPLE_PRESET' };
       } else if (state.customApiKey && state.selectedImageBase64) {
         // Real Gemini API Call using user's secure key
         result = await callGeminiVisionApi(state.customApiKey, state.selectedImageBase64);
+        if (result) result.sourceMode = 'LIVE_GEMINI';
       } else {
         // High-Fidelity Scientific Vision Engine
-        result = generateHighFidelityMealAnalysis(state.selectedImageName);
+        const simulated = generateHighFidelityMealAnalysis(state.selectedImageName);
+        result = { ...simulated, sourceMode: 'SIMULATION_DEMO' };
       }
 
       state.currentAnalysisResult = result;
@@ -527,7 +529,17 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
     document.getElementById('res-meal-desc').textContent = res.description;
     
     const confBadge = document.getElementById('res-confidence-badge');
-    if (confBadge) confBadge.textContent = `Confidence: ${res.confidence || 'High'}`;
+    if (confBadge) {
+      let modeLabel = '📊 Demo / Sample Analysis';
+      if (res.sourceMode === 'LIVE_GEMINI') modeLabel = '✨ Live Gemini Vision';
+      else if (res.sourceMode === 'SAMPLE_PRESET') modeLabel = '🥗 Preset Test Plate';
+      confBadge.textContent = `${modeLabel} • Confidence: ${res.confidence || 'High'}`;
+    }
+
+    const uncertEl = document.getElementById('res-uncertainty-text');
+    if (uncertEl && res.uncertainty) {
+      uncertEl.textContent = res.uncertainty;
+    }
 
     document.getElementById('res-cals').textContent = `${Math.round(res.totalCalories)} kcal`;
     document.getElementById('res-protein').textContent = `${res.macros.protein}g`;

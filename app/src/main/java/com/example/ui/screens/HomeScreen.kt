@@ -405,7 +405,7 @@ fun HomeScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "INTERNATIONAL FOOD DATABASE (100+ ITEMS)",
+                        text = "INTERNATIONAL FOOD DATABASE (64 ITEMS)",
                         color = Neutral400,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,

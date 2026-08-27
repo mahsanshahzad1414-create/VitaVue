@@ -282,6 +282,99 @@ object NutritionKnowledgeSource {
                 "Season with bulk spices (turmeric, cumin, garlic, chili) for antioxidant benefits on a budget."
             ),
             relatedTopicSlugs = listOf("balanced-plate-method")
+        ),
+
+        // Fundamentals
+        NutritionArticle(
+            id = "art_energy_balance_metabolism",
+            slug = "energy-balance-metabolism",
+            title = "Energy Balance & Basal Metabolic Rate: The Thermodynamics of Nutrition",
+            summary = "Explore total daily energy expenditure (TDEE), basal metabolic rate (BMR), the thermic effect of food (TEF), and non-exercise activity thermogenesis (NEAT).",
+            category = ArticleCategory.FUNDAMENTALS,
+            readingTimeMin = 5,
+            difficulty = "Beginner",
+            sections = listOf(
+                ArticleSection(
+                    heading = "The Components of Daily Energy Expenditure",
+                    content = "Total Daily Energy Expenditure (TDEE) comprises four distinct components: Basal Metabolic Rate (BMR, ~60-70%), the Thermic Effect of Food (TEF, ~10%), Exercise Activity Thermogenesis (EAT, ~5-15%), and Non-Exercise Activity Thermogenesis (NEAT, ~15-30%)."
+                ),
+                ArticleSection(
+                    heading = "The Thermic Effect of Food (TEF)",
+                    content = "Digestive metabolism burns energy: dietary protein exhibits the highest TEF at 20–30% of its caloric value, compared to 5–10% for carbohydrates and 0–3% for fats. A high-protein diet slightly elevates resting metabolic rate purely through the metabolic cost of peptide cleavage and urea synthesis."
+                ),
+                ArticleSection(
+                    heading = "NEAT: The Variable Multiplier",
+                    content = "Spontaneous daily movement (walking, standing, posture, fidgeting) accounts for substantial variance in daily calorie burn. Elevating daily step count from 4,000 to 10,000 steps increases NEAT by 300–500 kcal per day without taxing recovery capacity."
+                )
+            ),
+            keyTakeaways = listOf(
+                "BMR represents the baseline energy required to sustain vital organ function.",
+                "Dietary protein requires 20-30% of its energy simply to be digested and metabolized.",
+                "Daily walking and spontaneous movement (NEAT) are powerful metabolic levers for long-term health."
+            ),
+            relatedTopicSlugs = listOf("protein-mastery-science", "balanced-plate-method")
+        ),
+
+        // Active Lifestyle
+        NutritionArticle(
+            id = "art_active_lifestyle_hydration",
+            slug = "active-lifestyle-hydration",
+            title = "Performance Fueling: Glycogen Storage, Electrolytes & Recovery Timing",
+            summary = "Scientific protocols for carbohydrate loading, electrolyte homeostasis (sodium, potassium, magnesium), and post-exercise muscle protein remodeling.",
+            category = ArticleCategory.ACTIVE,
+            readingTimeMin = 6,
+            difficulty = "Intermediate",
+            sections = listOf(
+                ArticleSection(
+                    heading = "Pre-Workout Energy Substrates",
+                    content = "Consuming easily digestible complex carbohydrates 1 to 2 hours before strenuous activity replenishes liver and muscle glycogen stores without triggering gastrointestinal distress."
+                ),
+                ArticleSection(
+                    heading = "Electrolytes & Fluid Balance",
+                    content = "Sweat consists not only of water but sodium, chloride, potassium, and magnesium. Replenishing sodium during prolonged workouts preserves plasma volume and prevents hyponatremia."
+                ),
+                ArticleSection(
+                    heading = "The Anabolic Recovery Window",
+                    content = "Pairing 20-30g of protein with 40-60g of carbohydrates within 1-2 hours post-exercise maximizes both muscle protein synthesis (mTORC1) and glycogen synthase activity."
+                )
+            ),
+            keyTakeaways = listOf(
+                "Hydrate before, during, and after activity with water plus pinch of electrolytes.",
+                "Consume a 3:1 or 4:1 carb-to-protein ratio following intense endurance or resistance exercise.",
+                "Adequate sleep is the non-negotiable foundation for muscular and nervous system repair."
+            ),
+            relatedTopicSlugs = listOf("protein-mastery-science", "essential-vitamins-and-minerals")
+        ),
+
+        // Life-Stage
+        NutritionArticle(
+            id = "art_life_stage_nutrition",
+            slug = "life-stage-nutrition",
+            title = "Life-Stage Nutrition: Supporting Growth, Adulthood & Healthy Aging",
+            summary = "How nutritional demands shift across decades: optimizing bone density in youth, metabolic health in midlife, and anabolic resistance mitigation in older adulthood.",
+            category = ArticleCategory.LIFE_STAGES,
+            readingTimeMin = 6,
+            difficulty = "Intermediate",
+            sections = listOf(
+                ArticleSection(
+                    heading = "Peak Bone Mass & Early Adulthood",
+                    content = "The human skeleton achieves 90% of peak bone mass by age 20. Ensuring adequate calcium, vitamin D3, vitamin K2, and resistance training during adolescence and early adulthood lays the structural mineral foundation for osteoporosis prevention decades later."
+                ),
+                ArticleSection(
+                    heading = "Midlife Metabolic Resilience",
+                    content = "During middle adulthood, basal metabolic rate gradually decreases unless preserved by lean skeletal muscle mass. Prioritizing dietary fiber (30g+), antioxidant-dense polyphenols, and omega-3 lipids preserves vascular endothelial flexibility and insulin receptor sensitivity."
+                ),
+                ArticleSection(
+                    heading = "Overcoming Anabolic Resistance in Aging",
+                    content = "Older adults experience anabolic resistance, meaning skeletal muscle requires a higher per-meal leucine threshold (~3.0-3.5g) to initiate muscle protein synthesis. Higher daily protein targets (1.2-1.6g/kg) and bioavailable B12/Vitamin D supplementation help preserve muscle mass (sarcopenia prevention) and functional independence."
+                )
+            ),
+            keyTakeaways = listOf(
+                "Early life focuses on building peak bone mineral density through calcium, vitamin D3, and weight-bearing exercise.",
+                "Midlife demands insulin sensitivity preservation through fiber, polyphenols, and whole-food matrices.",
+                "Older adulthood requires higher per-meal protein (30-40g) to overcome anabolic resistance and preserve muscle strength."
+            ),
+            relatedTopicSlugs = listOf("protein-mastery-science", "essential-vitamins-and-minerals")
         )
     )
 

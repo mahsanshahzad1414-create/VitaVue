@@ -248,7 +248,7 @@ fun MyNutritionScreen(
                     item {
                         EmptyStateCard(
                             message = "No saved foods in your favorites yet. Explore the Food Database and tap the heart icon!",
-                            actionText = "Explore 100+ Foods",
+                            actionText = "Explore 64 Foods",
                             onAction = { viewModel.navigateTo("food_explorer") }
                         )
                     }

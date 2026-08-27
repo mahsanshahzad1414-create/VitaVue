@@ -118,7 +118,7 @@ fun FoodExplorerScreen(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "100+ analyzed global foods with complete macronutrients, micronutrients, and culinary science.",
+                    text = "64 evidence-informed global foods with complete macronutrients, micronutrients, and culinary science.",
                     color = Neutral300,
                     fontSize = 13.sp
                 )

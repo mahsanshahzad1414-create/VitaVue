@@ -2487,11 +2487,13 @@ const ALL_FOODS = [
 
 const ARTICLE_CATEGORIES = [
   { id: "all", displayName: "All Topics" },
-  { id: "MACRONUTRIENTS", displayName: "Macronutrients" },
-  { id: "MINERALS", displayName: "Minerals & Vitamins" },
+  { id: "MACRONUTRIENTS", displayName: "Macronutrient Mechanics" },
+  { id: "MINERALS", displayName: "Vitamins & Minerals" },
+  { id: "FUNDAMENTALS", displayName: "Foundations" },
   { id: "PRACTICAL", displayName: "Practical Habits" },
   { id: "PATTERNS", displayName: "Dietary Patterns" },
-  { id: "ACTIVE", displayName: "Performance & Hydration" }
+  { id: "ACTIVE", displayName: "Active Nutrition" },
+  { id: "LIFE_STAGES", displayName: "Life-Stage" }
 ];
 
 const ALL_ARTICLES = [
@@ -2714,6 +2716,62 @@ const ALL_ARTICLES = [
       "Consume a 3:1 or 4:1 carb-to-protein ratio following intense endurance or resistance exercise.",
       "Adequate sleep is the non-negotiable foundation for muscular and nervous system repair."
     ]
+  },
+  {
+    id: "art_energy_balance_metabolism",
+    slug: "energy-balance-metabolism",
+    title: "Energy Balance & Basal Metabolic Rate: The Thermodynamics of Nutrition",
+    summary: "Explore total daily energy expenditure (TDEE), basal metabolic rate (BMR), the thermic effect of food (TEF), and non-exercise activity thermogenesis (NEAT).",
+    category: "FUNDAMENTALS",
+    readingTimeMin: 5,
+    difficulty: "Beginner",
+    sections: [
+      {
+        heading: "The Components of Daily Energy Expenditure",
+        content: "Total Daily Energy Expenditure (TDEE) comprises four distinct components: Basal Metabolic Rate (BMR, ~60-70%), the Thermic Effect of Food (TEF, ~10%), Exercise Activity Thermogenesis (EAT, ~5-15%), and Non-Exercise Activity Thermogenesis (NEAT, ~15-30%)."
+      },
+      {
+        heading: "The Thermic Effect of Food (TEF)",
+        content: "Digestive metabolism burns energy: dietary protein exhibits the highest TEF at 20–30% of its caloric value, compared to 5–10% for carbohydrates and 0–3% for fats. A high-protein diet slightly elevates resting metabolic rate purely through the metabolic cost of peptide cleavage and urea synthesis."
+      },
+      {
+        heading: "NEAT: The Variable Multiplier",
+        content: "Spontaneous daily movement (walking, standing, posture, fidgeting) accounts for substantial variance in daily calorie burn. Elevating daily step count from 4,000 to 10,000 steps increases NEAT by 300–500 kcal per day without taxing recovery capacity."
+      }
+    ],
+    keyTakeaways: [
+      "BMR represents the baseline energy required to sustain vital organ function.",
+      "Dietary protein requires 20-30% of its energy simply to be digested and metabolized.",
+      "Daily walking and spontaneous movement (NEAT) are powerful metabolic levers for long-term health."
+    ]
+  },
+  {
+    id: "art_life_stage_nutrition",
+    slug: "life-stage-nutrition",
+    title: "Life-Stage Nutrition: Supporting Growth, Adulthood & Healthy Aging",
+    summary: "How nutritional demands shift across decades: optimizing bone density in youth, metabolic health in midlife, and anabolic resistance mitigation in older adulthood.",
+    category: "LIFE_STAGES",
+    readingTimeMin: 6,
+    difficulty: "Intermediate",
+    sections: [
+      {
+        heading: "Peak Bone Mass & Early Adulthood",
+        content: "The human skeleton achieves 90% of peak bone mass by age 20. Ensuring adequate calcium, vitamin D3, vitamin K2, and resistance training during adolescence and early adulthood lays the structural mineral foundation for osteoporosis prevention decades later."
+      },
+      {
+        heading: "Midlife Metabolic Resilience",
+        content: "During middle adulthood, basal metabolic rate gradually decreases unless preserved by lean skeletal muscle mass. Prioritizing dietary fiber (30g+), antioxidant-dense polyphenols, and omega-3 lipids preserves vascular endothelial flexibility and insulin receptor sensitivity."
+      },
+      {
+        heading: "Overcoming Anabolic Resistance in Aging",
+        content: "Older adults experience anabolic resistance, meaning skeletal muscle requires a higher per-meal leucine threshold (~3.0-3.5g) to initiate muscle protein synthesis. Higher daily protein targets (1.2-1.6g/kg) and bioavailable B12/Vitamin D supplementation help preserve muscle mass (sarcopenia prevention) and functional independence."
+      }
+    ],
+    keyTakeaways: [
+      "Early life focuses on building peak bone mineral density through calcium, vitamin D3, and weight-bearing exercise.",
+      "Midlife demands insulin sensitivity preservation through fiber, polyphenols, and whole-food matrices.",
+      "Older adulthood requires higher per-meal protein (30-40g) to overcome anabolic resistance and preserve muscle strength."
+    ]
   }
 ];
 
@@ -2917,6 +2975,74 @@ const DIET_PLANNER_PRESETS = {
           { type: "Lunch", title: "Falafel & Hummus Plate with Tabbouleh (Parsley & Bulgur)", calories: 600, p: 22, c: 68, f: 28, fib: 14, notes: "Massive vitamin C dose from parsley enhancing chickpea iron." },
           { type: "Snack", title: "Marinated Artichoke Hearts with Roasted Almonds", calories: 210, p: 6, c: 12, f: 16, fib: 6, notes: "Cynarin from artichokes stimulating healthy bile production." },
           { type: "Dinner", title: "Seafood Paella with Mussels, Shrimp, Saffron & Sweet Peppers", calories: 650, p: 46, c: 62, f: 22, fib: 6, notes: "Saffron carotenoids (crocin) and dense marine iodine/selenium." }
+        ]
+      }
+    ]
+  },
+  "healthy_maintenance": {
+    name: "Healthy Maintenance & Longevity",
+    tagline: "Equally balanced whole foods, steady glycemic index, and antioxidant defense.",
+    dailyTargets: { calories: 2000, protein: 120, carbs: 225, fats: 70, fiber: 38 },
+    days: [
+      {
+        dayNumber: 1,
+        meals: [
+          { type: "Breakfast", title: "Steel-Cut Oats with Chia Seeds, Sliced Banana & Crushed Walnuts", calories: 420, p: 14, c: 62, f: 16, fib: 11, notes: "Beta-glucan soluble fibers supporting healthy lipid profiles." },
+          { type: "Lunch", title: "Grilled Salmon Quinoa Bowl with Sautéed Baby Spinach & Avocado", calories: 580, p: 42, c: 48, f: 22, fib: 9.5, notes: "Marine EPA/DHA paired with carotenoids and folate." },
+          { type: "Snack", title: "Fresh Apple Slices with Creamy Almond Butter", calories: 210, p: 5, c: 24, f: 12, fib: 5, notes: "Pectin fiber and vitamin E for sustained afternoon satiety." },
+          { type: "Dinner", title: "Herb-Roasted Chicken Breast with Sweet Potato Mash & Steamed Broccoli", calories: 590, p: 48, c: 54, f: 16, fib: 9, notes: "Balanced complete amino acids, beta-carotene, and sulforaphane." }
+        ]
+      },
+      {
+        dayNumber: 2,
+        meals: [
+          { type: "Breakfast", title: "Greek Yogurt Parfait with Wild Blueberries, Pumpkin Seeds & Honey", calories: 380, p: 24, c: 36, f: 14, fib: 6, notes: "Probiotics paired with anthocyanin bioflavonoids." },
+          { type: "Lunch", title: "Mediterranean Lentil Salad with Feta, Vine Tomatoes & Extra Virgin Olive Oil", calories: 540, p: 26, c: 56, f: 22, fib: 14, notes: "Slow-fermenting prebiotic fiber with oleic acid synergy." },
+          { type: "Snack", title: "Handful of Raw Mixed Nuts (Almonds, Walnuts, Pistachios)", calories: 200, p: 6, c: 8, f: 18, fib: 4, notes: "Cardioprotective plant sterols and magnesium." },
+          { type: "Dinner", title: "Pan-Seared White Cod Loin with Wild Brown Rice & Grilled Asparagus", calories: 560, p: 44, c: 52, f: 14, fib: 7, notes: "Clean lean marine protein and B-vitamins." }
+        ]
+      },
+      {
+        dayNumber: 3,
+        meals: [
+          { type: "Breakfast", title: "2-Egg Veggie Scramble with Whole Grain Sourdough & Sliced Tomatoes", calories: 400, p: 22, c: 32, f: 20, fib: 5, notes: "Choline and lutein for neurological and ocular support." },
+          { type: "Lunch", title: "Warm Tempeh & Roasted Vegetable Bowl with Lemon Tahini Dressing", calories: 560, p: 30, c: 46, f: 26, fib: 11, notes: "Fermented prebiotic plant protein with bioavailable sesame calcium." },
+          { type: "Snack", title: "Roasted Spiced Chickpeas (Crispy Garbanzos)", calories: 190, p: 8, c: 26, f: 5, fib: 7, notes: "Crunchy high-satiety legume snack." },
+          { type: "Dinner", title: "Lean Turkey Meatballs with Marinara Sauce over Whole Wheat Spaghetti", calories: 610, p: 46, c: 64, f: 18, fib: 9, notes: "Rich in cooked tomato lycopene and complex carbohydrates." }
+        ]
+      }
+    ]
+  },
+  "active_performance": {
+    name: "Active Performance & High Energy",
+    tagline: "Carbohydrate replenishment, electrolyte hydration, and rapid recovery timing.",
+    dailyTargets: { calories: 2600, protein: 155, carbs: 340, fats: 72, fiber: 44 },
+    days: [
+      {
+        dayNumber: 1,
+        meals: [
+          { type: "Breakfast", title: "Power Porridge with Rolled Oats, Whey Protein, Banana & Peanut Butter", calories: 560, p: 38, c: 74, f: 16, fib: 10, notes: "High glycogen loading potential with rapid and sustained amino release." },
+          { type: "Lunch", title: "Teriyaki Grilled Chicken Breast with Jasmine Rice & Steamed Edamame", calories: 680, p: 52, c: 84, f: 14, fib: 8, notes: "Fast-absorbing liver and muscle glycogen restoration." },
+          { type: "Snack", title: "Whole Wheat Pita with Garlic Hummus & Orange Slices", calories: 280, p: 10, c: 44, f: 8, fib: 7, notes: "Hydrating electrolytes with complex carbohydrates." },
+          { type: "Dinner", title: "Wild Alaskan Salmon with Roasted Sweet Potatoes & Green Beans", calories: 720, p: 48, c: 72, f: 26, fib: 11, notes: "Potassium, anti-inflammatory omega-3s, and slow-burning starches." }
+        ]
+      },
+      {
+        dayNumber: 2,
+        meals: [
+          { type: "Breakfast", title: "Fluffy Whole Grain Protein Pancakes with Pure Maple Syrup & Strawberries", calories: 540, p: 36, c: 78, f: 12, fib: 8, notes: "Optimal pre-training carbohydrate matrix." },
+          { type: "Lunch", title: "Bison & Brown Rice Burrito Bowl with Black Beans, Salsa & Guacamole", calories: 710, p: 48, c: 82, f: 20, fib: 14, notes: "Natural creatine, heme iron, and fiber for sustained athletic output." },
+          { type: "Snack", title: "Greek Yogurt Smoothie with Spinach, Mango & Chia Seeds", calories: 290, p: 20, c: 38, f: 6, fib: 6, notes: "Electrolytes, calcium, and bioavailable lutein." },
+          { type: "Dinner", title: "Herb-Crusted Flank Steak with Roasted Fingerling Potatoes & Grilled Zucchini", calories: 730, p: 52, c: 66, f: 24, fib: 8, notes: "Zinc and branched-chain aminos for overnight myofibrillar repair." }
+        ]
+      },
+      {
+        dayNumber: 3,
+        meals: [
+          { type: "Breakfast", title: "Avocado Sourdough Toast with 3 Soft-Boiled Eggs & Microgreens", calories: 520, p: 28, c: 42, f: 28, fib: 7, notes: "Healthy monounsaturated fats and essential choline." },
+          { type: "Lunch", title: "Mediterranean Tuna Pasta Salad with Cherry Tomatoes, Capers & Olive Oil", calories: 690, p: 50, c: 78, f: 18, fib: 9, notes: "High protein efficiency ratio with easy post-workout digestibility." },
+          { type: "Snack", title: "Medjool Dates Stuffed with Almond Butter & Sea Salt", calories: 270, p: 6, c: 46, f: 10, fib: 5, notes: "Rapid natural glucose and fructose for immediate energy recharge." },
+          { type: "Dinner", title: "Chicken Tikka Masala with Brown Basmati Rice & Cucumber Raita", calories: 740, p: 50, c: 80, f: 22, fib: 9, notes: "Turmeric curcumin for exercise-induced inflammatory recovery." }
         ]
       }
     ]

@@ -1071,7 +1071,7 @@ fun AboutScreen(
                         )
                         CapabilityItem(
                             title = "2. International Food Explorer",
-                            desc = "100+ curated global foods and regional dishes with macronutrient ratios, glycemic context, and culinary preparation science."
+                            desc = "64 curated global foods and regional dishes with macronutrient ratios, glycemic context, and culinary preparation science."
                         )
                         CapabilityItem(
                             title = "3. Evidence-Grounded Nutrition Hub",

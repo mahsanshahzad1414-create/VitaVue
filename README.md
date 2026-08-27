@@ -1,15 +1,15 @@
-# VitaVue — AI Nutrition Intelligence Agent
-> *“See your food differently.”*
+# VitaVue — AI Nutrition Intelligence
+> *“Where Nutrition Meets Intelligence.”*
 
-Built for the Global AI / Web Hackathon by **Muhammad Ahsan Shahzad** (Lead AI Engineer & System Architect).
+Developed by **Muhammad Ahsan Shahzad** (Lead AI Engineer & System Architect).
 
 ---
 
 ## 🌟 Executive Summary
 
-**VitaVue** is an international-grade, multimodal AI food and nutrition intelligence application designed to bridge the gap between visual eating experiences and evidence-based nutrition science.
+**VitaVue** is an international-grade, multimodal AI food and nutrition intelligence platform designed to bridge the gap between everyday eating experiences and evidence-based nutrition science.
 
-Unlike static trackers or generic chatbots that guess numbers without context, VitaVue pairs **multimodal vision intelligence** with a scientific nutrition knowledge base (100+ analyzed global foods, 8 comprehensive science modules, and peer-reviewed myth busters) and a conversational AI agent that can reason through portion sizes, bioavailability, glycemic impact, and cultural preparations.
+Unlike static trackers or generic chatbots that guess numbers without context, VitaVue pairs **multimodal vision intelligence** with a scientific nutrition knowledge base (64 evidence-informed global foods, 8 comprehensive science modules, and peer-reviewed myth busters) and a conversational AI agent that can reason through portion sizes, bioavailability, glycemic impact, and cultural preparations.
 
 ---
 
@@ -31,7 +31,7 @@ SEE → ANALYZE → UNDERSTAND → LEARN → PLAN → IMPROVE
    - Multi-turn nutritional reasoning, non-heme iron absorption tips, gut microbiome insights, and macro budgeting.
    - Integrated action triggers that seamlessly navigate to deep-dive articles, diet planner modules, or food detail breakdowns.
 
-3. **International Food Explorer (100+ Items)**:
+3. **International Food Explorer (64 Items)**:
    - Covers 10 food categories: Fruits, Vegetables, Whole Grains, Legumes & Pulses, Nuts & Seeds, Dairy & Alternatives, Lean Proteins, Healthy Fats, Beverages, and Cultural Meals.
    - Granular dietary filtering: Vegan, High-Protein, Gluten-Free, Low-Carb, Heart-Healthy, Halal, Keto-Friendly.
    - Detailed micronutrient tables, glycemic index ratings, and culinary preparation science.
