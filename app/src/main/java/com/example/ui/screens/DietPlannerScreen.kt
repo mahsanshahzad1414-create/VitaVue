@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.BookmarkAdd
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.Button
@@ -32,6 +33,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
@@ -296,28 +298,59 @@ fun DietPlannerScreen(
                                 )
                             }
 
-                            Button(
-                                onClick = {
-                                    viewModel.saveCurrentMealPlan()
-                                    planSavedSuccess = true
-                                },
-                                colors = ButtonDefaults.buttonColors(containerColor = if (planSavedSuccess) Emerald400 else Teal500),
-                                shape = RoundedCornerShape(8.dp),
-                                modifier = Modifier.height(36.dp)
-                            ) {
-                                Icon(
-                                    imageVector = if (planSavedSuccess) Icons.Default.Check else Icons.Default.BookmarkAdd,
-                                    contentDescription = "Save",
-                                    tint = Navy950,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                                Spacer(modifier = Modifier.width(4.dp))
-                                Text(
-                                    text = if (planSavedSuccess) "Saved" else "Save Plan",
-                                    color = Navy950,
-                                    fontSize = 11.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                OutlinedButton(
+                                    onClick = {
+                                        planSavedSuccess = false
+                                        viewModel.generateNewMealPlan(
+                                            goal = selectedGoal,
+                                            dietaryPattern = selectedPattern,
+                                            targetCalories = calorieTarget.toInt(),
+                                            cuisine = selectedCuisine
+                                        )
+                                    },
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, Teal400),
+                                    shape = RoundedCornerShape(8.dp),
+                                    modifier = Modifier.height(36.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Refresh,
+                                        contentDescription = "Regenerate",
+                                        tint = Teal300,
+                                        modifier = Modifier.size(14.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text(
+                                        text = "Regenerate",
+                                        color = Teal300,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+
+                                Button(
+                                    onClick = {
+                                        viewModel.saveCurrentMealPlan()
+                                        planSavedSuccess = true
+                                    },
+                                    colors = ButtonDefaults.buttonColors(containerColor = if (planSavedSuccess) Emerald400 else Teal500),
+                                    shape = RoundedCornerShape(8.dp),
+                                    modifier = Modifier.height(36.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = if (planSavedSuccess) Icons.Default.Check else Icons.Default.BookmarkAdd,
+                                        contentDescription = "Save",
+                                        tint = Navy950,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text(
+                                        text = if (planSavedSuccess) "Saved" else "Save Plan",
+                                        color = Navy950,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
 

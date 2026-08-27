@@ -567,7 +567,7 @@ fun FeaturedFoodCard(
 ) {
     Surface(
         modifier = modifier
-            .width(160.dp)
+            .width(175.dp)
             .clip(RoundedCornerShape(14.dp))
             .border(1.dp, Navy700, RoundedCornerShape(14.dp))
             .clickable { onClick() },
@@ -584,7 +584,8 @@ fun FeaturedFoodCard(
                     text = food.culturalOrigin,
                     color = Teal400,
                     fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
                 )
                 Text(
                     text = "${food.calories} kcal",
@@ -601,7 +602,9 @@ fun FeaturedFoodCard(
                 color = Neutral100,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
-                maxLines = 1
+                maxLines = 2,
+                minLines = 2,
+                lineHeight = 16.sp
             )
 
             Spacer(modifier = Modifier.height(4.dp))

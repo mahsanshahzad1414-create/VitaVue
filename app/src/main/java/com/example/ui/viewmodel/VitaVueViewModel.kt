@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.model.AgentAction
 import com.example.data.model.AgentActionType
 import com.example.data.model.ArticleCategory
+import com.example.data.model.AuthUiState
+import com.example.data.model.AuthUser
 import com.example.data.model.ChatMessage
 import com.example.data.model.FoodAnalysisResult
 import com.example.data.model.FoodCategory
 import com.example.data.model.FoodItem
 import com.example.data.model.NutritionArticle
 import com.example.data.model.NutritionMyth
+import com.example.data.model.SyncUiState
 import com.example.data.model.UserDietPlan
 import com.example.data.model.UserProfile
 import com.example.data.repository.VitaVueRepository
@@ -37,6 +40,14 @@ class VitaVueViewModel(application: Application) : AndroidViewModel(application)
     // Navigation state
     private val _currentDestination = MutableStateFlow("home")
     val currentDestination: StateFlow<String> = _currentDestination.asStateFlow()
+
+    // Auth & Sync State
+    val currentUser: StateFlow<AuthUser?> = repository.currentUserFlow
+    private val _authUiState = MutableStateFlow<AuthUiState>(AuthUiState.Idle)
+    val authUiState: StateFlow<AuthUiState> = _authUiState.asStateFlow()
+
+    private val _syncUiState = MutableStateFlow<SyncUiState>(SyncUiState.Idle)
+    val syncUiState: StateFlow<SyncUiState> = _syncUiState.asStateFlow()
 
     // Analysis State
     private val _analysisState = MutableStateFlow<AnalysisUiState>(AnalysisUiState.Idle)
@@ -139,18 +150,38 @@ class VitaVueViewModel(application: Application) : AndroidViewModel(application)
     // --- FOOD ANALYSIS ACTIONS ---
     fun setSelectedBitmap(bitmap: Bitmap?) {
         _selectedImageBitmap.value = bitmap
+        // Reset analysis state and result whenever image changes or is cleared
+        _currentAnalysis.value = null
+        _analysisState.value = AnalysisUiState.Idle
     }
 
-    fun analyzeMeal(bitmap: Bitmap?, presetTitle: String? = null) {
+    fun removeSelectedImage() {
+        _selectedImageBitmap.value = null
+        _currentAnalysis.value = null
+        _analysisState.value = AnalysisUiState.Idle
+    }
+
+    fun analyzeMeal(bitmap: Bitmap?) {
+        if (bitmap == null || bitmap.isRecycled || bitmap.width <= 0 || bitmap.height <= 0) {
+            _selectedImageBitmap.value = null
+            _currentAnalysis.value = null
+            _analysisState.value = AnalysisUiState.Error("No meal image selected. Please upload or capture a photo to begin analysis.")
+            return
+        }
+
         _analysisState.value = AnalysisUiState.Analyzing
         viewModelScope.launch {
             try {
-                val result = repository.analyzeFood(bitmap, presetTitle)
-                _currentAnalysis.value = result
-                _activeMealContext.value = result
-                _analysisState.value = AnalysisUiState.Success(result)
+                val result = repository.analyzeFood(bitmap)
+                // Result provenance check: only apply if the current selected bitmap is still this bitmap
+                if (_selectedImageBitmap.value == bitmap) {
+                    _currentAnalysis.value = result
+                    _activeMealContext.value = result
+                    _analysisState.value = AnalysisUiState.Success(result)
+                }
             } catch (e: Exception) {
-                _analysisState.value = AnalysisUiState.Error(e.localizedMessage ?: "Analysis failed")
+                _currentAnalysis.value = null
+                _analysisState.value = AnalysisUiState.Error(e.localizedMessage ?: "Analysis failed. Please verify connection and try again.")
             }
         }
     }
@@ -355,6 +386,77 @@ class VitaVueViewModel(application: Application) : AndroidViewModel(application)
     fun updateUserProfile(profile: UserProfile) {
         viewModelScope.launch {
             repository.saveUserProfile(profile)
+        }
+    }
+
+    // --- AUTHENTICATION ACTIONS ---
+    fun signInWithEmail(email: String, pass: String) {
+        _authUiState.value = AuthUiState.Loading
+        viewModelScope.launch {
+            try {
+                val user = repository.authService.loginWithEmail(email, pass)
+                _authUiState.value = AuthUiState.Authenticated(user)
+                syncWithCloud()
+            } catch (e: Exception) {
+                _authUiState.value = AuthUiState.Error(e.localizedMessage ?: "Sign in failed.")
+            }
+        }
+    }
+
+    fun registerWithEmail(email: String, pass: String, displayName: String) {
+        _authUiState.value = AuthUiState.Loading
+        viewModelScope.launch {
+            try {
+                val user = repository.authService.registerWithEmail(email, pass, displayName)
+                _authUiState.value = AuthUiState.Authenticated(user)
+                // Save initial cloud profile
+                repository.firestoreSyncService.saveUserProfileToCloud(
+                    userId = user.uid,
+                    profile = userProfile.value.copy(name = displayName.ifBlank { "Nutrition Explorer" }),
+                    email = user.email
+                )
+                syncWithCloud()
+            } catch (e: Exception) {
+                _authUiState.value = AuthUiState.Error(e.localizedMessage ?: "Registration failed.")
+            }
+        }
+    }
+
+    fun sendPasswordReset(email: String) {
+        _authUiState.value = AuthUiState.Loading
+        viewModelScope.launch {
+            try {
+                repository.authService.sendPasswordReset(email)
+                _authUiState.value = AuthUiState.PasswordResetSent(email)
+            } catch (e: Exception) {
+                _authUiState.value = AuthUiState.Error(e.localizedMessage ?: "Password reset failed.")
+            }
+        }
+    }
+
+    fun signOut() {
+        repository.authService.signOut()
+        _authUiState.value = AuthUiState.Unauthenticated
+        _syncUiState.value = SyncUiState.Idle
+    }
+
+    fun clearAuthError() {
+        _authUiState.value = AuthUiState.Idle
+    }
+
+    fun syncWithCloud() {
+        if (currentUser.value == null) {
+            _syncUiState.value = SyncUiState.Error("Sign in to sync your nutrition data with the cloud.")
+            return
+        }
+        _syncUiState.value = SyncUiState.Syncing
+        viewModelScope.launch {
+            try {
+                val count = repository.synchronizeWithCloud()
+                _syncUiState.value = SyncUiState.Synced(itemsSynced = count)
+            } catch (e: Exception) {
+                _syncUiState.value = SyncUiState.Error(e.localizedMessage ?: "Cloud sync failed.")
+            }
         }
     }
 

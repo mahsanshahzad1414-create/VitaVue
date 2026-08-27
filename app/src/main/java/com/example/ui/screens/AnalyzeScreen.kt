@@ -10,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,8 +23,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -33,25 +30,24 @@ import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Science
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -60,6 +56,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.FoodAnalysisResult
@@ -84,19 +81,13 @@ import com.example.ui.theme.Neutral200
 import com.example.ui.theme.Neutral300
 import com.example.ui.theme.Neutral400
 import com.example.ui.theme.Neutral50
-import com.example.ui.theme.Neutral800
+import com.example.ui.theme.Neutral500
 import com.example.ui.theme.ProteinColor
 import com.example.ui.theme.Teal300
 import com.example.ui.theme.Teal400
 import com.example.ui.theme.Teal500
 import com.example.ui.viewmodel.AnalysisUiState
 import com.example.ui.viewmodel.VitaVueViewModel
-
-data class PresetMeal(
-    val title: String,
-    val description: String,
-    val subtitle: String
-)
 
 @Composable
 fun AnalyzeScreen(
@@ -107,15 +98,6 @@ fun AnalyzeScreen(
     val analysisState by viewModel.analysisState.collectAsState()
     val currentResult by viewModel.currentAnalysis.collectAsState()
     val selectedBitmap by viewModel.selectedImageBitmap.collectAsState()
-
-    val presetMeals = listOf(
-        PresetMeal("Chicken Biryani & Raita", "South Asian fragrant spiced rice with chicken & yogurt", "High-Protein • Curcumin"),
-        PresetMeal("Mediterranean Salmon & Quinoa", "Wild salmon fillet, quinoa & roasted asparagus", "Omega-3 • Complete Protein"),
-        PresetMeal("Avocado Sourdough & Poached Eggs", "Artisan sourdough, Hass avocado & microgreens", "Choline • Heart-Healthy"),
-        PresetMeal("Chickpea Falafel Hummus Bowl", "Baked falafel, creamy tahini & Greek olives", "High-Fiber • Vegan")
-    )
-
-    var selectedPresetTitle by remember { mutableStateOf<String?>(null) }
 
     // Gallery Picker launcher
     val galleryLauncher = rememberLauncherForActivityResult(
@@ -130,11 +112,21 @@ fun AnalyzeScreen(
                     val source = ImageDecoder.createSource(context.contentResolver, uri)
                     ImageDecoder.decodeBitmap(source)
                 }
-                viewModel.setSelectedBitmap(bitmap)
-                selectedPresetTitle = null
+                if (bitmap != null && bitmap.width > 0 && bitmap.height > 0) {
+                    viewModel.setSelectedBitmap(bitmap)
+                }
             } catch (e: Exception) {
-                // handle error gracefully
+                // Graceful failure - do not set bitmap or produce fake result
             }
+        }
+    }
+
+    // Camera Capture launcher
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicturePreview()
+    ) { bitmap: Bitmap? ->
+        if (bitmap != null && bitmap.width > 0 && bitmap.height > 0) {
+            viewModel.setSelectedBitmap(bitmap)
         }
     }
 
@@ -157,7 +149,7 @@ fun AnalyzeScreen(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Upload or select a meal image to extract portion estimates, calories, macronutrients, and bioactive compounds.",
+                    text = "Upload or capture a meal photo to calculate portion estimates, calories, macronutrients, and bioactive compounds.",
                     color = Neutral300,
                     fontSize = 13.sp,
                     lineHeight = 18.sp
@@ -165,7 +157,7 @@ fun AnalyzeScreen(
             }
         }
 
-        // Image Input Card
+        // Image Input & Capture Card
         item {
             Card(
                 modifier = Modifier
@@ -176,58 +168,47 @@ fun AnalyzeScreen(
                 colors = CardDefaults.cardColors(containerColor = Navy900)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    // Preview Area or Placeholder
                     if (selectedBitmap != null) {
+                        // Image Selected State with Preview & Clear action
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(200.dp)
+                                .height(220.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .border(1.dp, Teal500.copy(alpha = 0.5f), RoundedCornerShape(12.dp))
+                                .border(1.dp, Teal500.copy(alpha = 0.6f), RoundedCornerShape(12.dp))
                         ) {
                             Image(
                                 bitmap = selectedBitmap!!.asImageBitmap(),
-                                contentDescription = "Selected Meal",
+                                contentDescription = "Selected Meal Photo",
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier.fillMaxSize()
                             )
-                        }
-                    } else if (selectedPresetTitle != null) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(120.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Navy850)
-                                .border(1.dp, Teal400, RoundedCornerShape(12.dp)),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+                            // Remove Image Overlay Button
+                            IconButton(
+                                onClick = { viewModel.removeSelectedImage() },
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd)
+                                    .padding(8.dp)
+                                    .size(36.dp)
+                                    .clip(CircleShape)
+                                    .background(Navy950.copy(alpha = 0.8f))
+                                    .testTag("remove_image_button")
+                            ) {
                                 Icon(
-                                    imageVector = Icons.Default.CheckCircle,
-                                    contentDescription = "Selected Preset",
-                                    tint = Teal400,
-                                    modifier = Modifier.size(28.dp)
-                                )
-                                Spacer(modifier = Modifier.height(6.dp))
-                                Text(
-                                    text = selectedPresetTitle ?: "",
-                                    color = Neutral50,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 15.sp
-                                )
-                                Text(
-                                    text = "Ready to analyze with multimodal intelligence",
-                                    color = Teal300,
-                                    fontSize = 11.sp
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = "Remove photo",
+                                    tint = Neutral50,
+                                    modifier = Modifier.size(18.dp)
                                 )
                             }
                         }
                     } else {
+                        // Clear Empty State: NO IMAGE
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(140.dp)
+                                .height(160.dp)
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(Navy850)
                                 .border(1.dp, Navy700, RoundedCornerShape(12.dp)),
@@ -239,16 +220,23 @@ fun AnalyzeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.CameraAlt,
-                                    contentDescription = "Camera",
+                                    contentDescription = "Camera icon",
                                     tint = Teal400,
-                                    modifier = Modifier.size(32.dp)
+                                    modifier = Modifier.size(36.dp)
                                 )
-                                Spacer(modifier = Modifier.height(8.dp))
+                                Spacer(modifier = Modifier.height(10.dp))
                                 Text(
-                                    text = "Choose a photo from gallery or test with sample dishes",
+                                    text = "No meal image selected",
+                                    color = Neutral50,
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "Upload or capture a meal photo to begin analysis.",
                                     color = Neutral300,
                                     fontSize = 12.sp,
-                                    fontWeight = FontWeight.Medium
+                                    textAlign = TextAlign.Center
                                 )
                             }
                         }
@@ -256,11 +244,35 @@ fun AnalyzeScreen(
 
                     Spacer(modifier = Modifier.height(14.dp))
 
-                    // Action Buttons Row
+                    // Media Capture / Selection Row
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
+                        OutlinedButton(
+                            onClick = { cameraLauncher.launch(null) },
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(44.dp)
+                                .testTag("camera_capture_button"),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, Navy700),
+                            shape = RoundedCornerShape(10.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.CameraAlt,
+                                contentDescription = "Take Photo",
+                                tint = Neutral100,
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = if (selectedBitmap != null) "Retake" else "Camera",
+                                color = Neutral100,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+
                         OutlinedButton(
                             onClick = { galleryLauncher.launch("image/*") },
                             modifier = Modifier
@@ -272,56 +284,135 @@ fun AnalyzeScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Image,
-                                contentDescription = "Gallery",
+                                contentDescription = "Select from Gallery",
                                 tint = Neutral100,
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Select Photo",
+                                text = if (selectedBitmap != null) "Replace" else "Gallery",
                                 color = Neutral100,
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
+                    }
 
-                        Button(
-                            onClick = {
-                                viewModel.analyzeMeal(selectedBitmap, selectedPresetTitle ?: "Wholesome Balanced Meal")
-                            },
-                            enabled = analysisState !is AnalysisUiState.Analyzing,
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(44.dp)
-                                .testTag("trigger_analyze_button"),
-                            colors = ButtonDefaults.buttonColors(containerColor = Teal500),
-                            shape = RoundedCornerShape(10.dp)
-                        ) {
-                            if (analysisState is AnalysisUiState.Analyzing) {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.size(18.dp),
-                                    color = Navy950,
-                                    strokeWidth = 2.dp
-                                )
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Text(
-                                    text = "Analyzing...",
-                                    color = Navy950,
-                                    fontSize = 13.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            } else {
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    // Primary Action: Analyze Meal Button (Strictly requires selectedBitmap != null)
+                    val isImageReady = selectedBitmap != null
+                    val isAnalyzing = analysisState is AnalysisUiState.Analyzing
+
+                    Button(
+                        onClick = {
+                            if (selectedBitmap != null) {
+                                viewModel.analyzeMeal(selectedBitmap)
+                            }
+                        },
+                        enabled = isImageReady && !isAnalyzing,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(46.dp)
+                            .testTag("trigger_analyze_button"),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Teal500,
+                            disabledContainerColor = Navy800,
+                            disabledContentColor = Neutral500
+                        ),
+                        shape = RoundedCornerShape(10.dp)
+                    ) {
+                        if (isAnalyzing) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(18.dp),
+                                color = Navy950,
+                                strokeWidth = 2.dp
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Analyzing Meal...",
+                                color = Navy950,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        } else {
+                            Icon(
+                                imageVector = Icons.Default.AutoAwesome,
+                                contentDescription = "Analyze",
+                                tint = if (isImageReady) Navy950 else Neutral500,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = if (isImageReady) "Analyze Meal Photo" else "Select Photo to Analyze",
+                                color = if (isImageReady) Navy950 else Neutral500,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        // Error State Card with Retry Action (Requires valid current image)
+        if (analysisState is AnalysisUiState.Error) {
+            val errorMsg = (analysisState as AnalysisUiState.Error).message
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .border(1.dp, Amber500.copy(alpha = 0.5f), RoundedCornerShape(14.dp))
+                        .testTag("analysis_error_card"),
+                    shape = RoundedCornerShape(14.dp),
+                    colors = CardDefaults.cardColors(containerColor = Navy900)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.ErrorOutline,
+                                contentDescription = "Error",
+                                tint = Amber400,
+                                modifier = Modifier.size(22.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Analysis Failed",
+                                color = Amber400,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
+                        Text(
+                            text = errorMsg,
+                            color = Neutral200,
+                            fontSize = 13.sp,
+                            lineHeight = 17.sp
+                        )
+
+                        if (selectedBitmap != null) {
+                            Spacer(modifier = Modifier.height(12.dp))
+                            OutlinedButton(
+                                onClick = { viewModel.analyzeMeal(selectedBitmap) },
+                                modifier = Modifier.height(38.dp),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, Amber400),
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
                                 Icon(
-                                    imageVector = Icons.Default.AutoAwesome,
-                                    contentDescription = "Analyze",
-                                    tint = Navy950,
-                                    modifier = Modifier.size(18.dp)
+                                    imageVector = Icons.Default.Refresh,
+                                    contentDescription = "Retry",
+                                    tint = Amber400,
+                                    modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(
-                                    text = "Analyze Meal",
-                                    color = Navy950,
-                                    fontSize = 13.sp,
+                                    text = "Retry Analysis",
+                                    color = Amber400,
+                                    fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold
                                 )
                             }
@@ -331,72 +422,8 @@ fun AnalyzeScreen(
             }
         }
 
-        // Preset Sample Dishes
-        item {
-            Column {
-                Text(
-                    text = "OR SELECT A SAMPLE DISH TO TEST",
-                    color = Neutral400,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = 1.sp
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    items(presetMeals) { preset ->
-                        val isSelected = selectedPresetTitle == preset.title
-                        Surface(
-                            modifier = Modifier
-                                .width(200.dp)
-                                .clip(RoundedCornerShape(14.dp))
-                                .border(
-                                    1.dp,
-                                    if (isSelected) Teal400 else Navy700,
-                                    RoundedCornerShape(14.dp)
-                                )
-                                .clickable {
-                                    selectedPresetTitle = preset.title
-                                    viewModel.setSelectedBitmap(null)
-                                },
-                            color = if (isSelected) Navy850 else Navy900,
-                            shape = RoundedCornerShape(14.dp)
-                        ) {
-                            Column(modifier = Modifier.padding(12.dp)) {
-                                Text(
-                                    text = preset.subtitle,
-                                    color = Teal400,
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(
-                                    text = preset.title,
-                                    color = Neutral50,
-                                    fontSize = 13.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    maxLines = 1
-                                )
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(
-                                    text = preset.description,
-                                    color = Neutral400,
-                                    fontSize = 11.sp,
-                                    maxLines = 2,
-                                    lineHeight = 14.sp
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ANALYSIS RESULTS
-        if (currentResult != null) {
+        // ANALYSIS RESULTS: STRICT REQUIREMENT: Only render when a valid image exists AND analysis succeeded
+        if (selectedBitmap != null && currentResult != null && analysisState is AnalysisUiState.Success) {
             val res = currentResult!!
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
