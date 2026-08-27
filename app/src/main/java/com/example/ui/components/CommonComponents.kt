@@ -116,11 +116,11 @@ fun VitaVueLogo(
             }
             if (showTagline && !compact) {
                 Text(
-                    text = "AI NUTRITION INTELLIGENCE",
+                    text = "WHERE NUTRITION MEETS INTELLIGENCE",
                     color = Neutral400,
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 9.sp,
-                    letterSpacing = 1.2.sp
+                    fontSize = 8.5.sp,
+                    letterSpacing = 0.8.sp
                 )
             }
         }

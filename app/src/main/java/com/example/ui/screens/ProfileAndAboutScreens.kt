@@ -76,6 +76,7 @@ import com.example.data.model.SyncUiState
 import com.example.data.model.UserProfile
 import com.example.ui.components.DietaryTagChip
 import com.example.ui.components.VitaVueLogo
+import com.example.ui.theme.Amber300
 import com.example.ui.theme.Amber400
 import com.example.ui.theme.Emerald400
 import com.example.ui.theme.Navy700
@@ -858,7 +859,7 @@ fun ResponsibleAIScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "User meal logs, bookmarked articles, custom diet plans, and preferences are stored locally in Room Database persistence. API keys and credentials are encrypted and never exposed in client bundles.",
+                        text = "Personal meal logs and preferences are stored locally on the device through Room Database. API keys and credentials are encrypted and never exposed in client bundles.",
                         color = Neutral200,
                         fontSize = 12.sp,
                         lineHeight = 17.sp
@@ -895,25 +896,35 @@ fun AboutScreen(
             }
         }
 
+        // Title Header
         item {
             Column {
                 VitaVueLogo()
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "About VitaVue & Technical Architecture",
+                    text = "About VitaVue",
                     color = Neutral50,
-                    fontSize = 20.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "A world-class AI Nutrition Intelligence Agent created for the AI/Web Hackathon.",
+                    text = "“Where Nutrition Meets Intelligence.”",
+                    color = Teal400,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "A multimodal AI nutrition intelligence platform built to make dietary awareness intuitive, evidence-based, and actionable for everyday life.",
                     color = Neutral300,
-                    fontSize = 13.sp
+                    fontSize = 13.sp,
+                    lineHeight = 18.sp
                 )
             }
         }
 
+        // Executive Summary & Core Mission Card
         item {
             Card(
                 modifier = Modifier
@@ -925,28 +936,79 @@ fun AboutScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "ENGINEERING & AI ARCHITECTURE",
+                        text = "CORE POSITIONING & MISSION",
                         color = Teal400,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 1.sp
                     )
-                    Spacer(modifier = Modifier.height(6.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "VitaVue AI Systems & Engineering Team",
+                        text = "VitaVue is a multimodal AI nutrition intelligence application designed to help people better understand their food, learn practical nutrition, make informed everyday decisions, and improve their overall well-being.",
                         color = Neutral50,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        lineHeight = 20.sp
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = "Multimodal Nutrition Intelligence Architecture",
-                        color = Neutral400,
-                        fontSize = 12.sp
+                        text = "Rather than simply tracking numbers or calories, VitaVue focuses on nutritional awareness, human-centered technology, evidence-based learning, and the practical application of nutrition knowledge to foster continuous self-improvement.",
+                        color = Neutral300,
+                        fontSize = 12.sp,
+                        lineHeight = 18.sp
                     )
                 }
             }
         }
 
+        // Core Philosophy Card: SEE -> ANALYZE -> UNDERSTAND -> LEARN -> PLAN -> PRACTICE -> IMPROVE
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Amber400.copy(alpha = 0.4f), RoundedCornerShape(16.dp)),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Navy900)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "THE VITAVUE PHILOSOPHY",
+                        color = Amber400,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        color = Navy850,
+                        shape = RoundedCornerShape(10.dp),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, Amber400.copy(alpha = 0.3f))
+                    ) {
+                        Text(
+                            text = "SEE → ANALYZE → UNDERSTAND → LEARN → PLAN → PRACTICE → IMPROVE",
+                            color = Amber300,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(10.dp),
+                            lineHeight = 16.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "VitaVue connects visual food understanding, nutrition science, AI reasoning, education, planning, and practical improvement into one cohesive, supportive experience.",
+                        color = Neutral200,
+                        fontSize = 12.sp,
+                        lineHeight = 18.sp
+                    )
+                }
+            }
+        }
+
+        // Creator & Development Attribution Card
         item {
             Card(
                 modifier = Modifier
@@ -958,7 +1020,7 @@ fun AboutScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "TECHNICAL STACK",
+                        text = "CREATOR & DEVELOPMENT ATTRIBUTION",
                         color = Neutral400,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
@@ -966,7 +1028,125 @@ fun AboutScreen(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "• AI Multimodal Core: Gemini 2.5 Flash Vision & Intelligence REST API\n• UI Framework: Jetpack Compose with Material Design 3\n• Architecture: Clean MVVM + Repository Pattern\n• Local Persistence: Room Database with KSP\n• Networking: OkHttpClient + Kotlin Coroutines & Flow\n• Database: 100+ international foods & 8 science knowledge modules",
+                        text = "Lead Developer: Muhammad Ahsan Shahzad",
+                        color = Neutral50,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "An independent university student from Pakistan building VitaVue to explore how multimodal AI can make nutrition intelligence more accessible, understandable, and personalized for diverse global cultures.",
+                        color = Neutral300,
+                        fontSize = 12.sp,
+                        lineHeight = 18.sp
+                    )
+                }
+            }
+        }
+
+        // Core Capabilities Card
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Navy700, RoundedCornerShape(16.dp)),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Navy900)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "CORE CAPABILITIES",
+                        color = Neutral400,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        CapabilityItem(
+                            title = "1. AI Vision Nutrition Analysis",
+                            desc = "Multimodal meal analysis estimating components, portions, calories, macros, micronutrients, and culinary suggestions with transparent confidence reporting."
+                        )
+                        CapabilityItem(
+                            title = "2. International Food Explorer",
+                            desc = "100+ curated global foods and regional dishes with macronutrient ratios, glycemic context, and culinary preparation science."
+                        )
+                        CapabilityItem(
+                            title = "3. Evidence-Grounded Nutrition Hub",
+                            desc = "8 foundational nutrition science categories, myth-vs-fact analyses, and cited metabolic insights."
+                        )
+                        CapabilityItem(
+                            title = "4. Personalized Diet Planner",
+                            desc = "Dynamic 3-day and weekly planning tailored to health targets, dietary patterns, and cultural cuisine preferences."
+                        )
+                        CapabilityItem(
+                            title = "5. My Nutrition Intelligence",
+                            desc = "Private on-device persistence using Room Database for meal logs, favorite foods, bookmarked articles, custom diet plans, and user preferences."
+                        )
+                    }
+                }
+            }
+        }
+
+        // Scientific References & Data Sources
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Navy700, RoundedCornerShape(16.dp)),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Navy900)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "DATA SOURCES & NUTRITION REFERENCES",
+                        color = Neutral400,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "• USDA FoodData Central (Nutritional Composition Data)\n• World Health Organization (WHO Nutritional Guidance)\n• European Food Safety Authority (EFSA Reference Values)",
+                        color = Neutral200,
+                        fontSize = 12.sp,
+                        lineHeight = 20.sp
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Reference datasets provide foundational nutrition science baselines. Multimodal AI estimations are informed by these standards and clearly identified as visual approximations.",
+                        color = Neutral400,
+                        fontSize = 11.sp,
+                        lineHeight = 16.sp
+                    )
+                }
+            }
+        }
+
+        // Technology Architecture
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Navy700, RoundedCornerShape(16.dp)),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Navy900)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "TECHNICAL ARCHITECTURE",
+                        color = Neutral400,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "• Platform: Android Native (Kotlin DSL)\n• UI System: Jetpack Compose & Material Design 3\n• Architecture: Clean MVVM + Repository Pattern\n• AI Core: Google Gemini Multimodal Vision & Intelligence\n• Local Persistence: Android Room Database with SQLite & KSP\n• Asynchronous: Kotlin Coroutines & StateFlow\n• Networking: OkHttp REST Client\n• Testing: Local JVM Robolectric & Roborazzi Suite",
                         color = Neutral200,
                         fontSize = 12.sp,
                         lineHeight = 20.sp
@@ -974,5 +1154,64 @@ fun AboutScreen(
                 }
             }
         }
+
+        // Responsible AI & Educational Scope
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Emerald400.copy(alpha = 0.4f), RoundedCornerShape(16.dp)),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Navy900)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Default.Shield,
+                            contentDescription = null,
+                            tint = Emerald400,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "RESPONSIBLE AI & SAFETY POSITIONING",
+                            color = Emerald400,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "VitaVue is an educational and nutritional awareness tool. It provides informational estimates and reasoning to support everyday well-being. It does not provide medical diagnosis, clinical treatment plans, or replace consultations with licensed dietitians or medical professionals.",
+                        color = Neutral200,
+                        fontSize = 12.sp,
+                        lineHeight = 17.sp
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun CapabilityItem(
+    title: String,
+    desc: String
+) {
+    Column {
+        Text(
+            text = title,
+            color = Teal300,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = desc,
+            color = Neutral300,
+            fontSize = 12.sp,
+            lineHeight = 17.sp
+        )
     }
 }

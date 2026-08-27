@@ -548,7 +548,7 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "VitaVue Intelligence System • Hackathon Edition • About & Architecture",
+                    text = "VitaVue • Where Nutrition Meets Intelligence • About & Architecture",
                     color = Neutral400,
                     fontSize = 11.sp,
                     modifier = Modifier.clickable { viewModel.navigateTo("about") }
