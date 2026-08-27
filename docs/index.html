@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>VitaVue — Where Nutrition Meets Intelligence</title>
+  <meta name="description" content="AI-Powered Multimodal Nutrition Intelligence, Evidence-Based Knowledge, and Precision Metabolic Wellness.">
+  <meta name="theme-color" content="#040817">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Material 3 & Custom Styling -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Mobile Top Bar -->
+  <header class="mobile-top-bar">
+    <div class="mobile-brand">
+      <div class="mobile-brand-icon">🌿</div>
+      <div class="mobile-brand-title">VitaVue</div>
+    </div>
+    <button class="settings-btn" onclick="VitaVue.switchTab('my-nutrition')">
+      ⚙️ Profile
+    </button>
+  </header>
+
+  <div class="app-container">
+
+    <!-- Desktop Navigation Sidebar -->
+    <aside class="nav-sidebar">
+      <div class="brand-header">
+        <div class="brand-logo-badge">🌿</div>
+        <div class="brand-text">
+          <h1>VitaVue</h1>
+          <span>Nutrition Intelligence</span>
+        </div>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 6px;">
+        <a class="nav-link active" data-tab="home">
+          <span class="icon">🏠</span>
+          <span>Home</span>
+        </a>
+        <a class="nav-link" data-tab="analyzer">
+          <span class="icon">📸</span>
+          <span>Meal Analyzer</span>
+        </a>
+        <a class="nav-link" data-tab="explorer">
+          <span class="icon">🔍</span>
+          <span>Food Explorer</span>
+        </a>
+        <a class="nav-link" data-tab="learn">
+          <span class="icon">📚</span>
+          <span>Nutrition Hub</span>
+        </a>
+        <a class="nav-link" data-tab="agent">
+          <span class="icon">💬</span>
+          <span>AI Nutritionist</span>
+        </a>
+        <a class="nav-link" data-tab="planner">
+          <span class="icon">📋</span>
+          <span>Diet Planner</span>
+        </a>
+        <a class="nav-link" data-tab="my-nutrition">
+          <span class="icon">👤</span>
+          <span>My Nutrition</span>
+        </a>
+      </nav>
+
+      <div class="nav-sidebar-footer">
+        <div style="font-size: 11px; color: var(--neutral-400); line-height: 1.4;">
+          <strong>VitaVue v1.0</strong><br>
+          Where Nutrition Meets Intelligence.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Viewport -->
+    <main class="main-viewport">
+
+      <!-- SCREEN: HOME -->
+      <section id="screen-home" class="screen active">
+        <div class="hero-card">
+          <div class="hero-tag">✨ Multimodal Nutrition AI</div>
+          <h2 class="hero-title">Where Nutrition Meets Intelligence.</h2>
+          <p class="hero-subtitle">Evidence-based nutritional science, real-time image food analysis, and personalized metabolic insights at your fingertips.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="VitaVue.switchTab('analyzer')">
+              📸 Analyze Meal Photo
+            </button>
+            <button class="btn btn-secondary" onclick="VitaVue.switchTab('explorer')">
+              🔍 Explore 100+ Foods
+            </button>
+          </div>
+        </div>
+
+        <!-- Today's Nutrition Summary Card -->
+        <div class="m3-card m3-card-accent">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white);">Today's Macro Balance</h3>
+            <span style="font-size: 12px; color: var(--teal-300); font-weight: 700;">Live Summary</span>
+          </div>
+          <p style="font-size: 12px; color: var(--neutral-400); margin-bottom: 12px;">Aggregated across your logged and analyzed meals today.</p>
+          
+          <div class="macro-grid">
+            <div class="macro-box calories">
+              <span class="macro-label">Calories</span>
+              <span id="home-metric-cals" class="macro-val">0 kcal</span>
+            </div>
+            <div class="macro-box protein">
+              <span class="macro-label">Protein</span>
+              <span id="home-metric-p" class="macro-val">0g</span>
+            </div>
+            <div class="macro-box carbs">
+              <span class="macro-label">Carbs</span>
+              <span id="home-metric-c" class="macro-val">0g</span>
+            </div>
+            <div class="macro-box fats">
+              <span class="macro-label">Fats</span>
+              <span id="home-metric-f" class="macro-val">0g</span>
+            </div>
+            <div class="macro-box fiber">
+              <span class="macro-label">Fiber</span>
+              <span id="home-metric-fib" class="macro-val">0g</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Access Navigation Grid -->
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin: 24px 0 12px;">Core Intelligence Modules</h3>
+        <div class="quick-action-grid">
+          <div class="action-card" onclick="VitaVue.switchTab('analyzer')">
+            <div class="action-icon-badge teal">📸</div>
+            <h3>Meal Vision Analyzer</h3>
+            <p>Upload any meal photo to identify food components, estimate portion sizes, and calculate macros.</p>
+          </div>
+
+          <div class="action-card" onclick="VitaVue.switchTab('agent')">
+            <div class="action-icon-badge indigo">💬</div>
+            <h3>AI Nutrition Agent</h3>
+            <p>Ask science-backed questions on leucine thresholds, micronutrient synergy, or culinary bioavailability.</p>
+          </div>
+
+          <div class="action-card" onclick="VitaVue.switchTab('learn')">
+            <div class="action-icon-badge amber">📚</div>
+            <h3>Nutrition Hub & Myths</h3>
+            <p>Peer-reviewed nutrition articles across 8 disciplines and 8 debunked popular food myths.</p>
+          </div>
+
+          <div class="action-card" onclick="VitaVue.switchTab('planner')">
+            <div class="action-icon-badge emerald">📋</div>
+            <h3>Diet Planner</h3>
+            <p>Generate balanced 3-day nutritional blueprints customized for your metabolic objectives.</p>
+          </div>
+        </div>
+
+        <!-- Recent Meal Analyses List -->
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin-bottom: 12px;">Recent Meal Analyses</h3>
+        <div id="home-recent-analyses"></div>
+
+        <!-- Responsible AI Disclosure -->
+        <div class="disclosure-banner">
+          ⚖️ <strong>Responsible AI Disclosure:</strong> VitaVue is an educational and lifestyle nutritional intelligence system powered by scientific literature. It does not provide medical diagnoses or replace personalized advice from licensed clinical dietitians.
+        </div>
+      </section>
+
+      <!-- SCREEN: MEAL ANALYZER -->
+      <section id="screen-analyzer" class="screen">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Multimodal Meal Analyzer</h2>
+          <p style="font-size: 14px; color: var(--neutral-300);">Upload or capture a photo of your meal for instant food identification, portion estimation, and micronutrient breakdown.</p>
+        </div>
+
+        <input type="file" id="meal-file-input" accept="image/*" style="display: none;">
+
+        <div id="analyzer-drop-box" class="analyzer-box">
+          <div style="font-size: 40px; margin-bottom: 12px;">📷</div>
+          <h3 style="font-size: 16px; font-weight: 700; color: var(--pure-white); margin-bottom: 6px;">Tap to select or take a meal photo</h3>
+          <p style="font-size: 13px; color: var(--teal-300);">JPEG, PNG, or WEBP images supported</p>
+        </div>
+
+        <div id="analyzer-preview-container" class="preview-img-container">
+          <img id="analyzer-preview-img" src="" alt="Meal preview">
+        </div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+          <button id="run-analysis-btn" class="btn btn-primary" style="display: none; padding: 14px 28px; font-size: 15px;">
+            ⚡ Run Intelligence Analysis
+          </button>
+        </div>
+
+        <div id="analyzer-status" style="display: none;"></div>
+        <div id="analyzer-result-box" style="display: none;"></div>
+      </section>
+
+      <!-- SCREEN: FOOD EXPLORER -->
+      <section id="screen-explorer" class="screen">
+        <div style="margin-bottom: 18px;">
+          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Food Explorer</h2>
+          <p style="font-size: 14px; color: var(--neutral-300);">Comprehensive evidence-based database of whole foods, macronutrients, and bioactives.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="food-search-input" class="search-input" placeholder="Search foods, nutrients, cultural origins, or tags...">
+        </div>
+
+        <!-- Category Pills -->
+        <div id="food-category-pills" class="pill-scroller"></div>
+
+        <!-- Food Cards Grid -->
+        <div id="food-cards-grid" class="food-grid"></div>
+      </section>
+
+      <!-- SCREEN: NUTRITION HUB & MYTHS -->
+      <section id="screen-learn" class="screen">
+        <div style="margin-bottom: 18px;">
+          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Nutrition Knowledge Hub</h2>
+          <p style="font-size: 14px; color: var(--neutral-300);">Evidence-based articles across 8 nutritional disciplines and scientific myth-busting.</p>
+        </div>
+
+        <!-- Article Categories -->
+        <div id="article-category-pills" class="pill-scroller"></div>
+
+        <!-- Articles List -->
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin-bottom: 12px;">Evidence-Based Guides</h3>
+        <div id="articles-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;"></div>
+
+        <!-- Myth Busters Section -->
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--pure-white); margin-bottom: 12px;">🔬 Evidence Myth Busters</h3>
+        <div id="myths-accordion"></div>
+      </section>
+
+      <!-- SCREEN: AI NUTRITIONIST CHAT -->
+      <section id="screen-agent" class="screen">
+        <div style="margin-bottom: 16px;">
+          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">AI Nutrition Agent</h2>
+          <p style="font-size: 13px; color: var(--neutral-300);">Instant evidence-based answers on nutrient synergy, meal timing, and dietary adaptations.</p>
+        </div>
+
+        <div class="chat-container">
+          <div id="chat-thread" class="chat-thread"></div>
+          <div class="chat-input-bar">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about protein timing, iron absorption, or your recent meal...">
+            <button id="chat-send-btn" class="btn btn-primary btn-sm" style="padding: 10px 18px;">
+              Send
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN: DIET PLANNER -->
+      <section id="screen-planner" class="screen">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">Personalized Diet Planner</h2>
+          <p style="font-size: 14px; color: var(--neutral-300);">Generate science-grounded 3-day meal frameworks tailored to your metabolic objectives.</p>
+        </div>
+
+        <div class="m3-card">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px;">
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: var(--neutral-400); display: block; margin-bottom: 6px;">PRIMARY GOAL</label>
+              <select id="plan-goal-select" style="width: 100%; background: var(--navy-850); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: var(--radius-sm); color: var(--pure-white); font-size: 13px;">
+                <option value="Balanced Nutrition">Balanced Nutrition & Daily Vitality</option>
+                <option value="Muscle Maintenance">Muscle Protein Synthesis & Strength</option>
+                <option value="Gut Microbiome">Gut Microbiome & Fiber Diversity</option>
+                <option value="Cardiometabolic">Cardiovascular & Blood Glucose Health</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: var(--neutral-400); display: block; margin-bottom: 6px;">DIETARY PATTERN</label>
+              <select id="plan-type-select" style="width: 100%; background: var(--navy-850); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: var(--radius-sm); color: var(--pure-white); font-size: 13px;">
+                <option value="Omnivore / Balanced">Omnivore / Balanced Whole Foods</option>
+                <option value="Mediterranean Pattern">Mediterranean High-Polyphenol Pattern</option>
+                <option value="Vegetarian / Plant-Rich">Vegetarian (Lacto-Ovo / South Asian)</option>
+                <option value="100% Plant-Based (Vegan)">100% Plant-Based (Vegan)</option>
+                <option value="Pescatarian">Pescatarian (Seafood & Plants)</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="generate-plan-btn" class="btn btn-emerald" style="width: 100%;">
+            ⚡ Generate 3-Day Nutrition Framework
+          </button>
+        </div>
+
+        <div id="plan-result-container"></div>
+      </section>
+
+      <!-- SCREEN: MY NUTRITION & PROFILE -->
+      <section id="screen-my-nutrition" class="screen">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 24px; font-weight: 800; color: var(--pure-white);">My Nutrition & Settings</h2>
+          <p style="font-size: 14px; color: var(--neutral-300);">Your saved foods, meal history, and local privacy management.</p>
+        </div>
+
+        <div class="m3-card">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 18px;">
+            <div style="width: 56px; height: 56px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--teal-500), var(--emerald-500)); display: flex; align-items: center; justify-content: center; font-size: 26px;">
+              👤
+            </div>
+            <div>
+              <h3 style="font-size: 18px; font-weight: 800; color: var(--pure-white);">Nutrition Explorer</h3>
+              <p style="font-size: 12px; color: var(--teal-300);">VitaVue Intelligence Client</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+            <div style="background: var(--navy-850); padding: 12px; border-radius: var(--radius-md);">
+              <div id="profile-saved-count" style="font-size: 20px; font-weight: 800; color: var(--teal-300);">0</div>
+              <div style="font-size: 11px; color: var(--neutral-400);">Saved Foods</div>
+            </div>
+            <div style="background: var(--navy-850); padding: 12px; border-radius: var(--radius-md);">
+              <div id="profile-bookmark-count" style="font-size: 20px; font-weight: 800; color: var(--amber-300);">0</div>
+              <div style="font-size: 11px; color: var(--neutral-400);">Bookmarked Guides</div>
+            </div>
+            <div style="background: var(--navy-850); padding: 12px; border-radius: var(--radius-md);">
+              <div id="profile-logs-count" style="font-size: 20px; font-weight: 800; color: var(--emerald-300);">0</div>
+              <div style="font-size: 11px; color: var(--neutral-400);">Meals Analyzed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m3-card">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--pure-white); margin-bottom: 8px;">🔒 Data Privacy & Architecture</h4>
+          <p style="font-size: 13px; color: var(--neutral-300); line-height: 1.5; margin-bottom: 12px;">
+            VitaVue Web stores your nutrition logs, meal analyses, and saved items locally in your browser's private secure storage, mirroring the Android Room database architecture.
+          </p>
+          <button class="btn btn-secondary btn-sm" onclick="localStorage.clear(); location.reload();">
+            Clear Local Data Cache
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a class="bottom-nav-item active" data-tab="home">
+      <div class="nav-icon-container">🏠</div>
+      <span>Home</span>
+    </a>
+    <a class="bottom-nav-item" data-tab="analyzer">
+      <div class="nav-icon-container">📸</div>
+      <span>Analyzer</span>
+    </a>
+    <a class="bottom-nav-item" data-tab="explorer">
+      <div class="nav-icon-container">🔍</div>
+      <span>Foods</span>
+    </a>
+    <a class="bottom-nav-item" data-tab="learn">
+      <div class="nav-icon-container">📚</div>
+      <span>Learn</span>
+    </a>
+    <a class="bottom-nav-item" data-tab="agent">
+      <div class="nav-icon-container">💬</div>
+      <span>AI Agent</span>
+    </a>
+  </nav>
+
+  <!-- Global Modal Sheet -->
+  <div id="global-modal-backdrop" class="modal-backdrop">
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close-btn">✕</button>
+      <div id="modal-body-container"></div>
+    </div>
+  </div>
+
+  <!-- Application Logic & Data -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

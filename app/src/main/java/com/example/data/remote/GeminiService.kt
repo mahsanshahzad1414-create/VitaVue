@@ -30,7 +30,7 @@ class GeminiService {
 
     private val apiKey: String
         get() = try {
-            BuildConfig.GEMINI_API_KEY
+            BuildConfig.GEMINI_API_KEY.trim().removeSurrounding("\"")
         } catch (e: Exception) {
             ""
         }
@@ -253,12 +253,19 @@ class GeminiService {
             }
 
             val json = JSONObject(bodyString)
-            val text = json.getJSONArray("candidates")
-                .getJSONObject(0)
-                .getJSONObject("content")
-                .getJSONArray("parts")
-                .getJSONObject(0)
-                .getString("text")
+            val candidateObj = json.getJSONArray("candidates").getJSONObject(0)
+            val parts = candidateObj.getJSONObject("content").getJSONArray("parts")
+            var text = ""
+            for (p in 0 until parts.length()) {
+                val partObj = parts.getJSONObject(p)
+                if (partObj.has("text")) {
+                    val t = partObj.getString("text")
+                    if (t.isNotBlank()) {
+                        text = t
+                        break
+                    }
+                }
+            }
 
             val actions = deriveActionsFromResponse(text, userQuery, contextMealAnalysis)
             Pair(text, actions)
@@ -299,12 +306,20 @@ class GeminiService {
             val root = JSONObject(rawJson)
             // If response is wrapped in candidates
             val candidateText = if (root.has("candidates")) {
-                root.getJSONArray("candidates")
-                    .getJSONObject(0)
-                    .getJSONObject("content")
-                    .getJSONArray("parts")
-                    .getJSONObject(0)
-                    .getString("text")
+                val candidateObj = root.getJSONArray("candidates").getJSONObject(0)
+                val parts = candidateObj.getJSONObject("content").getJSONArray("parts")
+                var extractedText = ""
+                for (p in 0 until parts.length()) {
+                    val partObj = parts.getJSONObject(p)
+                    if (partObj.has("text")) {
+                        val t = partObj.getString("text")
+                        if (t.isNotBlank()) {
+                            extractedText = t
+                            break
+                        }
+                    }
+                }
+                extractedText
             } else {
                 rawJson
             }
