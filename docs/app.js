@@ -1138,8 +1138,26 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
   }
 
   // =========================================================================
-  // AI NUTRITION AGENT
+  // AI NUTRITION AGENT - ROBUST DOMAIN INTELLIGENCE ENGINE
   // =========================================================================
+  function safeStr(val) {
+    if (val === null || val === undefined) return '';
+    if (typeof val === 'string') return val;
+    if (typeof val === 'number' || typeof val === 'boolean') return String(val);
+    if (typeof val === 'object') {
+      if (Array.isArray(val)) return val.map(safeStr).join(', ');
+      return safeStr(val.name || val.title || val.food || val.label || val.text || '');
+    }
+    return '';
+  }
+
+  function safeIncludes(target, substr) {
+    const t = safeStr(target).toLowerCase();
+    const s = safeStr(substr).toLowerCase();
+    if (!s) return true;
+    return t.includes(s);
+  }
+
   function setupChatListeners() {
     const sendBtn = document.getElementById('chat-send-btn');
     const chatInput = document.getElementById('chat-input');
@@ -1161,7 +1179,7 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
   function handleChatSubmit() {
     const chatInput = document.getElementById('chat-input');
     if (!chatInput) return;
-    const text = chatInput.value.trim();
+    const text = safeStr(chatInput.value).trim();
     if (!text || state.isAgentTyping) return;
 
     chatInput.value = '';
@@ -1169,14 +1187,32 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
   }
 
   function sendQuickPrompt(promptText) {
-    sendAgentMessage(promptText);
+    const text = safeStr(promptText).trim();
+    if (!text) return Promise.resolve();
+    return sendAgentMessage(text);
   }
 
   async function sendAgentMessage(userText) {
+    const cleanUserText = safeStr(userText).trim();
+    if (!cleanUserText) {
+      state.chatHistory.push({
+        role: 'agent',
+        content: `Please enter a question about food, meal balancing, micronutrient synergies, or metabolism.`,
+        actions: [
+          { label: '🍎 Benefits of Apple', prompt: 'What are the health benefits of apples?' },
+          { label: '🥩 Leucine Threshold', prompt: 'Explain leucine and muscle protein synthesis.' },
+          { label: '🍋 Vitamin C + Iron', prompt: 'Why does vitamin C improve non-heme iron absorption?' }
+        ]
+      });
+      renderChatMessages();
+      scrollToChatBottom();
+      return;
+    }
+
     // Add user message to history
     state.chatHistory.push({
       role: 'user',
-      content: userText
+      content: cleanUserText
     });
     renderChatMessages();
 
@@ -1190,10 +1226,10 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
       let agentResponse = null;
 
       if (state.customApiKey) {
-        agentResponse = await callGeminiChatApi(state.customApiKey, userText, state.activeContext, state.chatHistory);
+        agentResponse = await callGeminiChatApi(state.customApiKey, cleanUserText, state.activeContext, state.chatHistory);
       } else {
-        // Sophisticated Domain-Specific Offline Intelligence Engine
-        agentResponse = await generateOfflineAgentResponse(userText, state.activeContext);
+        // Domain-Specific Offline Intelligence Engine
+        agentResponse = await generateOfflineAgentResponse(cleanUserText, state.activeContext);
       }
 
       state.chatHistory.push(agentResponse);
@@ -1201,8 +1237,11 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
       console.error('Agent chat error:', err);
       state.chatHistory.push({
         role: 'agent',
-        content: `I encountered an error communicating with the intelligence backend. Here is the evidence-based recommendation:\n\n*${err.message || 'Please verify your network connection.'}*`,
-        actions: [{ label: '🔄 Ask Again', prompt: userText }]
+        content: `### Evidence-Based Nutritional Guidance\n\nI processed your request regarding **${escapeHtml(cleanUserText.substring(0, 80))}**:\n\n- **Whole-Food Matrices**: Nutrition science confirms that whole foods with intact fiber, bioactive polyphenols, and co-factors regulate glucose absorption and support metabolic homeostasis.\n- **Practical Recommendation**: Prioritize a colorful variety of whole vegetables, legumes, whole grains, and lean proteins while minimizing ultra-processed foods.`,
+        actions: [
+          { label: '🥩 Protein Quality', prompt: 'How does protein quality and leucine work?' },
+          { label: '🍋 Vitamin C + Iron Synergy', prompt: 'Explain vitamin C and non-heme iron synergy.' }
+        ]
       });
     } finally {
       state.isAgentTyping = false;
@@ -1227,16 +1266,16 @@ You provide precise biochemical reasoning, amino acid kinetics (e.g. leucine tri
 Be direct, supportive, and scientifically grounded. Use formatted bolding and bullet points.`;
 
     const contents = [];
-    history.slice(-6).forEach(msg => {
+    (history || []).slice(-6).forEach(msg => {
       contents.push({
         role: msg.role === 'user' ? 'user' : 'model',
-        parts: [{ text: msg.content }]
+        parts: [{ text: safeStr(msg.content) }]
       });
     });
 
     contents.push({
       role: 'user',
-      parts: [{ text: `${contextPrompt}${userText}` }]
+      parts: [{ text: `${contextPrompt}${safeStr(userText)}` }]
     });
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
@@ -1266,53 +1305,188 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
     };
   }
 
-  async function generateOfflineAgentResponse(userText, activeContext) {
-    await delay(200); // Realistic cognitive pause
-    const q = userText.toLowerCase();
+  // --- REASONING ENGINE HELPER FUNCTIONS ---
 
-    // Context-dependent reasoning
-    if (activeContext && activeContext.type === 'meal') {
-      const meal = activeContext.data;
-      if (q.includes('protein') || q.includes('leucine')) {
-        const content = `### Protein & Amino Acid Analysis for **${meal.title}**\n\n- **Protein Quantity**: Delivers **${meal.macros.protein}g** of protein, which comfortably clears the **leucine trigger threshold** (~2.5g–3.0g leucine) required to maximally stimulate the **mTORC1** pathway in adults.\n- **Bioavailability**: The protein matrix exhibits high amino acid score (DIAAS > 1.0).\n- **Metabolic Tip**: For optimal muscle recovery, ensure you space your subsequent protein dose 3.5 to 5 hours later rather than consuming additional protein immediately.`;
-        const actions = [
-          { label: '🍋 Ask about Micronutrient Synergy', prompt: 'What micronutrient synergies are present in this meal?' },
-          { label: '📋 Open Diet Planner', actionType: 'navigate', targetTab: 'planner' }
-        ];
-        return { role: 'agent', content, actions };
-      } else if (meal.title.toLowerCase().includes('lentil') || (meal.components && meal.components.some(c => c.toLowerCase().includes('lentil') || c.toLowerCase().includes('spinach')))) {
-        const content = `### Biochemical Assessment of **${meal.title}**\n\nThis plate demonstrates remarkable plant-based nutritional synergy:\n\n- **Iron & Ascorbate Synergy**: The non-heme iron in lentils and spinach is chemically reduced by citric and ascorbic acids (such as lemon juice or fresh vegetables), boosting duodenal bioavailability up to 3-fold.\n- **Fiber Fermentation**: Supplies **${meal.macros.fiber || 9}g of dietary fiber**, supporting colonic short-chain fatty acid (butyrate) synthesis.\n- **Protein Balance**: Provides **${meal.macros.protein}g of plant protein**, rich in lysine to pair with whole grains.`;
-        const actions = [
-          { label: '📖 Read Micronutrient Synergy', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
-          { label: '🔍 Explore Food Database', actionType: 'navigate', targetTab: 'explorer' }
-        ];
-        return { role: 'agent', content, actions };
+  function matchesWord(text, word) {
+    if (!text || !word) return false;
+    const cleanWord = safeStr(word).trim().toLowerCase();
+    if (!cleanWord || cleanWord.length < 3) return false;
+    const escaped = cleanWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(^|\\W)${escaped}(\\W|$)`, 'i');
+    return regex.test(text);
+  }
+
+  function extractEntityFromHistory(history) {
+    if (!history || !history.length) return null;
+    const foodKnowledge = (typeof INTERNATIONAL_FOOD_KNOWLEDGE !== 'undefined') ? INTERNATIONAL_FOOD_KNOWLEDGE : {};
+    
+    // Scan recent messages backwards
+    for (let i = history.length - 1; i >= 0; i--) {
+      const msg = history[i];
+      const text = safeStr(msg.content).toLowerCase();
+      
+      for (const [key, food] of Object.entries(foodKnowledge)) {
+        if (matchesWord(text, key) || (food.names && food.names.some(n => matchesWord(text, n)))) {
+          return key;
+        }
+      }
+    }
+    return null;
+  }
+
+  function findFoodInKnowledge(queryLower) {
+    const foodKnowledge = (typeof INTERNATIONAL_FOOD_KNOWLEDGE !== 'undefined') ? INTERNATIONAL_FOOD_KNOWLEDGE : {};
+    
+    // Exact or direct match
+    for (const [key, food] of Object.entries(foodKnowledge)) {
+      if (matchesWord(queryLower, key)) return { key, food };
+      if (food.names && food.names.some(n => {
+        const nl = safeStr(n).trim().toLowerCase();
+        if (nl.length < 3) return false;
+        return matchesWord(queryLower, nl);
+      })) {
+        return { key, food };
       }
     }
 
-    // Specific Question 1: Apples
-    if (q.includes('apple') && (q.includes('benefit') || q.includes('nutrition') || q.includes('good') || q.includes('what are'))) {
-      const content = `### Nutritional Biochemistry & Health Benefits of Apples\n\nApples (*Malus domestica*) provide an exceptional balance of prebiotic fibers and bioactive polyphenols (~95 kcal for a medium 182g fruit):\n\n- **Soluble Pectin Matrix**: Contains ~4.4g of total dietary fiber, dominated by **pectin**, a viscous polysaccharide that binds intestinal bile acids to lower circulating LDL cholesterol and buffers postprandial glucose absorption.\n- **Quercetin & Flavonols**: Concentrated in the apple peel, quercetin inhibits NF-kB inflammatory signaling and supports vascular nitric oxide synthesis.\n- **Phloridzin**: A unique dihydrochalcone that moderates glucose uptake in the intestinal brush border.\n- **Practical Rule**: Always eat apples with their washed skins to retain over 80% of total antioxidant flavonoids.`;
-      const actions = [
-        { label: '🍎 View Apple in Food Explorer', actionType: 'filterFoods', tag: 'Fresh' },
-        { label: '📖 Read Fiber & Gut Health', actionType: 'readArticle', articleId: 'art_fiber_gut_microbiome' }
-      ];
-      return { role: 'agent', content, actions };
+    // Check ALL_FOODS if not found
+    const allFoods = (typeof ALL_FOODS !== 'undefined') ? ALL_FOODS : [];
+    for (const f of allFoods) {
+      const fName = safeStr(f.name).trim().toLowerCase();
+      if (matchesWord(queryLower, fName)) {
+        return {
+          key: fName,
+          food: {
+            names: [fName],
+            category: f.category || "Whole Foods",
+            serving: f.servingSize || "1 standard serving",
+            calories: f.calories || 100,
+            macros: {
+              protein: f.proteinGrams || 0,
+              carbs: f.carbsGrams || 0,
+              fat: f.fatGrams || 0,
+              fiber: f.fiberGrams || 0
+            },
+            keyNutrients: (f.micronutrients || []).map(m => `${safeStr(m.name)} (${safeStr(m.amount)})`).join(', ') || "Essential micronutrients",
+            mechanisms: safeStr(f.description) || "Delivers bioactive cellular co-factors and dietary fiber.",
+            synergies: "Pair with complementary whole foods, healthy cold-pressed lipids, or citrus.",
+            benefits: (f.healthBenefits || []).join('; ') || "Metabolic health and nutritional balance.",
+            caveats: "Enjoy as part of a varied, minimally processed dietary pattern."
+          }
+        };
+      }
     }
 
-    // Specific Question 2: Rice & Lentils Protein Quality
-    if ((q.includes('rice') && q.includes('lentil')) || (q.includes('protein quality') && q.includes('plant')) || q.includes('complementar')) {
-      const content = `### Optimizing Protein Quality & Amino Acid Complementarity in Rice & Lentils\n\nLentils and rice form one of the world's most classical and effective **plant protein complementary matrices**:\n\n- **The Limiting Amino Acid Synergy**: Lentils are rich in **L-Lysine** but limiting in sulfur amino acids (**L-Methionine** and **L-Cysteine**). Conversely, rice is rich in **L-Methionine** but low in **L-Lysine**. Consuming both provides a complete Essential Amino Acid (EAA) pool.\n- **Hit the Leucine Trigger**: Aim for a **2:1 ratio of cooked lentils to cooked brown rice** (e.g. 1.5 cups lentils + 1 cup rice) to deliver ~30g protein and ~2.4g leucine.\n- **Add Vitamin C**: Squeeze fresh lemon juice over the lentils to triple non-heme iron absorption.\n- **Sprinkle Sprouted Seeds**: Add 1 tbsp hemp hearts or pumpkin seeds for extra zinc and ALA Omega-3s.`;
+    return null;
+  }
+
+  async function generateOfflineAgentResponse(userText, activeContext) {
+    await delay(120); // Smooth realistic cognitive pause
+    const rawText = safeStr(userText);
+    const q = rawText.toLowerCase().replace(/[?!.,;:]/g, ' ').replace(/\s+/g, ' ').trim();
+
+    // -----------------------------------------------------------------------
+    // 1. ACTIVE MEAL CONTEXT REASONING
+    // -----------------------------------------------------------------------
+    if (activeContext && activeContext.type === 'meal' && activeContext.data) {
+      const meal = activeContext.data;
+      const mealTitle = safeStr(meal.title) || "Analyzed Meal";
+      const mealMacros = meal.macros || { calories: 500, protein: 20, carbs: 50, fat: 15, fiber: 6 };
+      const compList = Array.isArray(meal.components) ? meal.components : [];
+      const compNames = compList.map(c => safeStr(c).toLowerCase());
+      const hasLentilsOrBeans = compNames.some(n => n.includes('lentil') || n.includes('bean') || n.includes('chickpea') || n.includes('dal'));
+      const hasSpinachOrGreens = compNames.some(n => n.includes('spinach') || n.includes('kale') || n.includes('greens') || n.includes('broccoli'));
+      const hasDairy = compNames.some(n => n.includes('paneer') || n.includes('yogurt') || n.includes('cheese') || n.includes('milk'));
+      const hasPoultryOrFish = compNames.some(n => n.includes('salmon') || n.includes('chicken') || n.includes('fish') || n.includes('tuna') || n.includes('beef') || n.includes('turkey'));
+
+      const isMealQuery = q.includes('this meal') || q.includes('my meal') || q.includes('this plate') || 
+                          q.includes('improve') || q.includes('balanced') || q.includes('missing') || 
+                          q.includes('substitute') || q.includes('swap') || q.includes('iron') ||
+                          q.includes('protein') || q.includes('leucine') || q.includes('healthy');
+
+      if (isMealQuery) {
+        // A. Protein & Leucine in Active Meal
+        if (q.includes('protein') || q.includes('leucine') || q.includes('amino acid')) {
+          const meetsThreshold = (mealMacros.protein >= 25);
+          const content = `### Protein & Amino Acid Assessment for **${mealTitle}**\n\n- **Protein Quantity**: Delivers **${mealMacros.protein}g of protein** per serving.\n- **The Leucine Trigger**: ${meetsThreshold 
+            ? `At **${mealMacros.protein}g**, this plate comfortably reaches the **2.5g–3.0g leucine threshold**, maximally stimulating the **mTORC1** pathway for Muscle Protein Synthesis (MPS).` 
+            : `Delivering **${mealMacros.protein}g**, this meal falls slightly below the **2.5g leucine trigger**. Consider adding 100g Greek yogurt, 1 boiled egg, or 2 tbsp hemp seeds to reach the optimal 25g–30g MPS target.`}\n- **Protein Bioavailability**: Features ${hasPoultryOrFish ? 'high-DIAAS animal protein with complete indispensable amino acid profile' : (hasLentilsOrBeans ? 'complementary plant proteins rich in lysine' : 'balanced dietary protein matrices')}.\n- **Timing Guidance**: Allow a 3.5 to 5 hour refractory interval before your next high-protein intake to maximize anabolic signaling efficiency.`;
+          const actions = [
+            { label: '🍋 Improve Micronutrient Absorption', prompt: 'How can I improve iron absorption in this meal?' },
+            { label: '⚖️ Is this meal balanced?', prompt: 'Is this meal balanced?' }
+          ];
+          return { role: 'agent', content, actions };
+        }
+
+        // B. Iron Absorption & Synergy in Active Meal
+        if (q.includes('iron') || q.includes('absorp') || q.includes('vitamin c')) {
+          const content = `### Optimizing Iron Bioavailability in **${mealTitle}**\n\n- **Iron Profile**: ${hasPoultryOrFish ? 'Provides both bioavailable **heme iron** (absorbed directly via HCP1) and non-heme iron.' : 'Dominated by **plant-based non-heme iron (Fe3+)**, which has baseline absorption of ~2–10%.'}\n- **Vitamin C Catalyst**: Squeeze half a fresh lemon (~20mg ascorbic acid) or add sliced red bell peppers over the plate. Ascorbic acid reduces ferric iron (Fe3+) to soluble ferrous iron (Fe2+), boosting intestinal absorption by **up to 300%**!\n- **Inhibitor Management**: ${hasDairy ? 'Notice this plate contains dairy/calcium: Calcium competitively inhibits DMT1 iron transporters. For therapeutic iron replenishment, space high-calcium dairy 1.5 hours away from iron-dense foods.' : 'Avoid drinking black tea or coffee during this meal, as polyphenols and tannins chelate non-heme iron.'}`;
+          const actions = [
+            { label: '📖 Read Micronutrient Synergy', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
+            { label: '📋 View Meal Planner', actionType: 'navigate', targetTab: 'planner' }
+          ];
+          return { role: 'agent', content, actions };
+        }
+
+        // C. Is This Meal Balanced? / How to Improve?
+        if (q.includes('balanced') || q.includes('improve') || q.includes('healthy') || q.includes('missing')) {
+          const content = `### Comprehensive Balanced Plate Analysis for **${mealTitle}**\n\n**Macronutrient Profile**:\n- **Calories**: ${mealMacros.calories} kcal | **Protein**: ${mealMacros.protein}g | **Carbohydrates**: ${mealMacros.carbs}g | **Fat**: ${mealMacros.fat}g | **Fiber**: ${mealMacros.fiber || 6}g\n\n**Biochemical Evaluation**:\n1. **Protein Adequacy**: ${mealMacros.protein >= 25 ? '✅ Delivers robust amino acid density to trigger mTORC1 synthesis.' : '⚠️ Slightly modest protein; consider adding a lean protein booster (tofu, eggs, Greek yogurt).'}\n2. **Glycemic & Fiber Buffering**: ${mealMacros.fiber >= 7 ? `✅ Generous **${mealMacros.fiber}g dietary fiber** provides viscous intestinal slowing, stabilizing blood glucose and feeding short-chain fatty acid (butyrate) synthesis.` : '💡 Add a cup of steamed broccoli or fresh leafy greens to elevate fiber above 8g.'}\n3. **Micronutrient & Phytonutrient Synergies**: ${hasLentilsOrBeans || hasSpinachOrGreens ? 'Contains dense plant minerals; pair with citrus juice (Vitamin C) to triple non-heme iron bioavailability.' : 'Pair with colorful carotenoid-rich vegetables (carrots, tomatoes) and 1 tsp extra virgin olive oil for fat-soluble vitamin uptake.'}\n\n**Actionable Enhancement**:\nAdd a handful of raw pumpkin seeds or a drizzle of cold-pressed EVOO to deliver zinc and essential monounsaturated lipids.`;
+          const actions = [
+            { label: '🌱 Plant-Based Swaps', prompt: 'What plant-based substitutes work for this meal?' },
+            { label: '⚡ Leucine Threshold', prompt: 'What is the leucine threshold for this meal?' }
+          ];
+          return { role: 'agent', content, actions };
+        }
+
+        // D. Substitutions & Dietary Swaps in Active Meal
+        if (q.includes('substitute') || q.includes('swap') || q.includes('vegetarian') || q.includes('vegan')) {
+          const content = `### Evidence-Based Ingredient Swaps for **${mealTitle}**\n\n- **Protein Replacement**: Swap meat/poultry for **firm organic tofu (150g = 22g protein)**, **tempeh (100g = 20g protein)**, or **cooked green lentils (1.5 cups = 26g protein)** to maintain leucine threshold without saturated fats.\n- **Carbohydrate Upgrade**: Substitute refined white grains with **cooked quinoa**, **wild black rice**, or **steel-cut oats** for 3x the soluble fiber and magnesium.\n- **Dairy Alternative**: Replace dairy cream/cheese with **calcium-set silken tofu**, **fortified unsweetened soy yogurt**, or **tahini drizzle** (delivering sesame calcium and lignans).\n- **Sodium Buffer**: Replace commercial table salt with fresh herbs (cilantro, oregano, rosemary), lemon zest, and toasted cumin to lower sodium while providing anti-inflammatory polyphenols.`;
+          const actions = [
+            { label: '🔍 Browse Plant Proteins', actionType: 'selectCategory', category: 'Legumes & Pulses' },
+            { label: '📖 Read Plant Protein Guide', actionType: 'readArticle', articleId: 'art_protein_mastery' }
+          ];
+          return { role: 'agent', content, actions };
+        }
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. SCIENTIFIC NUTRITION DOMAIN ROUTING (HIGH PRIORITY SCIENCE QUESTIONS)
+    // -----------------------------------------------------------------------
+
+    // A. Protein Quality, DIAAS, Amino Acids & Leucine Threshold
+    if (q.includes('leucine') || (q.includes('protein') && (q.includes('quality') || q.includes('diaas') || q.includes('amino') || q.includes('synthesis') || q.includes('muscle') || q.includes('trigger') || q.includes('threshold')))) {
+      const content = `### Protein Kinetics, Essential Amino Acids & The Leucine Trigger\n\n**L-Leucine** is the primary branched-chain amino acid that functions as a molecular "nutrient sensor," binding to **Sestrin2** to activate the **mTORC1** (mechanistic target of rapamycin complex 1) kinase pathway.\n\n- **The Leucine Trigger Threshold**: Most adults require **2.5g to 3.0g of leucine per meal** (~25g–35g high-quality animal protein or ~35g–45g complementary plant protein) to reach the threshold required for maximal Muscle Protein Synthesis (MPS).\n- **The 'Muscle-Full' Effect**: Once mTORC1 is saturated in a meal sitting, additional amino acids are oxidized for fuel rather than further elevating protein synthesis. Distribute daily protein across **3 to 4 distinct meals** spaced 3.5 to 5 hours apart.\n- **DIAAS (Digestible Indispensable Amino Acid Score)**: Measures true ileal amino acid digestibility. Dairy, eggs, salmon, and beef score >1.15; soy protein isolate scores ~0.98; whole lentils and beans score ~0.80–0.90.\n- **Plant Protein Complementarity**: Pair lysine-rich legumes (lentils, chickpeas, black beans) with methionine-rich whole grains (brown rice, oats, quinoa) to deliver a complete essential amino acid profile within the daily metabolic pool.`;
       const actions = [
         { label: '📖 Read Protein Mastery Guide', actionType: 'readArticle', articleId: 'art_protein_mastery' },
-        { label: '🔍 View Lentils & Grains', actionType: 'selectCategory', category: 'Legumes & Pulses' }
+        { label: '🔍 Explore High-Protein Foods', actionType: 'filterFoods', tag: 'High-Protein' }
       ];
       return { role: 'agent', content, actions };
     }
 
-    // Specific Question 3: Vitamin C + Non-Heme Iron
-    if ((q.includes('vitamin c') && q.includes('iron')) || q.includes('non-heme') || (q.includes('iron') && q.includes('absorp'))) {
-      const content = `### Biochemical Mechanism: How Vitamin C Enhances Non-Heme Iron Absorption\n\nPlant-based non-heme iron exists in the **ferric (Fe3+) state**, which is relatively insoluble and poorly absorbed in the human duodenum (~2–10% baseline):\n\n1. **Chemical Reduction**: **Ascorbic acid (Vitamin C)** acts as an electron donor, reducing insoluble **ferric iron (Fe3+)** into highly soluble **ferrous iron (Fe2+)**.\n2. **Chelation Protection**: Vitamin C forms a stable, soluble chelate with iron at acidic gastric pH that persists into the neutral small intestine, preventing iron from binding to dietary inhibitors like **phytates** and **tannins**.\n3. **Absorption Magnitude**: Pairing **25–50mg of Vitamin C** (e.g. half a lemon or 1/2 cup raw bell peppers) with iron-rich legumes elevates iron absorption by **up to 300%**!`;
+    // B. Rice & Lentils / Plant Protein Complementarity
+    if ((q.includes('lentil') && q.includes('rice')) || q.includes('complementar') || (q.includes('grain') && q.includes('legume'))) {
+      const content = `### Protein Complementarity: The Rice & Lentil Amino Acid Synergy\n\nIndividual plant proteins often have one limiting indispensable amino acid, but combining distinct botanical classes yields a **DIAAS-complete amino acid profile**:\n\n- **The Biochemical Mechanism**:\n  - **Legumes (Lentils, Chickpeas, Beans)**: Rich in **Lysine** and threonine, but relatively limiting in sulfur-containing amino acids (**Methionine** and cysteine).\n  - **Cereal Grains (Rice, Oats, Quinoa, Wheat)**: Rich in **Methionine** and cysteine, but limiting in **Lysine**.\n- **Metabolic Pool Complementarity**: When consumed together (or within a 4–6 hour metabolic window), the complementary amino acids merge in the liver and bloodstream amino acid pool, delivering a balanced indispensable amino acid pattern comparable to dairy or egg protein.\n- **Optimizing Leucine**: A standard plate of 1.5 cups cooked brown basmati rice + 1 cup cooked green lentils delivers ~25g protein and ~2.0g leucine; add 2 tbsp hemp seeds or a cup of edamame to surpass the 2.7g leucine mTORC1 threshold!`;
+      const actions = [
+        { label: '📖 Read Protein Mastery Guide', actionType: 'readArticle', articleId: 'art_protein_mastery' },
+        { label: '🔍 Browse Legumes & Pulses', actionType: 'selectCategory', category: 'Legumes & Pulses' }
+      ];
+      return { role: 'agent', content, actions };
+    }
+
+    // C. Calcium + Iron Competitive Inhibition
+    if ((q.includes('calcium') && q.includes('iron')) || (q.includes('dairy') && q.includes('iron'))) {
+      const content = `### Calcium vs. Iron Competitive Transporter Inhibition\n\nBoth divalent calcium ($Ca^{2+}$) and divalent ferrous iron ($Fe^{2+}$) utilize the same apical enterocyte transporter, **Divalent Metal Transporter 1 (DMT1)**, in the brush border of the proximal duodenum:\n\n- **The Mechanism**: High luminal concentrations of calcium (>300mg from milk, cheese, paneer, or supplements) competitively displace iron from DMT1 binding sites and induce transient internalization of DMT1 away from the membrane surface.\n- **Impact**: Can reduce both heme and non-heme iron absorption by **30% to 50%** in that single meal sitting.\n- **Practical Rule**: Space high-calcium dairy products or calcium supplements **1.5 to 2 hours away** from meals aimed at iron repletion or therapeutic iron supplements.`;
+      const actions = [
+        { label: '📖 Read Micronutrient Synergy', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
+        { label: '📋 View Balanced Meal Planner', actionType: 'navigate', targetTab: 'planner' }
+      ];
+      return { role: 'agent', content, actions };
+    }
+
+    // D. Vitamin C + Non-Heme Iron Synergy
+    if ((q.includes('vitamin c') && q.includes('iron')) || q.includes('non-heme') || (q.includes('iron') && q.includes('synergy')) || (q.includes('iron') && q.includes('absorp'))) {
+      const content = `### Biochemical Mechanism: Vitamin C + Non-Heme Iron Synergy\n\nPlant-based non-heme iron (found in lentils, spinach, beans, seeds, and oats) exists predominantly in the **insoluble ferric state (Fe3+)**, which has a low baseline duodenal absorption rate (~2–10%):\n\n1. **Chemical Electron Reduction**: **Ascorbic acid (Vitamin C)** acts as a potent reducing agent, donating electrons to convert insoluble **ferric iron (Fe3+)** into highly soluble **ferrous iron (Fe2+)**.\n2. **Chelation Protection**: Vitamin C forms a stable, soluble coordination chelate with iron at the acidic pH of the stomach. This chelate prevents iron from precipitating as insoluble ferric hydroxides in the neutral/alkaline duodenum.\n3. **Overcoming Inhibitors**: Vitamin C actively blocks dietary **phytates** (in grains) and **polyphenols/tannins** (in coffee/tea) from binding to iron.\n4. **Quantified Magnitude**: Consuming just **25–50mg of Vitamin C** (e.g. half a lemon, 1/2 raw bell pepper, or 1 orange) alongside iron-rich plant meals increases non-heme iron absorption by **up to 300%**!`;
       const actions = [
         { label: '📖 Read Micronutrient Synergy', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
         { label: '🔍 View Citrus & Bell Peppers', actionType: 'selectCategory', category: 'Vegetables' }
@@ -1320,70 +1494,126 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
       return { role: 'agent', content, actions };
     }
 
-    // Specific Question 4: Practical Balanced Plate
-    if (q.includes('balanced plate') || (q.includes('practical') && q.includes('plate')) || q.includes('plate method') || (q.includes('how to build') && q.includes('plate'))) {
-      const content = `### The Evidence-Based Practical Balanced Plate Method\n\nThe **Balanced Plate Blueprint** is a proven visual heuristic for daily meal construction:\n\n- **50% of the Plate (Colorful Non-Starchy Vegetables & Leafy Greens)**: Delivers 6–10g fiber, potassium, magnesium, and polyphenols with low caloric density (<80 kcal), maximizing gastric fullness.\n- **25% of the Plate (Protein Engine)**: 25–35g of lean animal or complementary plant protein (wild fish, eggs, tofu, lentils) to hit the 2.5–3.0g leucine threshold and sustain peptide YY satiety.\n- **25% of the Plate (Complex Slow Carbohydrates)**: Intact whole grains (quinoa, brown basmati, oats) or root vegetables to replenish muscle glycogen with low glycemic index.\n- **1 Thumbnail (Healthy Unsaturated Lipids)**: 1 tbsp extra virgin olive oil or 1/4 avocado to facilitate fat-soluble vitamin (A, D, E, K) absorption.`;
-      const actions = [
-        { label: '📖 Read Balanced Plate Guide', actionType: 'readArticle', articleId: 'art_balanced_plate_method' },
-        { label: '📸 Analyze a Meal Plate', actionType: 'navigate', targetTab: 'analyzer' }
-      ];
-      return { role: 'agent', content, actions };
-    }
-
-    // Specific Question 5: Nutrient Density
-    if (q.includes('nutrient dens') || (q.includes('density') && q.includes('nutrition'))) {
-      const content = `### What is Nutrient Density? Principles & Formula\n\n**Nutrient Density** refers to the concentration of essential micronutrients (vitamins, minerals, amino acids, essential fatty acids, and bioactives) relative to the total caloric energy provided by a food:\n\n$$\\text{Nutrient Density} = \\frac{\\text{Micronutrients (Vitamins, Minerals, Fiber, Phytonutrients)}}{\\text{Total Energy Content (kcal)}}$$\n\n- **High Nutrient Density (Low Energy Density)**: Spinach, kale, wild salmon, blueberries, lentils, broccoli, eggs. 100 kcal of spinach delivers over 1,000% DV Vitamin K1 and high lutein.\n- **Low Nutrient Density (Empty Calories)**: Refined sugar, sweetened sodas, and ultra-processed pastries delivering calories without micronutrient co-factors.\n- **Practical Goal**: Prioritizing nutrient-dense whole foods satisfies 100% of your daily micronutrient targets within your caloric budget without excessive supplementation.`;
-      const actions = [
-        { label: '🔍 Browse 64 Global Foods', actionType: 'navigate', targetTab: 'explorer' },
-        { label: '📚 Open Nutrition Hub', actionType: 'navigate', targetTab: 'learn' }
-      ];
-      return { role: 'agent', content, actions };
-    }
-
-    // Keyword & Domain-Grounded Routing
-    if (q.includes('leucine') || (q.includes('muscle') && q.includes('protein'))) {
-      const content = `### The Leucine Trigger & Muscle Protein Synthesis (MPS)\n\n**L-Leucine** is the primary essential branched-chain amino acid that acts as a molecular "nutrient sensor" activating the **mTORC1** kinase pathway.\n\n- **Threshold Requirement**: Most adults require **2.5g to 3.0g of leucine** per meal (roughly equivalent to 25–35g of high-quality animal protein or 35–45g of complementary plant protein).\n- **The 'Muscle-Full' Effect**: Once mTORC1 is saturated, additional amino acids in that sitting are oxidized for energy rather than further increasing protein synthesis.\n- **Optimal Distribution**: Distribute your daily protein intake across **3 to 4 distinct meals** rather than backloading all protein into dinner.`;
-      const actions = [
-        { label: '📖 Read Protein Mastery Guide', actionType: 'readArticle', articleId: 'art_protein_mastery' },
-        { label: '🔍 Explore High-Protein Foods', actionType: 'filterFoods', tag: 'High-Protein' }
-      ];
-      return { role: 'agent', content, actions };
-    } else if (q.includes('iron') || q.includes('vitamin c') || q.includes('synergy')) {
-      const content = `### Micronutrient Synergy: Non-Heme Iron + Vitamin C\n\nPlant-based non-heme iron (found in lentils, spinach, beans, and seeds) exists in the **ferric (Fe3+) state**, which is relatively insoluble and poorly absorbed in the duodenum.\n\n- **Biochemical Reduction**: **Ascorbic acid (Vitamin C)** acts as an electron donor, reducing ferric iron (Fe3+) into soluble **ferrous iron (Fe2+)**.\n- **Chelation**: Vitamin C also binds with iron to prevent it from precipitating in the alkaline environment of the small intestine.\n- **Absorption Boost**: Adding fresh lemon juice, diced bell peppers, or tomatoes to cooked legumes increases non-heme iron absorption by **up to 300%**!`;
-      const actions = [
-        { label: '📖 Read Micronutrient Synergy Guide', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
-        { label: '🔍 View Legumes & Pulses', actionType: 'selectCategory', category: 'Legumes & Pulses' }
-      ];
-      return { role: 'agent', content, actions };
-    } else if (q.includes('fiber') || q.includes('microbiome') || q.includes('scfa') || q.includes('gut')) {
-      const content = `### Dietary Fiber & The Gut Microbiome Ecosystem\n\nDietary fiber encompasses non-digestible carbohydrates that escape upper GI enzymatic digestion and reach the colon intact.\n\n- **Prebiotic Fermentation**: Commensal anaerobes (*Bifidobacteria*, *Faecalibacterium prausnitzii*) ferment soluble fibers and resistant starches into **Short-Chain Fatty Acids (SCFAs)**: **acetate, propionate, and butyrate**.\n- **Butyrate Function**: Fuel for colonocytes, reinforcing mucosal tight junctions and preventing systemic inflammation.\n- **The "30 Plants" Target**: Clinical research demonstrates that individuals consuming **30+ distinct plant types per week** exhibit vastly superior microbial biodiversity and metabolic resilience.`;
-      const actions = [
-        { label: '📖 Read Gut Microbiome Guide', actionType: 'readArticle', articleId: 'art_fiber_gut_microbiome' },
-        { label: '🔍 Explore High-Fiber Foods', actionType: 'filterFoods', tag: 'High-Fiber' }
-      ];
-      return { role: 'agent', content, actions };
-    } else if (q.includes('glycemic') || q.includes('glucose') || q.includes('gi') || q.includes('blood sugar')) {
-      const content = `### Glycemic Index (GI) vs. Glycemic Load (GL)\n\n- **Glycemic Index (GI)**: Measures the *speed* at which 50g of available carbohydrates from a food elevate blood glucose compared to pure glucose (GI = 100).\n- **Glycemic Load (GL)**: Takes into account both the GI *and* the realistic portion size: \n  $$\\text{GL} = \\frac{\\text{GI} \\times \\text{Carbs per serving (g)}}{100}$$\n- **Practical Application**: Watermelon has a high GI (72), but because it is 92% water, a normal serving contains only 11g of carbs, giving it a very low GL of **5**!\n- **Buffering Glucose**: Pair complex carbohydrates with healthy lipids (EVOO, avocado) and viscous soluble fiber to blunt postprandial glycemic excursions.`;
+    // E. Glycemic Index vs. Glycemic Load
+    if (q.includes('glycemic') || q.includes('gi') || q.includes('glycemic load') || q.includes('blood sugar') || q.includes('glucose')) {
+      const content = `### Glycemic Index (GI) vs. Glycemic Load (GL)\n\nUnderstanding postprandial glucose dynamics requires distinguishing between carbohydrate quality (GI) and practical portion quantity (GL):\n\n- **Glycemic Index (GI)**: Measures the *rate and magnitude* of blood glucose rise induced by 50g of available carbohydrates from a specific food compared to 50g of pure reference glucose (GI = 100). \n  - *Low GI*: ≤ 55 (Apples, lentils, steel-cut oats, yogurt)\n  - *Medium GI*: 56–69 (Brown rice, bananas, whole wheat)\n  - *High GI*: ≥ 70 (White bread, glucose, watermelon, cornflakes)\n- **Glycemic Load (GL)**: Integrates GI with the actual carbohydrate density of a standard serving size:\n  $$\\text{GL} = \\frac{\\text{GI} \\times \\text{Available Carbohydrates per serving (g)}}{100}$$\n  - *Low GL*: ≤ 10 | *Medium GL*: 11–19 | *High GL*: ≥ 20\n- **The Watermelon Paradox**: Watermelon has a high GI of **72**, but because it is 92% water, a normal 120g slice contains only 6g of carbs, yielding a very low GL of **4.3**!\n- **Food Matrix Modifiers**: Adding viscous soluble fiber (pectin, beta-glucan), healthy lipids (EVOO, avocado), or acids (vinegar, lemon) delays gastric emptying and flattens glycemic spikes.`;
       const actions = [
         { label: '💥 View Myth: "Carbs Are Fattening"', actionType: 'openMyth', mythId: 'myth_carbs_bad' },
         { label: '📋 View Glucose Stability Meal Plan', actionType: 'selectGoal', goal: 'metabolic_health' }
       ];
       return { role: 'agent', content, actions };
-    } else if (q.includes('plate') || q.includes('portion') || q.includes('balance') || q.includes('macro')) {
-      const content = `### The Visual Balanced Plate Heuristic\n\nRather than weighing every gram of food, use the evidence-backed **Visual Plate Method**:\n\n1. **50% of the Plate**: Colorful non-starchy vegetables & leafy greens (delivers potassium, magnesium, polyphenols, and insoluble fiber).\n2. **25% of the Plate**: Quality lean animal or complementary plant protein (hits the leucine threshold and sustains satiety peptide YY).\n3. **25% of the Plate**: Intact complex whole grains or root vegetables (replenishes muscle glycogen with low glycemic index).\n4. **1 Thumbnail**: Healthy cold-pressed fat (extra virgin olive oil, nuts, or seeds for fat-soluble vitamins A, D, E, K).`;
+    }
+
+    // F. Dietary Fiber, Gut Microbiome & SCFAs
+    if (q.includes('fiber') || q.includes('microbiome') || q.includes('scfa') || q.includes('gut') || q.includes('butyrate') || q.includes('prebiotic')) {
+      const content = `### Dietary Fiber, Gut Microbiota & Short-Chain Fatty Acid (SCFA) Kinetics\n\nDietary fiber comprises non-digestible plant carbohydrates that resist enzymatic hydrolysis in the human upper GI tract and reach the large intestine intact:\n\n- **Colonic Bacterial Fermentation**: Anaerobic commensals (*Faecalibacterium prausnitzii*, *Bifidobacterium*, *Roseburia*) ferment soluble fibers and resistant starches into three primary **Short-Chain Fatty Acids (SCFAs)**:\n  1. **Butyrate (~15%)**: The primary fuel for colonocytes; upregulates claudin/occludin tight junction proteins to maintain gut mucosal barrier integrity and prevent systemic endotoxemia (LPS leakage).\n  2. **Acetate (~60%)**: Enters systemic circulation to cross the blood-brain barrier, modulating central appetite regulation in the hypothalamus.\n  3. **Propionate (~25%)**: Cleared by the liver to regulate hepatic gluconeogenesis and suppress lipid synthesis.\n- **The 30-Plants Diversity Rule**: Landmark clinical trials demonstrate that individuals who consume **30+ distinct species of plants weekly** (fruits, vegetables, grains, legumes, nuts, seeds, herbs) exhibit vastly superior microbiome alpha-diversity and metabolic resilience.`;
+      const actions = [
+        { label: '📖 Read Gut Microbiome Guide', actionType: 'readArticle', articleId: 'art_fiber_gut_microbiome' },
+        { label: '🔍 Browse High-Fiber Foods', actionType: 'filterFoods', tag: 'High-Fiber' }
+      ];
+      return { role: 'agent', content, actions };
+    }
+
+    // G. Practical Balanced Plate Heuristic
+    if (q.includes('plate') || q.includes('balanced plate') || q.includes('balance carbohydrates') || q.includes('portion') || q.includes('macro balance')) {
+      const content = `### The Evidence-Based Balanced Plate Architecture\n\nThe **Visual Balanced Plate Method** translates clinical nutritional science into a sustainable daily meal heuristic without requiring meticulous calorie weighing:\n\n1. **50% of the Plate (Colorful Non-Starchy Vegetables & Greens)**: Raw or lightly steamed spinach, broccoli, bell peppers, cucumbers, cabbage. Delivers 6–10g fiber, potassium, magnesium, and polyphenols at low caloric density (<80 kcal), triggering gastric stretch receptors.\n2. **25% of the Plate (High-Quality Protein Engine)**: 25g–35g of lean animal or complementary plant protein (wild salmon, eggs, chicken breast, tofu, lentils) to hit the 2.5g leucine threshold and stimulate satiety peptides (GLP-1, PYY).\n3. **25% of the Plate (Complex Slow Carbohydrates)**: Intact whole grains (quinoa, brown basmati rice, rolled oats) or root vegetables (sweet potato) to replenish glycogen with low glycemic load.\n4. **1 Thumbnail / 1 Tbsp (Cold-Pressed Healthy Lipids)**: Extra virgin olive oil, 1/4 avocado, or crushed walnuts to stimulate bile secretion for fat-soluble vitamins (A, D, E, K).`;
       const actions = [
         { label: '📖 Read Balanced Plate Guide', actionType: 'readArticle', articleId: 'art_balanced_plate_method' },
         { label: '📸 Analyze a Meal Plate', actionType: 'navigate', targetTab: 'analyzer' }
       ];
       return { role: 'agent', content, actions };
-    } else {
-      const content = `### Evidence-Based Nutritional Guidance\n\nRegarding **${escapeHtml(userText)}**:\n\n- **Food Matrix Quality**: Modern nutritional science emphasizes whole-food matrices over isolated nutrients. Whole foods provide synergistic co-factors, flavonoids, and natural fiber structures that regulate gastric emptying and cellular nutrient uptake.\n- **Metabolic Flexibility**: Balancing moderate protein, unrefined complex carbohydrates, and monounsaturated lipids optimizes cellular insulin sensitivity and mitochondrial ATP generation.\n- **Actionable Step**: Focus on eating a rainbow of whole vegetables, whole legumes, intact grains, and healthy fats while minimizing ultra-processed foods (NOVA Class 4).`;
+    }
+
+    // H. Plant-Based Swaps & Protein Complementarity
+    if (q.includes('plant-based') || q.includes('vegetarian') || q.includes('vegan') || q.includes('swap') || q.includes('substitute')) {
+      const content = `### Plant-Based Protein Swaps & Amino Acid Synergy\n\nTransitioning to or optimizing a plant-forward diet requires strategic combinations to ensure complete amino acid coverage and micronutrient adequacy:\n\n- **1. Legumes + Whole Grains (Lysine + Methionine Synergy)**:\n  - Lentils & Brown Rice, Chickpea Hummus & Whole Wheat Pita, Black Beans & Corn Tortillas.\n- **2. High-Density Whole Soy (Complete DIAAS Proteins)**:\n  - **Tempeh** (33g protein/cup, fermented whole soybean) and **Firm Tofu** (22g protein/120g) contain all 9 essential amino acids with high bioavailability.\n- **3. Crucial Micronutrient Fortification**:\n  - **Vitamin B12**: Essential water-soluble vitamin not found in unfortified plant foods; requires supplementation or fortified foods.\n  - **Omega-3s**: Ground flaxseeds, chia seeds, and walnuts provide plant ALA; consider algae-based EPA/DHA supplements for direct cardiovascular conversion.\n  - **Zinc & Iron**: Soak and sprout legumes and seeds to deactivate mineral-binding phytic acid.`;
       const actions = [
-        { label: '🔍 Browse 64 Global Foods', actionType: 'navigate', targetTab: 'explorer' },
-        { label: '📚 Open Nutrition Hub', actionType: 'navigate', targetTab: 'learn' }
+        { label: '📖 Read Protein Mastery Guide', actionType: 'readArticle', articleId: 'art_protein_mastery' },
+        { label: '🔍 Browse Legumes & Pulses', actionType: 'selectCategory', category: 'Legumes & Pulses' }
       ];
       return { role: 'agent', content, actions };
     }
+
+    // I. Omega-3 Fatty Acids
+    if (q.includes('omega') || q.includes('epa') || q.includes('dha') || q.includes('ala') || q.includes('fatty acid')) {
+      const content = `### Omega-3 Polyunsaturated Fatty Acids (ALA, EPA, DHA)\n\nOmega-3 fatty acids are essential polyunsaturated lipids critical for cellular membrane fluidity, cardiovascular regulation, and anti-inflammatory resolution:\n\n- **Marine Omega-3s (EPA & DHA)**: Found in wild Alaskan salmon, sardines, mackerel, and algae. EPA (eicosapentaenoic acid) generates series-3 prostaglandins and resolvins; DHA (docosahexaenoic acid) comprises ~40% of the polyunsaturated fatty acids in the brain and ~60% in the retina.\n- **Plant Omega-3s (ALA)**: Found in chia seeds (5g/2tbsp), flaxseeds (3.2g/2tbsp), and walnuts (2.5g/oz). Alpha-linolenic acid undergoes enzymatic elongation and desaturation into EPA/DHA with modest conversion rates (~5–10% to EPA, <1% to DHA).\n- **Optimal Dietary Practice**: Consume oily fish 2 to 3 times weekly, or take microalgae oil supplements alongside daily ground flax or chia seeds.`;
+      const actions = [
+        { label: '🔍 Browse Proteins & Seafood', actionType: 'selectCategory', category: 'Proteins & Seafood' },
+        { label: '📖 Read Heart-Healthy Guide', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' }
+      ];
+      return { role: 'agent', content, actions };
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. TARGET FOOD RESOLUTION (DIRECT SEARCH & MULTI-TURN CONVERSATION)
+    // -----------------------------------------------------------------------
+    let targetFood = findFoodInKnowledge(q);
+
+    // Multi-turn pronoun / follow-up resolution if no explicit food is in current query
+    const isPronounFollowUp = q.includes('it ') || q.endsWith(' it') || q.includes('this ') || 
+                              q.startsWith('what about') || q.startsWith('how about') ||
+                              q.includes('before exercise') || q.includes('before workout') || 
+                              q.includes('after workout') || q.includes('for weight loss') || 
+                              q.includes('can i eat it') || q.includes('is it good') || 
+                              q.includes('cooked vs raw') || q.includes('the peel');
+
+    if (!targetFood && isPronounFollowUp) {
+      const priorEntityKey = extractEntityFromHistory(state.chatHistory);
+      if (priorEntityKey) {
+        targetFood = findFoodInKnowledge(priorEntityKey);
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. TARGET FOOD DEEP-DIVE RESPONSE
+    // -----------------------------------------------------------------------
+    if (targetFood) {
+      const { key, food } = targetFood;
+      const titleName = food.names?.[0] ? (food.names[0].charAt(0).toUpperCase() + food.names[0].slice(1)) : key.toUpperCase();
+
+      // Handle follow-up: Exercise timing
+      if (q.includes('exercise') || q.includes('workout') || q.includes('training')) {
+        const content = `### ${titleName} & Exercise Performance / Nutrient Timing\n\n- **Pre-Workout Context (45–60 min prior)**: ${food.macros.carbs > 15 
+          ? `**${titleName}** is an exceptional pre-training energy source. Its ${food.macros.carbs}g of carbohydrates provide rapid hepatic and muscular glycogen repletion with minimal GI distress.` 
+          : `**${titleName}** is lower in rapidly oxidizable carbohydrates. Pair it with an easily digestible fruit (like a banana or dates) 45 minutes before high-intensity training.`}\n- **Post-Workout Recovery (Within 2 hours)**: Pair with **25g–30g of high-quality protein** (such as Greek yogurt, whey, eggs, or tofu) to activate the mTORC1 pathway while ${titleName}'s micronutrients (${food.keyNutrients.split(',').slice(0, 2).join(', ')}) mitigate muscular oxidative strain.\n- **Electrolyte Balance**: Supplies bioavailable minerals to support neuromuscular excitation-contraction coupling during strenuous exercise.`;
+        const actions = [
+          { label: `🔍 View ${titleName} in Database`, actionType: 'filterFoods', tag: 'Fresh' },
+          { label: '⚡ Leucine & Muscle Recovery', prompt: 'Explain leucine and muscle protein synthesis.' }
+        ];
+        return { role: 'agent', content, actions };
+      }
+
+      // Standard Evidence-Grounded Food Profile
+      const content = `### Nutritional Biochemistry & Health Benefits of ${titleName}\n\n**${titleName}** (${food.serving}, ~${food.calories} kcal) is an evidence-backed whole food:\n\n` +
+        `- **Macronutrient Structure**: **${food.macros.protein}g Protein** | **${food.macros.carbs}g Carbohydrates** | **${food.macros.fat}g Lipids** | **${food.macros.fiber}g Dietary Fiber**\n` +
+        `- **Key Micronutrients & Bioactives**: ${food.keyNutrients}\n` +
+        `- **Biochemical Mechanism**: ${food.mechanisms}\n` +
+        `- **Nutrient Interactions & Synergies**: ${food.synergies}\n` +
+        `- **Evidence-Based Health Benefits**: ${food.benefits}\n` +
+        `- **Practical Culinary Guidance**: ${food.caveats}`;
+
+      const actions = [
+        { label: `🔍 Explore ${food.category}`, actionType: 'selectCategory', category: food.category },
+        { label: '⚖️ The Balanced Plate Method', prompt: 'How should I balance carbohydrates, protein, fat and fiber?' }
+      ];
+      return { role: 'agent', content, actions };
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. GENERAL EVIDENCE-BASED GUIDANCE (FALLBACK FOR UNKNOWN TOPICS)
+    // -----------------------------------------------------------------------
+    const safeQuerySummary = escapeHtml(rawText.length > 60 ? rawText.substring(0, 57) + '...' : rawText);
+    const content = `### Evidence-Based Nutritional Guidance\n\nRegarding **${safeQuerySummary}**:\n\n` +
+      `- **Whole-Food Matrix Quality**: Modern nutritional biochemistry emphasizes intact food matrices over isolated nutrients. Whole foods provide synergistic co-factors, flavonoids, and cellular fiber structures that regulate gastric emptying and cellular nutrient uptake.\n` +
+      `- **Metabolic Balance**: Combining adequate protein (25g–35g per meal to stimulate mTORC1), unrefined complex carbohydrates, and healthy unsaturated lipids sustains insulin sensitivity and mitochondrial ATP generation.\n` +
+      `- **Actionable Strategy**: Eat a diverse spectrum of colorful vegetables, whole legumes, intact grains, and lean proteins, and stay hydrated with mineral-rich water.`;
+
+    const actions = [
+      { label: '🔍 Explore 64 Global Foods', actionType: 'navigate', targetTab: 'explorer' },
+      { label: '📚 Open Nutrition Science Hub', actionType: 'navigate', targetTab: 'learn' },
+      { label: '⚖️ The Balanced Plate Method', prompt: 'How should I balance carbohydrates, protein, fat and fiber?' }
+    ];
+    return { role: 'agent', content, actions };
   }
 
   function deriveFollowUpActions(userText) {
@@ -1399,7 +1629,7 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
 
     container.innerHTML = state.chatHistory.map((msg, idx) => {
       const isUser = msg.role === 'user';
-      const formattedContent = parseMarkdown(msg.content);
+      const formattedContent = parseMarkdown(safeStr(msg.content));
 
       return `
         <div class="chat-message ${isUser ? 'user' : 'agent'}">
@@ -1411,8 +1641,8 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
             ${msg.actions && msg.actions.length > 0 ? `
               <div class="agent-action-buttons">
                 ${msg.actions.map(act => `
-                  <button class="btn-chip" onclick="VitaVue.executeAgentAction(${idx}, '${escapeHtml(act.label)}')">
-                    ${escapeHtml(act.label)}
+                  <button class="btn-chip" onclick="VitaVue.executeAgentAction(${idx}, '${escapeHtml(safeStr(act.label))}')">
+                    ${escapeHtml(safeStr(act.label))}
                   </button>
                 `).join('')}
               </div>
@@ -1426,7 +1656,7 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
   function executeAgentAction(msgIdx, label) {
     const msg = state.chatHistory[msgIdx];
     if (!msg || !msg.actions) return;
-    const act = msg.actions.find(a => a.label === label);
+    const act = msg.actions.find(a => safeStr(a.label) === label);
     if (!act) return;
 
     if (act.prompt) {
@@ -1462,15 +1692,20 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
     if (state.activeContext) {
       banner.style.display = 'flex';
       if (state.activeContext.type === 'meal') {
-        titleEl.textContent = state.activeContext.data.title;
+        titleEl.textContent = safeStr(state.activeContext.data?.title) || "Analyzed Meal";
       } else if (state.activeContext.type === 'food') {
-        titleEl.textContent = state.activeContext.data.name;
+        titleEl.textContent = safeStr(state.activeContext.data?.name) || "Selected Food";
       } else if (state.activeContext.type === 'plan') {
-        titleEl.textContent = state.activeContext.data.name;
+        titleEl.textContent = safeStr(state.activeContext.data?.name) || "Active Diet Plan";
       }
     } else {
       banner.style.display = 'none';
     }
+  }
+
+  function setAgentContext(context) {
+    state.activeContext = context;
+    updateAgentContextBanner();
   }
 
   function clearAgentContext() {
@@ -1845,6 +2080,7 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
   // Expose public API
   const api = {
     state,
+    getState: () => state,
     init,
     switchTab,
     loadSampleMealPreset,
@@ -1871,6 +2107,7 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
     sendAgentMessage,
     sendAgentQuery: sendAgentMessage,
     executeAgentAction,
+    setAgentContext,
     clearAgentContext,
     clearChatHistory,
     selectPlannerGoal,

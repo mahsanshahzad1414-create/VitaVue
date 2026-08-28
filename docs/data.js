@@ -3049,6 +3049,683 @@ const DIET_PLANNER_PRESETS = {
   }
 };
 
+// ==========================================================================
+// EXPANDED INTERNATIONAL FOOD & NUTRITION SCIENCE KNOWLEDGE BASE
+// Comprehensive reference knowledge for VitaVue AI Nutrition Agent
+// ==========================================================================
+
+const INTERNATIONAL_FOOD_KNOWLEDGE = {
+  // --- FRUITS ---
+  "apple": {
+    names: ["apple", "apples", "malus domestica", "seb", "pomme", "manzana", "mela", "apfel", "pingguo"],
+    category: "Fruits",
+    serving: "1 medium fruit (182g)",
+    calories: 95,
+    macros: { protein: 0.5, carbs: 25, fat: 0.3, fiber: 4.4 },
+    keyNutrients: "Pectin (soluble fiber), Quercetin, Vitamin C, Potassium, Chlorogenic acid, Phloridzin",
+    mechanisms: "Pectin binds intestinal bile acids to reduce circulating LDL cholesterol and delays gastric emptying, blunting postprandial glucose excursions. Peel-derived quercetin downregulates inflammatory NF-kB signaling and promotes vascular nitric oxide synthesis.",
+    synergies: "Pair with healthy nut butters (almond or peanut butter) to add monounsaturated lipids that lower overall meal glycemic velocity.",
+    benefits: "Cardiovascular lipid buffering, colonic prebiotic fermentation to acetate/propionate, oral saliva stimulation, and cellular antioxidant defense.",
+    caveats: "Eat with skin on for 80%+ of total flavonoid content. Wash thoroughly."
+  },
+  "banana": {
+    names: ["banana", "bananas", "musa", "kela", "plátano", "banane", "xiangjiao"],
+    category: "Fruits",
+    serving: "1 medium fruit (118g)",
+    calories: 105,
+    macros: { protein: 1.3, carbs: 27, fat: 0.3, fiber: 3.1 },
+    keyNutrients: "Potassium (422mg, 9% DV), Vitamin B6 (0.4mg, 25% DV), Vitamin C, Magnesium, Fructooligosaccharides (FOS), Resistant Starch (in greener bananas)",
+    mechanisms: "Potassium balances sodium-induced intracellular fluid pressure and mitigates endothelial vascular tension. Greener bananas provide type-2 resistant starch that escapes upper GI breakdown to nourish butyrate-producing colonocytes; riper bananas provide rapid glucose-fructose replenishment.",
+    synergies: "Ideal post-workout carbohydrate source paired with whey or plant protein to accelerate glycogen resynthesis and cellular amino acid uptake via insulin transient spikes.",
+    benefits: "Rapid athletic energy, electrolyte homeostasis, homocysteine regulation via cofactor B6, and gastrointestinal mucosal soothing.",
+    caveats: "Individuals with severe chronic kidney disease requiring strict potassium restriction should monitor portion sizing."
+  },
+  "orange": {
+    names: ["orange", "oranges", "citrus", "santra", "naranja", "arancia", "chengzi", "clementine", "mandarin", "tangerine"],
+    category: "Fruits",
+    serving: "1 medium fruit (140g)",
+    calories: 65,
+    macros: { protein: 1.3, carbs: 15.5, fat: 0.2, fiber: 3.4 },
+    keyNutrients: "Vitamin C (70mg, 78% DV), Hesperidin, Folate, Potassium, Thiamine (B1)",
+    mechanisms: "Ascorbic acid donates electrons to convert trivalent ferric iron (Fe3+) into absorbable divalent ferrous iron (Fe2+). Hesperidin bioflavonoid preserves microvascular integrity and reduces systemic endothelial oxidative strain.",
+    synergies: "Pair with legumes, spinach, or whole grains to enhance plant non-heme iron absorption by 200% to 300%.",
+    benefits: "Immune leukocyte phagocytosis support, dermal collagen proline-hydroxylation, non-heme iron bioenhancement, and blood pressure support.",
+    caveats: "Whole fruit is vastly superior to filtered juice because the intact pulp matrix prevents rapid fructose absorption."
+  },
+  "mango": {
+    names: ["mango", "mangoes", "aam", "mangue", "manga"],
+    category: "Fruits",
+    serving: "1 cup sliced (165g)",
+    calories: 99,
+    macros: { protein: 1.4, carbs: 24.7, fat: 0.6, fiber: 2.6 },
+    keyNutrients: "Beta-carotene (Vitamin A precursor), Vitamin C (60mg, 67% DV), Mangiferin, Folate, Amylase enzymes",
+    mechanisms: "Mangiferin polyphenol modulates hepatic lipid metabolism and exhibits strong radical scavenging. Beta-carotene converts to retinal in enterocytes, supporting rhodopsin synthesis in photoreceptor cells.",
+    synergies: "Pair with Greek yogurt or seeds to provide lipids that enhance fat-soluble carotenoid assimilation.",
+    benefits: "Ocular retinal photoprotection, enzymatic digestive facilitation, and dermal barrier regeneration.",
+    caveats: "Moderately high in naturally occurring sugars; best enjoyed around physical activity or paired with fiber/protein."
+  },
+  "blueberry": {
+    names: ["blueberry", "blueberries", "berries", "berry", "myrtille", "arandano"],
+    category: "Fruits",
+    serving: "1 cup fresh (148g)",
+    calories: 84,
+    macros: { protein: 1.1, carbs: 21.4, fat: 0.5, fiber: 3.6 },
+    keyNutrients: "Anthocyanins (Cyanidin, Malvidin, Delphinidin), Vitamin K1 (28% DV), Manganese, Vitamin C",
+    mechanisms: "Anthocyanins cross the blood-brain barrier to localize in hippocampus and cortex regions, enhancing BDNF (brain-derived neurotrophic factor) and vascular endothelial eNOS activation.",
+    synergies: "Pair with oatmeal and walnuts for a complete neuroprotective, cardiometabolic breakfast matrix.",
+    benefits: "Cognitive processing speed, vascular elasticity, post-exercise muscular oxidative recovery, and glycemic buffering.",
+    caveats: "Frozen wild blueberries possess equal or superior polyphenol density compared to out-of-season fresh berries."
+  },
+  "avocado": {
+    names: ["avocado", "avocados", "makhanphal", "aguacate", "avocat"],
+    category: "Fruits",
+    serving: "1/2 medium fruit (100g)",
+    calories: 160,
+    macros: { protein: 2.0, carbs: 8.5, fat: 14.7, fiber: 6.7 },
+    keyNutrients: "Monounsaturated Oleic Acid (71% of lipids), Potassium (485mg, 10% DV), Folate, Lutein, Zeaxanthin, Vitamin E",
+    mechanisms: "Oleic acid enhances hepatic LDL receptor density, decreasing atherogenic apoB lipoproteins. Lipids incorporate fat-soluble carotenoids (lycopene, lutein) into mixed micelles for duodenal absorption.",
+    synergies: "Add to salads with tomatoes, spinach, or carrots to boost carotenoid absorption by up to 400-500%.",
+    benefits: "Cardiovascular lipid profile optimization, sustained peptide YY satiety, ocular macular pigment density, and insulin sensitivity.",
+    caveats: "Calorically dense; ideal portion is 1/4 to 1/2 whole fruit per meal."
+  },
+  "dates": {
+    names: ["date", "dates", "khajoor", "medjool", "deglet noor", "datil"],
+    category: "Fruits",
+    serving: "2 Medjool dates (48g)",
+    calories: 133,
+    macros: { protein: 0.9, carbs: 36, fat: 0.2, fiber: 3.2 },
+    keyNutrients: "Potassium, Magnesium, Copper, Polyphenols (Tannins, Anthocyanins, Carotenoids), Natural Glucose/Fructose",
+    mechanisms: "Rapidly hydrolyzable hexoses restore hepatic and muscular glycogen without gastrointestinal distress, while soluble polyphenols modulate oxidative stress.",
+    synergies: "Stuff with raw walnuts or almond butter to blunt glucose spike and add neuroprotective omega-3 ALA.",
+    benefits: "Superior whole-food pre-workout fuel, electrolyte replenishment, and natural sweetener alternative.",
+    caveats: "High energy density; track portions if managing calorie deficits or glycemic constraints."
+  },
+  "pomegranate": {
+    names: ["pomegranate", "anaar", "grenade", "granada"],
+    category: "Fruits",
+    serving: "1/2 cup arils (87g)",
+    calories: 72,
+    macros: { protein: 1.5, carbs: 16.3, fat: 1.0, fiber: 3.5 },
+    keyNutrients: "Punicalagins, Ellagitannins (metabolized to Urolithin A), Vitamin C, Vitamin K, Folate",
+    mechanisms: "Ellagitannins are transformed by gut microbiota into Urolithin A, a potent activator of mitochondrial autophagy (mitophagy) that clears dysfunctional mitochondria.",
+    synergies: "Sprinkle over iron-rich lentil salads or grilled fish for combined antioxidant and micronutrient synergy.",
+    benefits: "Mitochondrial biogenesis, vascular nitric oxide protection, and anti-inflammatory support.",
+    caveats: "Juice lacks the crucial insoluble fiber of whole arils."
+  },
+  "papaya": {
+    names: ["papaya", "papayas", "papita"],
+    category: "Fruits",
+    serving: "1 cup cubed (145g)",
+    calories: 62,
+    macros: { protein: 0.7, carbs: 15.7, fat: 0.4, fiber: 2.5 },
+    keyNutrients: "Papain enzyme, Lycopene, Vitamin C (88mg, 98% DV), Vitamin A, Folate",
+    mechanisms: "Papain proteolytic enzyme cleaves peptide bonds in dietary proteins, assisting gastrointestinal protein breakdown. Highly bioavailable lycopene suppresses oxidative cellular membrane damage.",
+    synergies: "Excellent as a post-protein-meal fruit to aid comfortable enzymatic digestion.",
+    benefits: "Digestive comfort, reduced bloating, skin collagen elasticity, and immune optimization.",
+    caveats: "Unripe (green) papaya contains higher latex concentrations; pregnant individuals should consume ripe fruit."
+  },
+  "watermelon": {
+    names: ["watermelon", "tarbooz", "pastèque", "sandia"],
+    category: "Fruits",
+    serving: "1 cup diced (152g)",
+    calories: 46,
+    macros: { protein: 0.9, carbs: 11.5, fat: 0.2, fiber: 0.6 },
+    keyNutrients: "L-Citrulline, Lycopene, Potassium, Vitamin C, 92% Structured Cellular Water",
+    mechanisms: "L-Citrulline bypasses hepatic first-pass extraction and is converted to L-Arginine by kidneys, upregulating nitric oxide (NO) endothelial synthase for vasodilation and muscle hyperemia.",
+    synergies: "Consume 45-60 minutes before aerobic or resistance training for enhanced muscular endurance.",
+    benefits: "Reduced muscle soreness (DOMS), enhanced vascular perfusion, cellular hydration, and low glycemic load (GL = 5).",
+    caveats: "Despite high GI (72), low carbohydrate density makes its Glycemic Load very low per serving."
+  },
+
+  // --- VEGETABLES & GREENS ---
+  "spinach": {
+    names: ["spinach", "palak", "épinard", "espinaca", "spinaci", "spinat", "bocai"],
+    category: "Vegetables",
+    serving: "2 cups raw (60g) / 1 cup cooked (180g)",
+    calories: 23,
+    macros: { protein: 2.9, carbs: 3.6, fat: 0.4, fiber: 2.2 },
+    keyNutrients: "Non-Heme Iron (2.7mg, 15% DV), Vitamin K1 (483mcg, 400% DV), Lutein, Zeaxanthin, Folate, Dietary Nitrates, Magnesium",
+    mechanisms: "Inorganic nitrates (NO3-) are reduced to nitrite (NO2-) by oral facultative anaerobes, yielding nitric oxide that dilates resistance vessels. Lutein and zeaxanthin accumulate in the macula lutea to filter phototoxic blue light.",
+    synergies: "Cook lightly with extra virgin olive oil and squeeze fresh lemon juice: the fat mobilizes lutein, and the vitamin C triples iron absorption while cooking reduces oxalates.",
+    benefits: "Endothelial vasodilation, macular retinal photoprotection, bone matrix carboxylation (via Vitamin K1), and homocysteine clearance.",
+    caveats: "Contains soluble oxalates. Steaming or boiling and discarding cooking water reduces oxalate content significantly."
+  },
+  "kale": {
+    names: ["kale", "lacinato", "curly kale", "tuscan kale"],
+    category: "Vegetables",
+    serving: "1 cup chopped (67g)",
+    calories: 33,
+    macros: { protein: 2.9, carbs: 6.0, fat: 0.6, fiber: 2.6 },
+    keyNutrients: "Vitamin K1 (684% DV), Vitamin C (134% DV), Beta-Carotene, Calcium (highly bioavailable, low oxalate), Glucosinolates",
+    mechanisms: "Unlike spinach, kale is exceptionally low in oxalates, giving its calcium a ~40-50% fractional absorption rate (higher than cow's milk). Glucosinolates hydrolyze into isothiocyanates that induce phase II hepatic detoxification enzymes.",
+    synergies: "Massage with lemon juice and cold-pressed olive oil for maximum palatability and lipid-soluble nutrient uptake.",
+    benefits: "Skeletal bone mineralization, phase II detox induction, and microvascular antioxidant defense.",
+    caveats: "Raw brassica consumption in excessive quantities could interact with iodine uptake in sensitive thyroid individuals; light cooking inactivates goitrogenic enzymes."
+  },
+  "broccoli": {
+    names: ["broccoli", "hari gobhi", "brocoli"],
+    category: "Vegetables",
+    serving: "1 cup chopped (91g)",
+    calories: 31,
+    macros: { protein: 2.6, carbs: 6.0, fat: 0.3, fiber: 2.4 },
+    keyNutrients: "Sulforaphane precursor (Glucoraphanin), Myrosinase enzyme, Vitamin C (81mg, 90% DV), Vitamin K, Folate, Chromium",
+    mechanisms: "Chewing or chopping ruptures plant vacuoles, allowing myrosinase to convert glucoraphanin into bioactive Sulforaphane. Sulforaphane dissociates Nrf2 from Keap1, activating transcription of over 200 cytoprotective and antioxidant genes.",
+    synergies: "Steam lightly for 3-4 minutes to preserve myrosinase. If boiling or using frozen broccoli, add 1/4 tsp raw ground mustard seed to restore active myrosinase.",
+    benefits: "Potent cellular detoxification, Nrf2 pathway activation, lipid peroxidation defense, and glycemic stability via trace chromium.",
+    caveats: "Overcooking (boiling > 10 min) destroys heat-sensitive myrosinase enzyme."
+  },
+  "bell pepper": {
+    names: ["bell pepper", "bell peppers", "capsicum", "shimla mirch", "poivron", "pimiento", "paprika"],
+    category: "Vegetables",
+    serving: "1 medium red pepper (119g)",
+    calories: 37,
+    macros: { protein: 1.2, carbs: 7.2, fat: 0.4, fiber: 2.5 },
+    keyNutrients: "Vitamin C (152mg, 169% DV in red peppers!), Capsanthin, Beta-Carotene, Vitamin B6, Quercetin",
+    mechanisms: "Contains more vitamin C than oranges. Provides massive reducing power to turn ferric non-heme iron into ferrous iron. Capsanthin carotenoid delivers powerful free radical mitigation in lipid bilayers.",
+    synergies: "Chop into lentil curries, bean bowls, or fajitas for maximum non-heme iron enhancement.",
+    benefits: "Immune support, iron absorption catalyst, collagen synthesis, and macular ocular protection.",
+    caveats: "Red, yellow, and orange varieties contain over double the vitamin C and carotenoids of immature green peppers."
+  },
+  "tomato": {
+    names: ["tomato", "tomatoes", "tamatar", "tomate", "pomodoro", "fanqie"],
+    category: "Vegetables",
+    serving: "1 medium whole (123g)",
+    calories: 22,
+    macros: { protein: 1.1, carbs: 4.8, fat: 0.2, fiber: 1.5 },
+    keyNutrients: "Lycopene, Vitamin C, Potassium, Folate, Beta-Carotene, Chlorogenic acid",
+    mechanisms: "Lycopene is a trans-carotenoid that quenches singlet oxygen twice as effectively as beta-carotene. Thermal cooking (e.g. tomato sauce, stew) isomerizes trans-lycopene into the far more bioavailable cis-lycopene conformation.",
+    synergies: "Simmer with extra virgin olive oil: lipid micelles and heat multiply lycopene absorption by over 300%.",
+    benefits: "Prostate and cardiovascular tissue protection, LDL oxidation mitigation, and skin photoprotection.",
+    caveats: "Nightshade family; universally safe for 99%+ of individuals, but some rare inflammatory arthritic profiles observe sensitivity."
+  },
+  "garlic": {
+    names: ["garlic", "lehsun", "ail", "ajo", "aglio", "knoblauch", "da suan"],
+    category: "Herbs & Spices",
+    serving: "3 cloves (9g)",
+    calories: 13,
+    macros: { protein: 0.6, carbs: 3.0, fat: 0.05, fiber: 0.2 },
+    keyNutrients: "Allicin precursor (Alliin), Alliinase enzyme, S-Allylcysteine (SAC), Manganese, Vitamin B6, Selenium",
+    mechanisms: "Crushing or chopping activates alliinase, converting alliin into allicin within 60 seconds. Allicin inhibits HMG-CoA reductase and stimulates endothelial hydrogen sulfide (H2S) and nitric oxide production.",
+    synergies: "Crush or mince garlic and let it rest for 10 minutes before cooking (the '10-minute garlic rule') so alliinase can complete allicin generation prior to heat exposure.",
+    benefits: "Systemic blood pressure reduction, mild antimicrobial and antiviral defense, LDL cholesterol moderation, and platelet aggregation modulation.",
+    caveats: "High FODMAP (fructans); individuals with severe SIBO or IBS may prefer garlic-infused olive oil (which extracts flavor without the fructans)."
+  },
+  "ginger": {
+    names: ["ginger", "adrak", "gingembre", "jengibre", "zenzero", "ingwer", "sheng jiang"],
+    category: "Herbs & Spices",
+    serving: "1 tbsp grated (6g)",
+    calories: 5,
+    macros: { protein: 0.1, carbs: 1.1, fat: 0.05, fiber: 0.1 },
+    keyNutrients: "Gingerols (6-gingerol), Shogaols, Zingiberene, Paradols",
+    mechanisms: "Gingerols bind 5-HT3 serotonin receptors in the gastrointestinal tract and chemoreceptor trigger zone to suppress nausea and accelerate gastric motility (prokinetic effect). Inhibits COX-2 and 5-LOX inflammatory cascades.",
+    synergies: "Steep with lemon and honey in hot water or sauté with garlic and turmeric in curries and stir-fries.",
+    benefits: "Nausea relief, accelerated gastric emptying (reduced dyspepsia/bloating), exercise soreness mitigation, and anti-inflammatory relief.",
+    caveats: "Very safe; high doses (>4g) may cause mild heartburn in reflux-prone individuals."
+  },
+  "turmeric": {
+    names: ["turmeric", "haldi", "curcuma", "kurkuma", "jiang huang"],
+    category: "Herbs & Spices",
+    serving: "1 tsp ground (3g)",
+    calories: 9,
+    macros: { protein: 0.3, carbs: 2.0, fat: 0.1, fiber: 0.6 },
+    keyNutrients: "Curcuminoids (Curcumin, Demethoxycurcumin, Bisdemethoxycurcumin), Turmerones, Manganese, Iron",
+    mechanisms: "Curcumin suppresses NF-kB translocation, downregulates TNF-alpha, IL-6, and COX-2 enzymes, and enhances systemic SOD (superoxide dismutase) and catalase antioxidant activity.",
+    synergies: "MUST be consumed with black pepper (piperine) and dietary lipids (ghee, olive oil, coconut milk): piperine inhibits hepatic glucuronidation, elevating curcumin bioavailability by up to 2000%!",
+    benefits: "Joint inflammation reduction, exercise-induced DOMS recovery, neurocognitive protection, and metabolic health.",
+    caveats: "Standard curcumin without black pepper or lipid carriers has poor oral systemic absorption."
+  },
+  "okra": {
+    names: ["okra", "bhindi", "gumbo", "ladyfinger", "bamia", "quiabo"],
+    category: "Vegetables",
+    serving: "1 cup cooked (160g)",
+    calories: 35,
+    macros: { protein: 3.0, carbs: 7.2, fat: 0.3, fiber: 4.0 },
+    keyNutrients: "Soluble Mucilage (Polysaccharides), Folate, Magnesium, Vitamin C, Vitamin K1, Polyphenols (Isoquercitrin)",
+    mechanisms: "Okra mucilage forms a viscous gel in the intestinal lumen that traps cholesterol and glucose, significantly flattening postprandial glucose curves and aiding bile excretion.",
+    synergies: "Cook in stir-fries, stews (gumbo, bamia), or curries paired with whole grains.",
+    benefits: "Glycemic moderation, lipid profile optimization, gastrointestinal soothing, and maternal folate support.",
+    caveats: "Contains fructans; if sensitive to FODMAPs, cook with high heat (charring/sautéing) to reduce sliminess."
+  },
+  "eggplant": {
+    names: ["eggplant", "aubergine", "brinjal", "baingan", "berenjena", "melanzana", "qiezi"],
+    category: "Vegetables",
+    serving: "1 cup cooked cubes (99g)",
+    calories: 35,
+    macros: { protein: 0.8, carbs: 8.6, fat: 0.2, fiber: 2.5 },
+    keyNutrients: "Nasunin (Anthocyanin in purple peel), Chlorogenic acid, Manganese, Potassium",
+    mechanisms: "Nasunin is a potent iron chelator and brain cell membrane antioxidant that protects polyunsaturated fatty acids from peroxidative breakdown.",
+    synergies: "Roast or grill with garlic, extra virgin olive oil, and herbs (e.g. Baingan Bharta, Ratatouille, Baba Ganoush).",
+    benefits: "Neuroprotective lipid defense, cardiovascular endothelial function, and dietary variety.",
+    caveats: "Spongy texture absorbs excessive oil during deep frying; prefer baking, roasting, or grilling."
+  },
+
+  // --- GRAINS & CEREALS ---
+  "rice": {
+    names: ["rice", "brown rice", "white rice", "basmati", "jasmine", "chawal", "riz", "arroz", "riso", "reis", "mi"],
+    category: "Grains & Breads",
+    serving: "1 cup cooked (158g brown / 186g white)",
+    calories: 216,
+    macros: { protein: 4.5, carbs: 45, fat: 1.6, fiber: 3.5 },
+    keyNutrients: "Manganese (88% DV in brown), Magnesium, Selenium, Phosphorus, B-Vitamins (Thiamine, Niacin)",
+    mechanisms: "Rich in sulfur amino acids (L-Methionine, L-Cysteine) but limiting in L-Lysine. Starch provides steady muscle glycogen repletion. Cooled cooked rice develops type-3 resistant starch.",
+    synergies: "Pair with legumes (lentils, dal, black beans, chickpeas) in a 1:1 or 1:2 ratio to form a complete Essential Amino Acid profile.",
+    benefits: "Hypoallergenic energy foundation, rapid athletic fuel, easily digestible, and gluten-free staple for over 3.5 billion people.",
+    caveats: "Brown rice provides 3x the fiber and micronutrients of polished white rice. Rinse thoroughly before cooking."
+  },
+  "oats": {
+    names: ["oats", "oatmeal", "rolled oats", "steel cut oats", "porridge", "jai", "flocons d'avoine", "haferflocken", "avena", "yanmai"],
+    category: "Grains & Breads",
+    serving: "1/2 cup dry / 1 cup cooked (40g dry)",
+    calories: 150,
+    macros: { protein: 5.0, carbs: 27, fat: 2.5, fiber: 4.0 },
+    keyNutrients: "Beta-Glucan soluble fiber (2g), Avenanthramides, Manganese, Phosphorus, Magnesium, Zinc, Iron",
+    mechanisms: "Beta-glucan forms a high-viscosity matrix in the upper intestine, slowing glucose uptake, stimulating peptide YY satiety hormone, and binding bile acids to clear LDL cholesterol. Avenanthramides suppress vascular smooth muscle proliferation.",
+    synergies: "Cook with milk or plant milk and top with berries, chia seeds, and walnuts for complete breakfast synergy.",
+    benefits: "Clinically proven LDL reduction, prolonged 4-hour satiety, glycemic stability, and colonic prebiotic feeding.",
+    caveats: "Choose rolled or steel-cut oats over instant sugar-sweetened packets."
+  },
+  "quinoa": {
+    names: ["quinoa", "quinua"],
+    category: "Grains & Breads",
+    serving: "1 cup cooked (185g)",
+    calories: 222,
+    macros: { protein: 8.1, carbs: 39.4, fat: 3.6, fiber: 5.2 },
+    keyNutrients: "Complete Protein (all 9 EAAs), Quercetin, Kaempferol, Magnesium (30% DV), Iron (15% DV), Folate, Zinc",
+    mechanisms: "Contains an exceptionally well-balanced amino acid ratio (high in lysine and methionine), mimicking animal protein DIAAS scores while delivering low-glycemic complex carbohydrates.",
+    synergies: "Excellent foundation for protein bowls paired with grilled salmon, tofu, roasted vegetables, and pumpkin seeds.",
+    benefits: "Complete plant protein delivery, low glycemic index (GI = 53), gluten-free, and rich in cellular polyphenols.",
+    caveats: "Rinse before boiling to remove natural bitter saponins on outer seed coat."
+  },
+  "millet": {
+    names: ["millet", "ragi", "bajra", "jowar", "sorghum", "finger millet", "pearl millet", "foxtail millet"],
+    category: "Grains & Breads",
+    serving: "1 cup cooked (174g)",
+    calories: 207,
+    macros: { protein: 6.1, carbs: 41, fat: 1.7, fiber: 2.3 },
+    keyNutrients: "Calcium (especially in Ragi / Finger Millet: 344mg/100g!), Iron, Resistant Starch, Phenolic Acids, Magnesium",
+    mechanisms: "Complex starches and bound polyphenols inhibit alpha-glucosidase and alpha-amylase enzymes, resulting in slow, prolonged glucose release into circulation.",
+    synergies: "Prepare as flatbreads (Roti), porridge, or pilafs paired with lentils and fermented curd (dahi).",
+    benefits: "Superior skeletal calcium delivery for plant-based diets, climate-resilient sustainable grain, and low glycemic impact.",
+    caveats: "Millets contain tannins and phytates; soaking for 4-6 hours before cooking enhances mineral bioavailability."
+  },
+  "buckwheat": {
+    names: ["buckwheat", "kasha", "soba", "kuttu"],
+    category: "Grains & Breads",
+    serving: "1 cup cooked (168g)",
+    calories: 155,
+    macros: { protein: 5.7, carbs: 33.5, fat: 1.0, fiber: 4.5 },
+    keyNutrients: "Rutin bioflavonoid, D-Chiro-Inositol, Magnesium, Phosphorus, Copper, High-lysine protein",
+    mechanisms: "Rutin strengthens capillary walls and inhibits ACE (angiotensin-converting enzyme). D-Chiro-Inositol acts as an insulin second messenger, enhancing peripheral insulin sensitivity.",
+    synergies: "Consume as Japanese soba noodles or warm morning kasha porridge with berries and seeds.",
+    benefits: "Vascular resilience, blood pressure regulation, glucose sensitization in metabolic resistance, and gluten-free whole grain alternative.",
+    caveats: "Despite the name, buckwheat is a botanical pseudoseed unrelated to wheat."
+  },
+
+  // --- LEGUMES & PULSES ---
+  "lentils": {
+    names: ["lentil", "lentils", "dal", "daal", "dhal", "masoor", "moong", "toor", "urad", "chana dal", "lentilles", "lentejas", "linse"],
+    category: "Legumes & Pulses",
+    serving: "1 cup cooked (198g)",
+    calories: 230,
+    macros: { protein: 17.9, carbs: 39.9, fat: 0.8, fiber: 15.6 },
+    keyNutrients: "L-Lysine, Non-Heme Iron (6.6mg, 37% DV!), Folate (358mcg, 90% DV!), Potassium (731mg), Magnesium, Polyphenols",
+    mechanisms: "Lentils deliver an extraordinary 15.6g fiber per cup (both viscous soluble and fermentable resistant starch). Colonic fermentation yields large quantities of butyrate and propionate. High lysine balances cereal grains.",
+    synergies: "Add fresh lemon juice (Vitamin C) and pair with brown basmati rice or whole wheat roti for optimal protein and iron utilization.",
+    benefits: "Massive fiber-driven microbiome support, blood sugar blunting, sustainable plant protein, and cardiometabolic longevity.",
+    caveats: "Soaking and rinsing removes oligosaccharides (raffinose), significantly decreasing flatulence."
+  },
+  "chickpeas": {
+    names: ["chickpea", "chickpeas", "garbanzo", "chana", "kabuli chana", "pois chiche", "garbanzos", "kichererbsen"],
+    category: "Legumes & Pulses",
+    serving: "1 cup cooked (164g)",
+    calories: 269,
+    macros: { protein: 14.5, carbs: 45, fat: 4.2, fiber: 12.5 },
+    keyNutrients: "Folate, Manganese (84% DV), Phosphorus, Iron (4.7mg, 26% DV), Zinc, Saponins",
+    mechanisms: "Chickpea starch has an exceptionally low gelatinization index, resulting in prolonged satiety and minimal glucose spikes. Resistant starch feeds *Bifidobacterium* species in the proximal colon.",
+    synergies: "Blend into traditional Hummus with tahini (sesame seed paste), lemon juice, and olive oil for complete amino acids and lipid-mediated micronutrient uptake.",
+    benefits: "Long-term appetite satiety, LDL reduction, prebiotic intestinal fortification, and culinary versatility.",
+    caveats: "Canned chickpeas should be rinsed thoroughly to remove excess canning sodium."
+  },
+  "black beans": {
+    names: ["black beans", "frijoles negros", "turtle beans", "feijão preto"],
+    category: "Legumes & Pulses",
+    serving: "1 cup cooked (172g)",
+    calories: 227,
+    macros: { protein: 15.2, carbs: 40.8, fat: 0.9, fiber: 15.0 },
+    keyNutrients: "Anthocyanins (Delphinidin, Petunidin in the black seed coat), Iron, Magnesium, Folate, Zinc, Molybdenum",
+    mechanisms: "The deep black pigmentation indicates massive flavonoid density that survives cooking, reducing postprandial inflammatory markers alongside slow-fermenting arabinogalactan fibers.",
+    synergies: "Classic Latin American pairing with brown rice, lime juice, avocado, and cilantro.",
+    benefits: "Colon health, cardiovascular protection, stable glucose release, and high antioxidant score.",
+    caveats: "Ensure thorough cooking to eliminate phytohemagglutinin lectins."
+  },
+  "tofu": {
+    names: ["tofu", "bean curd", "doufu"],
+    category: "Plant Proteins",
+    serving: "1/2 block firm tofu (126g)",
+    calories: 180,
+    macros: { protein: 21.8, carbs: 3.5, fat: 11.0, fiber: 2.8 },
+    keyNutrients: "Complete Protein (DIAAS 0.98), Calcium (calcium-set: 430mg, 33% DV), Soy Isoflavones (Genistein, Daidzein), Iron, Magnesium",
+    mechanisms: "Soy isoflavones act as selective estrogen receptor modulators (SERMs), binding preferentially to ER-beta receptors in bone and cardiovascular tissue to exert protective, anti-atherogenic effects.",
+    synergies: "Press, cube, and stir-fry with broccoli, bell peppers, ginger, garlic, and low-sodium tamari.",
+    benefits: "High-density complete plant protein, bone mineral preservation, LDL lowering by ~5%, and zero cholesterol.",
+    caveats: "Modern scientific consensus confirms soy isoflavones are safe and beneficial for both men and women; they do not alter testosterone or raise harmful estrogen."
+  },
+  "tempeh": {
+    names: ["tempeh", "tempe"],
+    category: "Plant Proteins",
+    serving: "1 cup (166g)",
+    calories: 319,
+    macros: { protein: 33.7, carbs: 12.7, fat: 17.9, fiber: 9.0 },
+    keyNutrients: "Fermented Whole Soy, Prebiotic Soy Oligosaccharides, Vitamin B12 analogs, Isoflavones, Magnesium, Iron, Zinc",
+    mechanisms: "*Rhizopus oligosporus* fungal fermentation deactivates phytates, increases free isoflavone aglycones, and pre-digests proteins into easily assimilable short peptides.",
+    synergies: "Marinate in tamari, garlic, and smoked paprika; bake or pan-sear for a nutty, savory protein centerpiece.",
+    benefits: "Massive 33g+ bioavailable protein, excellent digestive tolerance, gut microbiome nourishment, and bone density support.",
+    caveats: "Dense texture; steaming for 5 minutes before marinating removes any natural bitter fermentation notes."
+  },
+
+  // --- NUTS & SEEDS ---
+  "almonds": {
+    names: ["almond", "almonds", "badam", "amande", "almendra", "mandorla", "mandel", "xingren"],
+    category: "Nuts & Seeds",
+    serving: "1 oz / 23 almonds (28g)",
+    calories: 164,
+    macros: { protein: 6.0, carbs: 6.1, fat: 14.2, fiber: 3.5 },
+    keyNutrients: "Vitamin E (Alpha-tocopherol: 7.3mg, 49% DV!), Magnesium (76mg, 18% DV), Monounsaturated Oleic Acid, Riboflavin (B2), Copper",
+    mechanisms: "Alpha-tocopherol is the premier fat-soluble antioxidant that halts the chain reaction of lipid peroxidation in endothelial cell membranes and circulating LDL particles.",
+    synergies: "Pair with fresh fruit as an afternoon snack to blunt fruit fructose absorption and sustain cognitive alertness.",
+    benefits: "LDL oxidation prevention, improved vascular flow-mediated dilation, sustained satiety, and cellular antioxidant shield.",
+    caveats: "Chew thoroughly to rupture rigid almond cellular cell walls (parenchyma) for full nutrient bioaccessibility."
+  },
+  "walnuts": {
+    names: ["walnut", "walnuts", "akhrot", "noix", "nuez", "noce", "walnuss", "hetao"],
+    category: "Nuts & Seeds",
+    serving: "1 oz / 14 halves (28g)",
+    calories: 185,
+    macros: { protein: 4.3, carbs: 3.9, fat: 18.5, fiber: 1.9 },
+    keyNutrients: "Plant Omega-3 ALA (Alpha-Linolenic Acid: 2.5g!), Ellagitannins (Pedunculagin), Melatonin, Copper, Manganese",
+    mechanisms: "Alpha-linolenic acid incorporates into neuronal and endothelial phospholipids, displacing arachidonic acid to reduce pro-inflammatory eicosanoids. Walnut ellagitannins convert to anti-inflammatory urolithins.",
+    synergies: "Sprinkle over morning oatmeal or leafy green salads with citrus vinaigrette.",
+    benefits: "Cardiovascular arterial elasticity, cognitive neuroprotection, brain membrane fluidity, and natural sleep-wake melatonin support.",
+    caveats: "Store in an airtight container in the refrigerator to prevent delicate polyunsaturated fats from oxidizing."
+  },
+  "chia seeds": {
+    names: ["chia", "chia seeds", "salvia hispanica"],
+    category: "Nuts & Seeds",
+    serving: "2 tbsp (28g)",
+    calories: 138,
+    macros: { protein: 4.7, carbs: 12.0, fat: 8.7, fiber: 9.8 },
+    keyNutrients: "Soluble Mucilage Fiber (nearly 10g!), Plant Omega-3 ALA (5.0g!), Calcium (180mg, 18% DV), Magnesium, Phosphorus, Zinc",
+    mechanisms: "Chia seeds absorb up to 12x their weight in water, creating a hydrophilic gel in the stomach that dramatically delays gastric emptying and stabilizes glycemic flux.",
+    synergies: "Soak in almond or soy milk with cocoa powder and berries for a nutrient-dense Overnight Chia Pudding.",
+    benefits: "Gastrointestinal regularity, profound satiety, systemic omega-3 anti-inflammatory support, and bone-building minerals.",
+    caveats: "Always consume with ample fluids or pre-hydrated to prevent dry seeds from swelling in the esophagus."
+  },
+  "flaxseeds": {
+    names: ["flaxseed", "flaxseeds", "flax", "alsi", "linseed", "graine de lin", "linaza"],
+    category: "Nuts & Seeds",
+    serving: "2 tbsp ground (14g)",
+    calories: 75,
+    macros: { protein: 2.6, carbs: 4.0, fat: 6.0, fiber: 3.8 },
+    keyNutrients: "Lignans (Secoisolariciresinol Diglucoside / SDG — 800x higher than any other plant!), Omega-3 ALA (3.2g), Soluble/Insoluble Fiber",
+    mechanisms: "Intestinal bacteria metabolize plant SDG lignans into enterodiol and enterolactone, which modulate hormone metabolism, lower circulating total cholesterol, and exert protective antioxidant effects.",
+    synergies: "Add freshly ground flaxseed to smoothies, oatmeal, or whole-grain baked goods.",
+    benefits: "Clinically validated blood pressure lowering, estrogen metabolism balance, and bowel regularity.",
+    caveats: "MUST be consumed ground (flax meal), because whole seeds pass through the human GI tract undigested."
+  },
+  "pumpkin seeds": {
+    names: ["pumpkin seeds", "pepitas", "kaddu ke beej", "graine de courge", "pipas de calabaza"],
+    category: "Nuts & Seeds",
+    serving: "1 oz / 28g (approx 85 seeds)",
+    calories: 151,
+    macros: { protein: 7.0, carbs: 5.0, fat: 13.0, fiber: 1.7 },
+    keyNutrients: "Magnesium (150mg, 37% DV!), Zinc (2.2mg, 20% DV), L-Tryptophan, Phytosterols, Non-Heme Iron (2.3mg)",
+    mechanisms: "Tryptophan crosses the blood-brain barrier as a precursor to serotonin and melatonin synthesis. Zinc supports over 300 metalloenzymes and cell-mediated immune proliferation.",
+    synergies: "Top over soups, curries, and avocado toast for instant crunch and mineral density.",
+    benefits: "Deep sleep facilitation, immune defense, prostate and bladder health, and muscle relaxation via magnesium.",
+    caveats: "Opt for raw or dry-roasted, unsalted varieties."
+  },
+
+  // --- FISH & SEAFOOD ---
+  "salmon": {
+    names: ["salmon", "wild salmon", "saumon", "salmone", "lachs", "rawas", "salmón", "guiyu"],
+    category: "Proteins & Seafood",
+    serving: "1 cooked fillet (150g)",
+    calories: 280,
+    macros: { protein: 34, carbs: 0, fat: 15, fiber: 0 },
+    keyNutrients: "Marine Omega-3 Fatty Acids (EPA 1.0g + DHA 1.2g), Astaxanthin carotenoid, Vitamin D3 (800 IU, 100%+ DV), Vitamin B12 (4.8mcg, 200% DV), Selenium",
+    mechanisms: "EPA and DHA incorporate directly into myocardial and neural cell membranes, modulating ion channels (anti-arrhythmic) and generating specialized pro-resolving mediators (resolvins, protectins). Astaxanthin protects lipids from oxidative damage.",
+    synergies: "Serve with tricolor quinoa and steamed dark leafy greens drizzled with extra virgin olive oil.",
+    benefits: "Triglyceride reduction (15-30%), brain structural integrity, retinal health, anti-inflammatory resolution, and muscle protein synthesis.",
+    caveats: "Wild Alaskan salmon offers higher omega-3 to omega-6 ratios and lower environmental contaminants than conventionally farmed fish."
+  },
+  "sardines": {
+    names: ["sardines", "sardine", "sardina", "tarli"],
+    category: "Proteins & Seafood",
+    serving: "1 can in olive oil, drained (92g)",
+    calories: 191,
+    macros: { protein: 22.7, carbs: 0, fat: 10.5, fiber: 0 },
+    keyNutrients: "Calcium (351mg with soft edible bones, 27% DV!), Marine Omega-3 (EPA/DHA 1.4g), Vitamin D3 (178 IU), Vitamin B12 (338% DV), CoQ10, Selenium",
+    mechanisms: "Small pelagic forage fish sitting low on the marine trophic pyramid, minimizing heavy metal bioaccumulation (mercury < 0.02 ppm) while maximizing bone and heart nutrients.",
+    synergies: "Mash with Dijon mustard, lemon juice, black pepper, and serve on toasted whole grain sourdough.",
+    benefits: "Unbeatable bone density support (calcium + D3 + phosphorus), lowest mercury profile among oily fish, and cognitive preservation.",
+    caveats: "High in purines; individuals with active gout flares should moderate serving frequency."
+  },
+  "tuna": {
+    names: ["tuna", "skipjack", "albacore", "yellowfin", "thon", "atun"],
+    category: "Proteins & Seafood",
+    serving: "1 can light tuna in water (140g drained)",
+    calories: 140,
+    macros: { protein: 32, carbs: 0, fat: 1.0, fiber: 0 },
+    keyNutrients: "Pure Protein Efficiency Ratio (PER > 3.0), Selenium (selenoneine), Niacin (B3), Vitamin B12",
+    mechanisms: "Delivers an ultra-lean 32g protein per 140 calories with virtually zero carbohydrate and minimal fat. Selenoneine antioxidant protects erythrocytes from iron-mediated oxidation.",
+    synergies: "Toss with diced celery, Greek yogurt, capers, and olive oil for a lean Mediterranean protein salad.",
+    benefits: "Maximum muscle recovery efficiency during caloric deficits, thyroid hormone synthesis (via selenium), and cellular energy metabolism.",
+    caveats: "Choose canned light skipjack over albacore for lower mercury content; consume 2-3 times per week."
+  },
+  "shrimp": {
+    names: ["shrimp", "prawns", "jheenga", "crevette", "camaron", "gambero", "xia"],
+    category: "Proteins & Seafood",
+    serving: "100g cooked (approx 6-8 large shrimp)",
+    calories: 99,
+    macros: { protein: 24, carbs: 0.2, fat: 0.3, fiber: 0 },
+    keyNutrients: "Astaxanthin, Iodine (65% DV), Selenium, Choline, Zinc, Taurine",
+    mechanisms: "Taurine conjugated bile acids facilitate lipid digestion and modulate cardiac myocyte calcium sensitivity. Iodine supports triiodothyronine (T3) and thyroxine (T4) metabolic synthesis.",
+    synergies: "Sauté with garlic, crushed red pepper, and lemon juice over cauliflower rice or whole wheat pasta.",
+    benefits: "Thyroid basal metabolic rate support, ultra-lean muscle repair, ocular photoprotection via astaxanthin.",
+    caveats: "Shellfish allergen; contains dietary cholesterol, which has minimal impact on serum LDL in 75%+ of healthy individuals."
+  },
+
+  // --- POULTRY, EGGS & MEAT ---
+  "eggs": {
+    names: ["egg", "eggs", "anda", "oeuf", "huevo", "uovo", "ei", "dan"],
+    category: "Proteins & Seafood",
+    serving: "2 large whole eggs (100g)",
+    calories: 144,
+    macros: { protein: 12.6, carbs: 0.7, fat: 9.9, fiber: 0 },
+    keyNutrients: "Choline (294mg, 55% DV in yolks!), Lutein & Zeaxanthin (bioavailable egg yolk matrix), Vitamin B12, Riboflavin, Vitamin D, High Leucine (1.1g)",
+    mechanisms: "Choline is the rate-limiting precursor for acetylcholine neurotransmitter and phosphatidylcholine membrane synthesis. The lipid emulsion in yolks provides 3x higher lutein bioavailability than plant sources.",
+    synergies: "Scramble or poach with spinach, tomatoes, and whole grain toast for the gold-standard balanced breakfast.",
+    benefits: "Hepatic lipid export (preventing fatty liver), cognitive memory encoding, retinal photoprotection, and complete amino acid utilization (DIAAS = 1.18).",
+    caveats: "Always eat the whole egg: 90%+ of choline, vitamins, and antioxidants reside in the golden yolk."
+  },
+  "chicken breast": {
+    names: ["chicken breast", "chicken", "murgh", "poulet", "pollo", "huhn", "ji rou"],
+    category: "Proteins & Seafood",
+    serving: "150g grilled skinless breast",
+    calories: 248,
+    macros: { protein: 46.5, carbs: 0, fat: 5.4, fiber: 0 },
+    keyNutrients: "Leucine (3.8g — clears threshold easily!), Niacin (B3: 86% DV), Vitamin B6 (60% DV), Phosphorus, Carnosine, Creatine",
+    mechanisms: "High-concentration branched chain amino acids (BCAAs) saturate skeletal muscle mTORC1 receptors, triggering maximal MPS. Carnosine buffers intramuscular hydrogen ions during anaerobic glycolysis.",
+    synergies: "Season with turmeric, garlic, black pepper, and olive oil; pair with sweet potatoes and broccoli.",
+    benefits: "Myofibrillar hypertrophy, athletic power output, lean tissue preservation during dieting, and neurotransmitter synthesis.",
+    caveats: "Do not overcook past 165°F (74°C) to prevent myofibrillar protein toughening and moisture loss."
+  },
+  "beef": {
+    names: ["beef", "steak", "bison", "gosht", "boeuf", "carne de res", "manzo", "rindfleisch", "niu rou"],
+    category: "Proteins & Seafood",
+    serving: "100g lean cooked beef (90% lean)",
+    calories: 217,
+    macros: { protein: 26.1, carbs: 0, fat: 11.8, fiber: 0 },
+    keyNutrients: "Heme Iron (2.6mg, 100% bioavailable without plant inhibitors), Zinc (6.0mg, 55% DV), Vitamin B12 (100% DV), Creatine (450mg), Carnitine, CLA",
+    mechanisms: "Heme iron is absorbed intact via the heme carrier protein 1 (HCP1) transporter, bypassing DMT1 non-heme competitive binding. Carnitine shuttles long-chain fatty acids into mitochondria for beta-oxidation.",
+    synergies: "Pair with roasted peppers, asparagus, and sweet potatoes for complete micronutrient balance.",
+    benefits: "Rapid red blood cell hemoglobin restoration, cell-mediated immunity via zinc, intramuscular creatine saturation, and robust satiety.",
+    caveats: "Prioritize lean and grass-fed cuts; limit charred/blackened surfaces to avoid heterocyclic amines (HCAs)."
+  },
+
+  // --- DAIRY & FERMENTED FOODS ---
+  "greek yogurt": {
+    names: ["greek yogurt", "yogurt", "dahi", "curd", "yaourt", "jogurt", "labneh", "skyr", "suan nai"],
+    category: "Dairy & Alternatives",
+    serving: "1 cup plain non-fat / low-fat (170g)",
+    calories: 130,
+    macros: { protein: 17.5, carbs: 6.0, fat: 0.7, fiber: 0 },
+    keyNutrients: "Casein & Whey Protein, Calcium (200mg, 15% DV), Probiotic cultures (*Lactobacillus bulgaricus*, *Streptococcus thermophilus*), Phosphorus, Potassium, B12",
+    mechanisms: "Straining removes liquid whey, concentrating protein and removing up to 80% of lactose. Probiotic strains synthesize lactic acid, creating an acidic intestinal milieu that suppresses pathogenic coliforms.",
+    synergies: "Top with blueberries, walnuts, ground flaxseed, and a dash of cinnamon for gut-brain axis perfection.",
+    benefits: "Maximal satiety per calorie, gut mucosal barrier reinforcement, skeletal mineralization, and post-workout muscle protein synthesis.",
+    caveats: "Always choose unflavored plain yogurt: flavored commercial options often pack 15g+ of added sucrose."
+  },
+  "paneer": {
+    names: ["paneer", "cottage cheese", "fresh cheese"],
+    category: "Dairy & Alternatives",
+    serving: "100g fresh paneer",
+    calories: 265,
+    macros: { protein: 18.3, carbs: 3.4, fat: 20.8, fiber: 0 },
+    keyNutrients: "Casein Protein (Slow-digesting), Calcium (480mg, 37% DV!), Phosphorus, Conjugated Linoleic Acid (CLA), Vitamin B12",
+    mechanisms: "High-density micellar casein clots in the acidic stomach, providing a continuous, gradual release of essential amino acids into the bloodstream over a 6-to-7-hour window.",
+    synergies: "Cook as Palak Paneer (paired with iron and lutein-rich spinach) or stir-fry with bell peppers and cumin.",
+    benefits: "Overnight muscle protein breakdown suppression, high skeletal calcium delivery, and sustained daytime fullness.",
+    caveats: "Full-fat paneer is calorically rich; measure portions if adhering to precise energy limits."
+  },
+  "kimchi": {
+    names: ["kimchi", "gimchi"],
+    category: "Fermented Foods",
+    serving: "1/2 cup (75g)",
+    calories: 15,
+    macros: { protein: 1.0, carbs: 2.5, fat: 0.2, fiber: 1.5 },
+    keyNutrients: "Live *Lactobacillus plantarum* and *Leuconostoc* strains, Vitamin K2, Capsaicin, Vitamin C, Allicin",
+    mechanisms: "Lactic acid bacteria ferment Napa cabbage and radish fibers, generating bioactive bacteriocins and Short-Chain Fatty Acids that nourish colonocytes and enhance intestinal IgA secretion.",
+    synergies: "Serve as a traditional side dish alongside brown rice, grilled fish, or tofu scramble.",
+    benefits: "Microbiome taxonomic biodiversity, immune modulation, insulin sensitivity improvement, and digestive enzyme support.",
+    caveats: "Contains natural sodium; individuals on stringent 1500mg sodium restrictions should balance daily tally."
+  },
+
+  // --- CULTURAL PREPARED DISHES ---
+  "biryani": {
+    names: ["biryani", "chicken biryani", "mutton biryani", "vegetable biryani"],
+    category: "Prepared Cultural Dishes",
+    serving: "1 standard restaurant/home plate (380g)",
+    calories: 590,
+    macros: { protein: 32, carbs: 68, fat: 19, fiber: 4.8 },
+    keyNutrients: "Heme & Non-Heme Protein, Turmeric (Curcumin), Saffron (Safranal, Crocin), Cardamom, Clove (Eugenol), Cinnamon, Ginger, Garlic",
+    mechanisms: "The vast array of whole spices (cinnamon, clove, cardamom, turmeric, black pepper) delivers extraordinary antioxidant and digestive enzyme stimulation (amylase, lipase) that mitigates the glycemic surge of white basmati rice.",
+    synergies: "Always consume with Cucumber Mint Raita (providing cooling probiotics and lactic acid) and a fresh onion-tomato salad with lemon squeeze.",
+    benefits: "High satiety, complete protein delivery, massive culinary spice polyphenols, and digestive enzyme activation.",
+    caveats: "Commercial restaurant biryanis often include heavy ghee or fried onions; opt for home-cooked or lean-meat preparations with brown basmati."
+  },
+  "palak paneer": {
+    names: ["palak paneer", "saag paneer"],
+    category: "Prepared Cultural Dishes",
+    serving: "1 bowl (250g)",
+    calories: 340,
+    macros: { protein: 18, carbs: 9, fat: 26, fiber: 5.5 },
+    keyNutrients: "Lutein, Zeaxanthin, Calcium, Casein Protein, Non-Heme Iron, Vitamin K1, Turmeric, Cumin, Ginger",
+    mechanisms: "Spinach provides dense carotenoids and nitrates, while the lipid content in paneer and ghee assists the complete micellar incorporation of fat-soluble lutein and vitamin K.",
+    synergies: "Pair with whole wheat chapati (roti) or brown rice and a squeeze of fresh lemon juice.",
+    benefits: "Macular eye photoprotection, skeletal calcium, sustained casein satiety, and smooth digestive transit.",
+    caveats: "High calcium in paneer can competitively reduce non-heme iron absorption from spinach at the enterocyte level; enjoy primarily for protein, lutein, and calcium."
+  },
+  "falafel": {
+    names: ["falafel", "falafel plate", "ta'ameya"],
+    category: "Prepared Cultural Dishes",
+    serving: "4 baked/fried falafel patties (120g)",
+    calories: 320,
+    macros: { protein: 13, carbs: 36, fat: 14, fiber: 8.0 },
+    keyNutrients: "Chickpea & Fava Bean Protein, Cumin, Coriander, Parsley, Garlic, Tahini (Sesame Calcium & Lignans)",
+    mechanisms: "Raw soaked (never pre-boiled) chickpeas retain resistant starch and high fiber. Herbs (parsley, cilantro) contribute chlorophyll and vitamin C to enhance mineral uptake.",
+    synergies: "Serve with tahini sauce, chopped tomato-cucumber salad, and pickled turnip in a whole wheat pita.",
+    benefits: "Exceptional plant fiber delivery, slow blood glucose curve, and robust cardiometabolic satiety.",
+    caveats: "Choose baked or air-fried versions over commercial deep-fried patties to avoid oxidized frying oils."
+  }
+};
+
+const NUTRITION_SCIENCE_KNOWLEDGE = {
+  macronutrients: {
+    protein: {
+      title: "Protein Kinetics, EAAs & The Leucine Trigger",
+      summary: "Dietary proteins provide the essential amino acid (EAA) substrates required for muscle protein synthesis (MPS), enzyme production, peptide hormone synthesis, and structural collagen repair.",
+      keyConcepts: [
+        "**The Leucine Trigger**: L-Leucine is the primary branched-chain amino acid that acts as a nutrient sensor for the mTORC1 intracellular pathway. Adults require **2.5g to 3.0g of leucine per meal** (~25–35g high-quality protein) to maximally stimulate MPS.",
+        "**DIAAS (Digestible Indispensable Amino Acid Score)**: The gold-standard measure of protein quality measuring ileal amino acid digestibility. Milk, eggs, beef, and soy isolate score >1.00; legumes score ~0.80–0.90.",
+        "**Plant Protein Complementarity**: Pairing lysine-rich legumes with methionine-rich whole grains (e.g. rice and lentils) ensures a complete EAA spectrum within the daily metabolic pool.",
+        "**Optimal Daily Intake**: 1.2g–1.6g/kg/day for active health; 1.6g–2.2g/kg/day for athletic hypertrophy and caloric-deficit muscle preservation."
+      ]
+    },
+    carbohydrates: {
+      title: "Carbohydrate Dynamics: GI, GL & Glycogen",
+      summary: "Carbohydrates are the body's primary high-intensity cellular fuel, metabolized into glucose to power central nervous system function and replenish hepatic and intramuscular glycogen.",
+      keyConcepts: [
+        "**Glycemic Index (GI)**: The speed at which 50g of available carbohydrates raise blood glucose compared to pure glucose (GI = 100).",
+        "**Glycemic Load (GL)**: Accounts for real-world portion sizing: GL = (GI × Net Carbs in grams) / 100. (Low GL ≤ 10, High GL ≥ 20).",
+        "**Food Matrix Buffering**: Whole foods with intact cellular walls, soluble fiber, lipids, and protein blunt postprandial glucose surges by delaying gastric emptying.",
+        "**Resistant Starch (RS)**: Escapes small intestine enzymatic breakdown to ferment in the colon into Short-Chain Fatty Acids (acetate, propionate, butyrate)."
+      ]
+    },
+    lipids: {
+      title: "Lipid Biochemistry: Omegas, MUFAs & Cell Membranes",
+      summary: "Lipids provide long-term energy storage, form the phospholipid bilayer of all cell membranes, synthesize steroid hormones, and facilitate fat-soluble vitamin absorption.",
+      keyConcepts: [
+        "**MUFAs (Monounsaturated Oleic Acid)**: Found in EVOO and avocados; supports LDL receptor expression, reducing atherogenic apoB particles.",
+        "**Omega-3 PUFAs (ALA, EPA, DHA)**: EPA/DHA from oily fish resolve inflammation via protectins and resolvins; plant ALA from flax/chia/walnuts converts at modest rates (~5-10%).",
+        "**Omega-6 to Omega-3 Ratio**: Modern diets often hit 15:1; aim for an optimal balanced ratio of ~3:1 to 4:1 by emphasizing whole fish, seeds, and reducing industrial seed oils.",
+        "**Fat-Soluble Carrier**: A minimum of 3–5g of dietary fat per meal is required to stimulate cholecystokinin (CCK) and bile release for Vitamins A, D, E, K absorption."
+      ]
+    },
+    fiber: {
+      title: "Dietary Fiber & The Gut Microbiome Ecosystem",
+      summary: "Non-digestible carbohydrate polymers that escape upper GI digestion, classified into viscous soluble, non-viscous insoluble, and prebiotic fermentable starches.",
+      keyConcepts: [
+        "**Short-Chain Fatty Acids (SCFAs)**: Colon bacterial fermentation produces acetate (energy), propionate (hepatic gluconeogenesis regulation), and butyrate (primary fuel for colonocytes).",
+        "**Viscous Soluble Fiber**: Pectin, beta-glucan, and psyllium form viscous luminal gels that trap bile acids, lowering circulating LDL cholesterol.",
+        "**The '30-Plants-Per-Week' Target**: Research demonstrates that consuming 30+ distinct plant varieties weekly creates superior microbial diversity and metabolic resilience."
+      ]
+    }
+  },
+  synergies: {
+    "vitamin_c_iron": {
+      title: "Vitamin C (Ascorbate) + Non-Heme Iron Synergy",
+      mechanism: "Plant non-heme iron (lentils, spinach, beans) exists in the insoluble ferric state (Fe3+). Ascorbic acid reduces it to soluble ferrous iron (Fe2+) and forms a stable chelate that resists alkaline intestinal precipitation, increasing absorption by 200–300%!",
+      rule: "Always squeeze fresh lemon or add bell peppers/tomatoes to legume and leafy green dishes."
+    },
+    "calcium_iron_competition": {
+      title: "Calcium & Iron Competitive Inhibition",
+      mechanism: "Both divalent ions compete for the same enterocyte divalent metal transporter 1 (DMT1). Consuming high-dose calcium (>300mg from dairy or supplements) with iron-rich meals can suppress iron uptake by up to 50%.",
+      rule: "Space high-calcium dairy (milk, cheese, yogurt) 1.5 to 2 hours away from high-iron therapeutic meals."
+    },
+    "vitamin_d_calcium_k2": {
+      title: "The Bone Triad: Vitamin D3 + Calcium + Vitamin K2",
+      mechanism: "Vitamin D3 upregulates intestinal calbindin protein to absorb calcium into circulation; Vitamin K2 activates osteocalcin to bind calcium into bone hydroxyapatite crystals while activating matrix Gla-protein (MGP) to prevent arterial vascular calcification.",
+      rule: "Combine calcium-rich greens/dairy with sun exposure/D3 and fermented foods (kimchi, natto, cheese) rich in K2."
+    },
+    "fats_fat_soluble_vitamins": {
+      title: "Dietary Lipids + Fat-Soluble Vitamins (A, D, E, K)",
+      mechanism: "Vitamins A, D, E, K and carotenoids (lycopene, lutein, beta-carotene) are hydrophobic molecules requiring mixed bile salt and fatty acid micelles to cross the intestinal unstirred water layer.",
+      rule: "Always dress raw salads and steamed vegetables with cold-pressed extra virgin olive oil or avocado."
+    },
+    "piperine_curcumin": {
+      title: "Black Pepper (Piperine) + Turmeric (Curcumin)",
+      mechanism: "Curcumin undergoes rapid hepatic and intestinal glucuronidation, yielding poor oral systemic availability. Piperine inhibits UDP-glucuronosyltransferase, boosting curcumin bioavailability by up to 2000%.",
+      rule: "Always cook turmeric alongside fresh cracked black pepper and a healthy cooking fat."
+    },
+    "phytates_reduction": {
+      title: "Deactivating Phytic Acid in Grains & Legumes",
+      mechanism: "Phytic acid binds divalent minerals (zinc, iron, calcium, magnesium) into insoluble phytate complexes in raw seeds and grains. Soaking, sprouting, fermenting, and leavening activate endogenous phytase enzymes to hydrolyze phytic acid.",
+      rule: "Soak beans and whole grains for 8-12 hours before boiling, or choose traditionally leavened sourdough bread."
+    }
+  }
+};
+
 // Explicitly attach all data sets to global window / globalThis for cross-script compatibility
 if (typeof window !== 'undefined') {
   window.FOOD_CATEGORIES = FOOD_CATEGORIES;
@@ -3057,6 +3734,8 @@ if (typeof window !== 'undefined') {
   window.ALL_ARTICLES = ALL_ARTICLES;
   window.NUTRITION_MYTHS = NUTRITION_MYTHS;
   window.DIET_PLANNER_PRESETS = DIET_PLANNER_PRESETS;
+  window.INTERNATIONAL_FOOD_KNOWLEDGE = INTERNATIONAL_FOOD_KNOWLEDGE;
+  window.NUTRITION_SCIENCE_KNOWLEDGE = NUTRITION_SCIENCE_KNOWLEDGE;
 }
 if (typeof globalThis !== 'undefined') {
   globalThis.FOOD_CATEGORIES = FOOD_CATEGORIES;
@@ -3065,4 +3744,6 @@ if (typeof globalThis !== 'undefined') {
   globalThis.ALL_ARTICLES = ALL_ARTICLES;
   globalThis.NUTRITION_MYTHS = NUTRITION_MYTHS;
   globalThis.DIET_PLANNER_PRESETS = DIET_PLANNER_PRESETS;
+  globalThis.INTERNATIONAL_FOOD_KNOWLEDGE = INTERNATIONAL_FOOD_KNOWLEDGE;
+  globalThis.NUTRITION_SCIENCE_KNOWLEDGE = NUTRITION_SCIENCE_KNOWLEDGE;
 }
