@@ -829,7 +829,7 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
 
     const modalContent = `
       <div style="margin-bottom: 16px;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div class="modal-header-row">
           <div>
             <span class="confidence-badge" style="background: rgba(0, 194, 203, 0.15); color: var(--teal-300);">
               ${escapeHtml(food.category)} • ${escapeHtml(food.culturalOrigin || 'Global')}
@@ -903,7 +903,7 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
       </div>
 
       <!-- Action Buttons -->
-      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+      <div class="modal-actions-row">
         <button class="btn btn-secondary" onclick="VitaVue.askAgentAboutFood('${food.id}')">
           💬 Ask AI Nutritionist About This Food
         </button>
@@ -1020,7 +1020,7 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
 
     const modalContent = `
       <div style="margin-bottom: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div class="modal-header-row">
           <div>
             <span class="confidence-badge" style="background: rgba(0, 194, 203, 0.15); color: var(--teal-300);">
               ${escapeHtml(art.category)} • ${art.readingTimeMin} min read • ${escapeHtml(art.difficulty)}
@@ -1058,7 +1058,7 @@ Analyze the meal in the image and respond ONLY with a JSON object strictly match
       </div>
 
       <!-- Actions -->
-      <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="modal-actions-row">
         <button class="btn btn-secondary" onclick="VitaVue.discussArticleWithAgent('${art.id}')">
           💬 Discuss this Topic with AI Nutritionist
         </button>
