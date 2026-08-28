@@ -1283,7 +1283,55 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
           { label: '📋 Open Diet Planner', actionType: 'navigate', targetTab: 'planner' }
         ];
         return { role: 'agent', content, actions };
+      } else if (meal.title.toLowerCase().includes('lentil') || (meal.components && meal.components.some(c => c.toLowerCase().includes('lentil') || c.toLowerCase().includes('spinach')))) {
+        content = `### Biochemical Assessment of **${meal.title}**\n\nThis plate demonstrates remarkable plant-based nutritional synergy:\n\n- **Iron & Ascorbate Synergy**: The non-heme iron in lentils and spinach is chemically reduced by citric and ascorbic acids (such as lemon juice or fresh vegetables), boosting duodenal bioavailability up to 3-fold.\n- **Fiber Fermentation**: Supplies **${meal.macros.fiber || 9}g of dietary fiber**, supporting colonic short-chain fatty acid (butyrate) synthesis.\n- **Protein Balance**: Provides **${meal.macros.protein}g of plant protein**, rich in lysine to pair with whole grains.`;
+        actions = [
+          { label: '📖 Read Micronutrient Synergy', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
+          { label: '🔍 Explore Food Database', actionType: 'navigate', targetTab: 'explorer' }
+        ];
+        return { role: 'agent', content, actions };
       }
+    }
+
+    // Specific Question 1: Apples
+    if (q.includes('apple') && (q.includes('benefit') || q.includes('nutrition') || q.includes('good') || q.includes('what are'))) {
+      content = `### Nutritional Biochemistry & Health Benefits of Apples\n\nApples (*Malus domestica*) provide an exceptional balance of prebiotic fibers and bioactive polyphenols (~95 kcal for a medium 182g fruit):\n\n- **Soluble Pectin Matrix**: Contains ~4.4g of total dietary fiber, dominated by **pectin**, a viscous polysaccharide that binds intestinal bile acids to lower circulating LDL cholesterol and buffers postprandial glucose absorption.\n- **Quercetin & Flavonols**: Concentrated in the apple peel, quercetin inhibits NF-kB inflammatory signaling and supports vascular nitric oxide synthesis.\n- **Phloridzin**: A unique dihydrochalcone that moderates glucose uptake in the intestinal brush border.\n- **Practical Rule**: Always eat apples with their washed skins to retain over 80% of total antioxidant flavonoids.`;
+      actions = [
+        { label: '🍎 View Apple in Food Explorer', actionType: 'filterFoods', tag: 'Fresh' },
+        { label: '📖 Read Fiber & Gut Health', actionType: 'readArticle', articleId: 'art_fiber_gut_microbiome' }
+      ];
+    }
+    // Specific Question 2: Rice & Lentils Protein Quality
+    else if ((q.includes('rice') && q.includes('lentil')) || (q.includes('protein quality') && q.includes('plant')) || q.includes('complementar')) {
+      content = `### Optimizing Protein Quality & Amino Acid Complementarity in Rice & Lentils\n\nLentils and rice form one of the world's most classical and effective **plant protein complementary matrices**:\n\n- **The Limiting Amino Acid Synergy**: Lentils are rich in **L-Lysine** but limiting in sulfur amino acids (**L-Methionine** and **L-Cysteine**). Conversely, rice is rich in **L-Methionine** but low in **L-Lysine**. Consuming both provides a complete Essential Amino Acid (EAA) pool.\n- **Hit the Leucine Trigger**: Aim for a **2:1 ratio of cooked lentils to cooked brown rice** (e.g. 1.5 cups lentils + 1 cup rice) to deliver ~30g protein and ~2.4g leucine.\n- **Add Vitamin C**: Squeeze fresh lemon juice over the lentils to triple non-heme iron absorption.\n- **Sprinkle Sprouted Seeds**: Add 1 tbsp hemp hearts or pumpkin seeds for extra zinc and ALA Omega-3s.`;
+      actions = [
+        { label: '📖 Read Protein Mastery Guide', actionType: 'readArticle', articleId: 'art_protein_mastery' },
+        { label: '🔍 View Lentils & Grains', actionType: 'selectCategory', category: 'Legumes & Pulses' }
+      ];
+    }
+    // Specific Question 3: Vitamin C + Non-Heme Iron
+    else if ((q.includes('vitamin c') && q.includes('iron')) || q.includes('non-heme') || (q.includes('iron') && q.includes('absorp'))) {
+      content = `### Biochemical Mechanism: How Vitamin C Enhances Non-Heme Iron Absorption\n\nPlant-based non-heme iron exists in the **ferric (Fe3+) state**, which is relatively insoluble and poorly absorbed in the human duodenum (~2–10% baseline):\n\n1. **Chemical Reduction**: **Ascorbic acid (Vitamin C)** acts as an electron donor, reducing insoluble **ferric iron (Fe3+)** into highly soluble **ferrous iron (Fe2+)**.\n2. **Chelation Protection**: Vitamin C forms a stable, soluble chelate with iron at acidic gastric pH that persists into the neutral small intestine, preventing iron from binding to dietary inhibitors like **phytates** and **tannins**.\n3. **Absorption Magnitude**: Pairing **25–50mg of Vitamin C** (e.g. half a lemon or 1/2 cup raw bell peppers) with iron-rich legumes elevates iron absorption by **up to 300%**!`;
+      actions = [
+        { label: '📖 Read Micronutrient Synergy', actionType: 'readArticle', articleId: 'art_micronutrient_powerhouses' },
+        { label: '🔍 View Citrus & Bell Peppers', actionType: 'selectCategory', category: 'Vegetables' }
+      ];
+    }
+    // Specific Question 4: Practical Balanced Plate
+    else if (q.includes('balanced plate') || (q.includes('practical') && q.includes('plate')) || q.includes('plate method') || (q.includes('how to build') && q.includes('plate'))) {
+      content = `### The Evidence-Based Practical Balanced Plate Method\n\nThe **Balanced Plate Blueprint** is a proven visual heuristic for daily meal construction:\n\n- **50% of the Plate (Colorful Non-Starchy Vegetables & Leafy Greens)**: Delivers 6–10g fiber, potassium, magnesium, and polyphenols with low caloric density (<80 kcal), maximizing gastric fullness.\n- **25% of the Plate (Protein Engine)**: 25–35g of lean animal or complementary plant protein (wild fish, eggs, tofu, lentils) to hit the 2.5–3.0g leucine threshold and sustain peptide YY satiety.\n- **25% of the Plate (Complex Slow Carbohydrates)**: Intact whole grains (quinoa, brown basmati, oats) or root vegetables to replenish muscle glycogen with low glycemic index.\n- **1 Thumbnail (Healthy Unsaturated Lipids)**: 1 tbsp extra virgin olive oil or 1/4 avocado to facilitate fat-soluble vitamin (A, D, E, K) absorption.`;
+      actions = [
+        { label: '📖 Read Balanced Plate Guide', actionType: 'readArticle', articleId: 'art_balanced_plate_method' },
+        { label: '📸 Analyze a Meal Plate', actionType: 'navigate', targetTab: 'analyzer' }
+      ];
+    }
+    // Specific Question 5: Nutrient Density
+    else if (q.includes('nutrient dens') || (q.includes('density') && q.includes('nutrition'))) {
+      content = `### What is Nutrient Density? Principles & Formula\n\n**Nutrient Density** refers to the concentration of essential micronutrients (vitamins, minerals, amino acids, essential fatty acids, and bioactives) relative to the total caloric energy provided by a food:\n\n$$\\text{Nutrient Density} = \\frac{\\text{Micronutrients (Vitamins, Minerals, Fiber, Phytonutrients)}}{\\text{Total Energy Content (kcal)}}$$\n\n- **High Nutrient Density (Low Energy Density)**: Spinach, kale, wild salmon, blueberries, lentils, broccoli, eggs. 100 kcal of spinach delivers over 1,000% DV Vitamin K1 and high lutein.\n- **Low Nutrient Density (Empty Calories)**: Refined sugar, sweetened sodas, and ultra-processed pastries delivering calories without micronutrient co-factors.\n- **Practical Goal**: Prioritizing nutrient-dense whole foods satisfies 100% of your daily micronutrient targets within your caloric budget without excessive supplementation.`;
+      actions = [
+        { label: '🔍 Browse 64 Global Foods', actionType: 'navigate', targetTab: 'explorer' },
+        { label: '📚 Open Nutrition Hub', actionType: 'navigate', targetTab: 'learn' }
+      ];
     }
 
     // Keyword & Domain-Grounded Routing

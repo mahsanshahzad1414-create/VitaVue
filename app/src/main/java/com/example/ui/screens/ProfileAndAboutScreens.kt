@@ -1155,6 +1155,42 @@ fun AboutScreen(
             }
         }
 
+        // Lead Developer & Project Attribution
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Teal500.copy(alpha = 0.3f), RoundedCornerShape(16.dp)),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Navy900)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "LEAD DEVELOPER & SYSTEM ARCHITECT",
+                        color = Teal400,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Muhammad Ahsan Shahzad",
+                        color = Neutral50,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "VitaVue — Multimodal AI Nutrition Intelligence Platform\nProof of Possible 2026",
+                        color = Neutral300,
+                        fontSize = 12.sp,
+                        lineHeight = 17.sp
+                    )
+                }
+            }
+        }
+
         // Responsible AI & Educational Scope
         item {
             Card(

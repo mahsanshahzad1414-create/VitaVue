@@ -556,6 +556,97 @@ class GeminiService {
                 }
             }
 
+            // Specific Question: Nutritional benefits of apples
+            q.contains("apple") && (q.contains("benefit") || q.contains("nutrition") || q.contains("good for") || q.contains("health") || q.contains("what are")) -> {
+                actions.add(AgentAction("Explore Apple in Food Explorer", AgentActionType.EXPLORE_FOOD, "fruit_apple"))
+                actions.add(AgentAction("Read Fiber & Gut Health", AgentActionType.READ_ARTICLE, "fiber-gut-microbiome"))
+                buildString {
+                    append("### Nutritional Biochemistry & Health Benefits of Apples\n\n")
+                    append("Apples (*Malus domestica*) offer a dense profile of bioactive phytochemicals and fermentable fibers with low glycemic impact (~95 kcal for a medium 182g apple):\n\n")
+                    append("#### 1. Soluble Fiber Matrix (Pectin)\n")
+                    append("- **Prebiotic Fermentation**: Apples provide ~4.4g of total fiber, predominantly **pectin**, a viscous soluble polysaccharide that forms a protective gel matrix in the small intestine, slowing sugar absorption and reducing LDL cholesterol by binding intestinal bile acids.\n")
+                    append("- **Butyrate Synthesis**: Colonic fermentation of pectin by *Bifidobacterium* species produces short-chain fatty acids (SCFAs), maintaining gut epithelial integrity.\n\n")
+                    append("#### 2. Bioactive Flavonoids & Polyphenols\n")
+                    append("- **Quercetin (Concentrated in the Peel)**: A potent antioxidant flavonol that downregulates pro-inflammatory cytokines (IL-6, TNF-alpha) and promotes vascular nitric oxide bioavailability.\n")
+                    append("- **Epicatechin & Procyanidins**: Support endothelial flexibility and systemic antioxidant defense against lipid peroxidation.\n")
+                    append("- **Phloridzin**: A unique dihydrochalcone glucoside that inhibits sodium-glucose co-transporters (SGLT1 and SGLT2) in the intestinal mucosa, moderating postprandial glucose excursions.\n\n")
+                    append("#### 3. Practical Nutrition Rule\n")
+                    append("Always consume apples **with their skin intact** (washed) to capture up to 80% of their total polyphenol and insoluble fiber content.")
+                }
+            }
+
+            // Specific Question: Improving protein quality in rice and lentils
+            (q.contains("rice") && q.contains("lentil")) || (q.contains("protein quality") && q.contains("plant")) || q.contains("complementar") -> {
+                actions.add(AgentAction("Explore Lentils in Database", AgentActionType.EXPLORE_FOOD, "legume_lentils"))
+                actions.add(AgentAction("Read Protein Mastery Guide", AgentActionType.READ_ARTICLE, "protein-mastery-science"))
+                buildString {
+                    append("### Optimizing Protein Quality & Amino Acid Complementarity in Rice & Lentils\n\n")
+                    append("Lentils and rice form one of the world's most classical and effective **plant protein complementary matrices** (e.g. *Mujaddara*, *Khichdi*).\n\n")
+                    append("#### 1. The Limiting Amino Acid Synergy\n")
+                    append("- **Lentils (Legumes)**: Rich in the essential amino acid **L-Lysine**, but limiting in sulfur-containing amino acids (**L-Methionine** and **L-Cysteine**).\n")
+                    append("- **Rice (Grains)**: Rich in **L-Methionine** and **L-Cysteine**, but limiting in **L-Lysine**.\n")
+                    append("- **The Synergy**: Consuming both combines their amino acid pools to achieve a **complete Essential Amino Acid (EAA) profile** matching human physiological requirements (DIAAS score approaching 0.9–1.0).\n\n")
+                    append("#### 2. Three Evidence-Based Ways to Further Enhance This Meal\n")
+                    append("1. **Hit the Leucine Trigger (2.5–3.0g)**: Aim for a **2:1 or 1:1 ratio of cooked lentils to cooked brown rice** (e.g., 1.5 cups lentils + 1 cup brown rice), yielding ~30g of protein and ~2.4g of leucine.\n")
+                    append("2. **Add Vitamin C for Non-Heme Iron Absorption**: Squeeze fresh lemon juice or add fresh diced tomatoes over the dish to boost iron absorption from lentils up to 3-fold.\n")
+                    append("3. **Incorporate Sprouted Seeds or Hemp Hearts**: Sprinkle 1 tbsp of hemp hearts or roasted pumpkin seeds for extra leucine, zinc, and bioavailable ALA Omega-3s.")
+                }
+            }
+
+            // Specific Question: Vitamin C and non-heme iron absorption
+            (q.contains("vitamin c") && q.contains("iron")) || q.contains("non-heme") || (q.contains("iron") && q.contains("absorp")) -> {
+                actions.add(AgentAction("Read Micronutrient Science", AgentActionType.READ_ARTICLE, "essential-vitamins-and-minerals"))
+                actions.add(AgentAction("Read Nutrition Myths", AgentActionType.READ_ARTICLE, "micronutrient-synergy-matrix"))
+                buildString {
+                    append("### Biochemical Mechanism: How Vitamin C Enhances Non-Heme Iron Absorption\n\n")
+                    append("Plant-based iron (non-heme iron) found in legumes, grains, and dark leafy greens exists primarily in the **ferric (Fe3+) state**, which is relatively insoluble and poorly absorbed in the human duodenum (~2–10% baseline bioavailability).\n\n")
+                    append("#### 1. Chemical Reduction (Fe3+ to Fe2+)\n")
+                    append("**Ascorbic acid (Vitamin C)** acts as a powerful electron donor in the acidic gastric environment, reducing insoluble **ferric iron (Fe3+)** into highly soluble **ferrous iron (Fe2+)**:\n")
+                    append("$$\\text{Fe}^{3+} + \\text{Ascorbic Acid} \\rightarrow \\text{Fe}^{2+} + \\text{Dehydroascorbic Acid}$$\n\n")
+                    append("#### 2. Chelation & Insoluble Complex Prevention\n")
+                    append("Vitamin C forms a soluble chelate complex with iron at low gastric pH. This chelate remains soluble even when passing into the neutral-to-alkaline environment of the duodenum, preventing iron from binding to inhibitory dietary compounds like **phytates** (in grains/legumes) or **polyphenols/tannins** (in tea/coffee).\n\n")
+                    append("#### 3. Practical Rule\n")
+                    append("Pairing just **25–50mg of Vitamin C** (e.g. half a squeezed lemon, half a cup of raw bell peppers, or a handful of strawberries) with iron-rich plant meals increases non-heme iron absorption by **up to 300%**.")
+                }
+            }
+
+            // Specific Question: What is a practical balanced plate?
+            q.contains("balanced plate") || (q.contains("practical") && q.contains("plate")) || q.contains("plate method") || (q.contains("how to build") && q.contains("plate")) -> {
+                actions.add(AgentAction("Read Balanced Plate Guide", AgentActionType.READ_ARTICLE, "balanced-plate-method"))
+                actions.add(AgentAction("Analyze a Meal Image", AgentActionType.ANALYZE_MEAL, ""))
+                buildString {
+                    append("### The Evidence-Based Practical Balanced Plate Method\n\n")
+                    append("The **Balanced Plate Heuristic** translates complex nutritional science into an intuitive, scalable visual blueprint without requiring exhaustive calorie weighing:\n\n")
+                    append("#### 1. 50% Plate: High-Volume Micronutrient Shield (Non-Starchy Veg)\n")
+                    append("- **Examples**: Steamed broccoli, crisp baby spinach, bell peppers, asparagus, zucchini.\n")
+                    append("- **Function**: Provides high dietary fiber (6-10g), polyphenols, potassium, and magnesium with low caloric density (<80 kcal), driving gastric distension and peptide YY fullness.\n\n")
+                    append("#### 2. 25% Plate: Protein Engine (25–35g Protein)\n")
+                    append("- **Examples**: Wild salmon, organic tofu, pasture-raised eggs, skinless chicken breast, tempeh, or lentils.\n")
+                    append("- **Function**: Delivers 2.5–3g of leucine to cross the anabolic threshold, maintaining lean muscle tissue and eliciting a high Thermic Effect of Food (TEF, ~20–30%).\n\n")
+                    append("#### 3. 25% Plate: Steady-State Glycogen (Complex Low-GI Carbs)\n")
+                    append("- **Examples**: Tri-color quinoa, roasted sweet potatoes, brown basmati rice, or whole oats.\n")
+                    append("- **Function**: Supplies sustained glucose for brain and muscular performance without triggering rapid insulin spikes.\n\n")
+                    append("#### 4. 1 Thumbnail: Lipid & Vitamin Carrier\n")
+                    append("1 tbsp of extra virgin olive oil, 1/4 avocado, or a handful of nuts to facilitate absorption of fat-soluble vitamins (A, D, E, K).")
+                }
+            }
+
+            // Specific Question: What is nutrient density?
+            q.contains("nutrient dens") || (q.contains("density") && q.contains("nutrition")) -> {
+                actions.add(AgentAction("Read Foundations Article", AgentActionType.READ_ARTICLE, "energy-balance-metabolism"))
+                actions.add(AgentAction("Explore 64 Global Foods", AgentActionType.EXPLORE_FOOD, ""))
+                buildString {
+                    append("### What is Nutrient Density? Principles & Mathematical Concept\n\n")
+                    append("**Nutrient Density** is the concentration of essential micronutrients (vitamins, minerals, amino acids, essential fatty acids, and bioactives) relative to the total caloric energy a food provides.\n\n")
+                    append("$$\\text{Nutrient Density} = \\frac{\\text{Micronutrients (Vitamins, Minerals, Fiber, Phytonutrients)}}{\\text{Total Energy Content (kcal)}}$$\n\n")
+                    append("#### 1. Nutrient Density vs. Energy Density\n")
+                    append("- **High Nutrient Density (Low Calorie Density)**: Spinach, kale, wild salmon, blueberries, lentils, broccoli, eggs. For example, 100 kcal of raw spinach delivers over 1,000% DV of Vitamin K1, 100% DV of Vitamin A precursors, and rich lutein/zeaxanthin.\n")
+                    append("- **Low Nutrient Density (High Calorie Density / 'Empty Calories')**: Refined sugar, sweetened sodas, ultra-processed pastries, and refined vegetable shortenings, which provide substantial calories with negligible micronutrient co-factors.\n\n")
+                    append("#### 2. Practical Application (The Nutrient-to-Calorie Ratio)\n")
+                    append("Prioritizing nutrient-dense whole foods ensures you achieve 100% of your micronutrient Reference Daily Intakes (RDIs) within your target energy budget without requiring artificial supplementation.")
+                }
+            }
+
             // Fiber & Gut
             q.contains("fiber") || q.contains("microbiome") || q.contains("gut") -> {
                 actions.add(AgentAction("Read Fiber & Gut Health", AgentActionType.READ_ARTICLE, "fiber-gut-microbiome"))
