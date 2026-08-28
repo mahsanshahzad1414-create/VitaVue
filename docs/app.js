@@ -328,6 +328,13 @@ const VitaVue = (function() {
       return;
     }
 
+    // Reset previous meal state and context on new image selection
+    state.currentAnalysisResult = null;
+    if (state.activeContext && state.activeContext.type === 'meal') {
+      state.activeContext = null;
+      updateAgentContextBanner();
+    }
+
     state.selectedImageName = file.name;
     state.selectedImageSize = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
 
@@ -342,6 +349,13 @@ const VitaVue = (function() {
   function loadSampleMealPreset(presetKey) {
     const preset = SAMPLE_MEAL_PRESETS[presetKey];
     if (!preset) return;
+
+    // Reset previous context
+    state.currentAnalysisResult = null;
+    if (state.activeContext && state.activeContext.type === 'meal') {
+      state.activeContext = null;
+      updateAgentContextBanner();
+    }
 
     state.selectedImageName = `${presetKey}.jpg`;
     state.selectedImageSize = "1.2 MB";
@@ -377,12 +391,19 @@ const VitaVue = (function() {
     state.selectedImageSize = '';
     state.currentAnalysisResult = null;
 
+    if (state.activeContext && state.activeContext.type === 'meal') {
+      state.activeContext = null;
+      updateAgentContextBanner();
+    }
+
     const previewContainer = document.getElementById('analyzer-preview-container');
     if (previewContainer) previewContainer.style.display = 'none';
     const resContainer = document.getElementById('analyzer-result-container');
     if (resContainer) resContainer.style.display = 'none';
     const errContainer = document.getElementById('analyzer-error-card');
     if (errContainer) errContainer.style.display = 'none';
+    const inputCard = document.getElementById('analyzer-input-card');
+    if (inputCard) inputCard.style.display = 'block';
   }
 
   async function analyzeMeal(directPreset = null) {
@@ -1523,25 +1544,96 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
 
   function matchesWord(text, word) {
     if (!text || !word) return false;
+    const cleanText = safeStr(text).toLowerCase();
     const cleanWord = safeStr(word).trim().toLowerCase();
-    if (!cleanWord || cleanWord.length < 3) return false;
+    if (!cleanWord || cleanWord.length < 2) return false;
+
+    // Direct exact inclusion check for compound phrases or boundary check for single words
+    if (cleanWord.includes(' ')) {
+      return cleanText.includes(cleanWord);
+    }
     const escaped = cleanWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const regex = new RegExp(`(^|\\W)${escaped}(\\W|$)`, 'i');
-    return regex.test(text);
+    return regex.test(cleanText);
+  }
+
+  function getSortedFoodKnowledgeCandidates() {
+    const foodKnowledge = (typeof INTERNATIONAL_FOOD_KNOWLEDGE !== 'undefined') ? INTERNATIONAL_FOOD_KNOWLEDGE : {};
+    const allFoods = (typeof ALL_FOODS !== 'undefined') ? ALL_FOODS : [];
+    const candidates = [];
+
+    // 1. From INTERNATIONAL_FOOD_KNOWLEDGE
+    for (const [key, food] of Object.entries(foodKnowledge)) {
+      const allNames = [key, ...(food.names || [])];
+      for (const name of allNames) {
+        const cleanName = safeStr(name).trim().toLowerCase();
+        if (cleanName.length >= 2) {
+          const words = cleanName.split(/\s+/).filter(Boolean);
+          candidates.push({
+            pattern: cleanName,
+            wordCount: words.length,
+            charLen: cleanName.length,
+            key: key,
+            food: food
+          });
+        }
+      }
+    }
+
+    // 2. From ALL_FOODS curated library
+    for (const f of allFoods) {
+      const fName = safeStr(f.name).trim().toLowerCase();
+      if (fName.length >= 2) {
+        const words = fName.split(/\s+/).filter(Boolean);
+        const foodObj = {
+          names: [fName],
+          category: f.category || "Whole Foods",
+          serving: f.servingSize || "1 standard serving",
+          calories: f.calories || 100,
+          macros: {
+            protein: f.proteinGrams || 0,
+            carbs: f.carbsGrams || 0,
+            fat: f.fatGrams || 0,
+            fiber: f.fiberGrams || 0
+          },
+          keyNutrients: (f.micronutrients || []).map(m => `${safeStr(m.name)} (${safeStr(m.amount)})`).join(', ') || "Essential micronutrients",
+          mechanisms: safeStr(f.description) || "Delivers bioactive cellular co-factors and dietary fiber.",
+          synergies: "Pair with complementary whole foods, healthy cold-pressed lipids, or citrus.",
+          benefits: (f.healthBenefits || []).join('; ') || "Metabolic health and nutritional balance.",
+          caveats: "Enjoy as part of a varied, minimally processed dietary pattern."
+        };
+
+        candidates.push({
+          pattern: fName,
+          wordCount: words.length,
+          charLen: fName.length,
+          key: fName,
+          food: foodObj
+        });
+      }
+    }
+
+    // Sort by wordCount descending (multi-word phrases first), then charLen descending (longer phrases first)
+    candidates.sort((a, b) => {
+      if (b.wordCount !== a.wordCount) return b.wordCount - a.wordCount;
+      return b.charLen - a.charLen;
+    });
+
+    return candidates;
   }
 
   function extractEntityFromHistory(history) {
     if (!history || !history.length) return null;
-    const foodKnowledge = (typeof INTERNATIONAL_FOOD_KNOWLEDGE !== 'undefined') ? INTERNATIONAL_FOOD_KNOWLEDGE : {};
+    const candidates = getSortedFoodKnowledgeCandidates();
     
     // Scan recent messages backwards
     for (let i = history.length - 1; i >= 0; i--) {
       const msg = history[i];
       const text = safeStr(msg.content).toLowerCase();
       
-      for (const [key, food] of Object.entries(foodKnowledge)) {
-        if (matchesWord(text, key) || (food.names && food.names.some(n => matchesWord(text, n)))) {
-          return key;
+      for (const cand of candidates) {
+        if (matchesWord(text, cand.pattern)) {
+          return cand.key;
         }
       }
     }
@@ -1549,45 +1641,57 @@ Be direct, supportive, and scientifically grounded. Use formatted bolding and bu
   }
 
   function findFoodInKnowledge(queryLower) {
+    const q = safeStr(queryLower).trim().toLowerCase();
+    if (!q) return null;
+
     const foodKnowledge = (typeof INTERNATIONAL_FOOD_KNOWLEDGE !== 'undefined') ? INTERNATIONAL_FOOD_KNOWLEDGE : {};
-    
-    // Exact or direct match
-    for (const [key, food] of Object.entries(foodKnowledge)) {
-      if (matchesWord(queryLower, key)) return { key, food };
-      if (food.names && food.names.some(n => {
-        const nl = safeStr(n).trim().toLowerCase();
-        if (nl.length < 3) return false;
-        return matchesWord(queryLower, nl);
-      })) {
-        return { key, food };
-      }
+
+    // Explicit Compound Entity Rules to prevent single-token swallowing
+    if (q.includes('apple juice') || (q.includes('juice') && q.includes('apple'))) {
+      if (foodKnowledge['apple juice']) return { key: 'apple juice', food: foodKnowledge['apple juice'] };
+    }
+    if (q.includes('banana smoothie') || q.includes('banana shake') || ((q.includes('smoothie') || q.includes('shake')) && q.includes('banana'))) {
+      if (foodKnowledge['banana smoothie']) return { key: 'banana smoothie', food: foodKnowledge['banana smoothie'] };
+    }
+    if (q.includes('white rice') || q.includes('steamed rice') || q.includes('boiled rice') || q.includes('cooked white rice') || q.includes('plain rice') || q.includes('basmati white rice') || q.includes('jasmine rice')) {
+      if (foodKnowledge['cooked white rice']) return { key: 'cooked white rice', food: foodKnowledge['cooked white rice'] };
+    }
+    if (q.includes('brown rice') || q.includes('whole grain rice')) {
+      if (foodKnowledge['brown rice']) return { key: 'brown rice', food: foodKnowledge['brown rice'] };
+    }
+    if (q.includes('dal chawal') || q.includes('daal chawal') || q.includes('dal and rice') || q.includes('daal and rice')) {
+      if (foodKnowledge['dal chawal']) return { key: 'dal chawal', food: foodKnowledge['dal chawal'] };
+    }
+    if (q.includes('palak paneer') || q.includes('saag paneer')) {
+      if (foodKnowledge['palak paneer']) return { key: 'palak paneer', food: foodKnowledge['palak paneer'] };
+    }
+    if (q.includes('chicken biryani') || (q.includes('biryani') && q.includes('chicken'))) {
+      if (foodKnowledge['biryani']) return { key: 'biryani', food: foodKnowledge['biryani'] };
+    }
+    if (q.includes('extra virgin olive oil') || q.includes('olive oil') || q.includes('evoo')) {
+      if (foodKnowledge['extra virgin olive oil']) return { key: 'extra virgin olive oil', food: foodKnowledge['extra virgin olive oil'] };
+    }
+    if (q.includes('peanut butter') || q.includes('pb')) {
+      if (foodKnowledge['peanut butter']) return { key: 'peanut butter', food: foodKnowledge['peanut butter'] };
+    }
+    if (q.includes('sweet potato') || q.includes('sweet potatoes') || q.includes('shakarkandi')) {
+      if (foodKnowledge['sweet potato']) return { key: 'sweet potato', food: foodKnowledge['sweet potato'] };
+    }
+    if (q.includes('almond milk')) {
+      if (foodKnowledge['almond milk']) return { key: 'almond milk', food: foodKnowledge['almond milk'] };
+    }
+    if (q.includes('soy milk') || q.includes('soya milk')) {
+      if (foodKnowledge['soy milk']) return { key: 'soy milk', food: foodKnowledge['soy milk'] };
+    }
+    if (q.includes('green tea') || q.includes('matcha')) {
+      if (foodKnowledge['green tea']) return { key: 'green tea', food: foodKnowledge['green tea'] };
     }
 
-    // Check ALL_FOODS if not found
-    const allFoods = (typeof ALL_FOODS !== 'undefined') ? ALL_FOODS : [];
-    for (const f of allFoods) {
-      const fName = safeStr(f.name).trim().toLowerCase();
-      if (matchesWord(queryLower, fName)) {
-        return {
-          key: fName,
-          food: {
-            names: [fName],
-            category: f.category || "Whole Foods",
-            serving: f.servingSize || "1 standard serving",
-            calories: f.calories || 100,
-            macros: {
-              protein: f.proteinGrams || 0,
-              carbs: f.carbsGrams || 0,
-              fat: f.fatGrams || 0,
-              fiber: f.fiberGrams || 0
-            },
-            keyNutrients: (f.micronutrients || []).map(m => `${safeStr(m.name)} (${safeStr(m.amount)})`).join(', ') || "Essential micronutrients",
-            mechanisms: safeStr(f.description) || "Delivers bioactive cellular co-factors and dietary fiber.",
-            synergies: "Pair with complementary whole foods, healthy cold-pressed lipids, or citrus.",
-            benefits: (f.healthBenefits || []).join('; ') || "Metabolic health and nutritional balance.",
-            caveats: "Enjoy as part of a varied, minimally processed dietary pattern."
-          }
-        };
+    // Specificity-sorted candidate pattern match
+    const candidates = getSortedFoodKnowledgeCandidates();
+    for (const cand of candidates) {
+      if (matchesWord(q, cand.pattern)) {
+        return { key: cand.key, food: cand.food };
       }
     }
 
