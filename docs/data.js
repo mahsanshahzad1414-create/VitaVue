@@ -3048,3 +3048,21 @@ const DIET_PLANNER_PRESETS = {
     ]
   }
 };
+
+// Explicitly attach all data sets to global window / globalThis for cross-script compatibility
+if (typeof window !== 'undefined') {
+  window.FOOD_CATEGORIES = FOOD_CATEGORIES;
+  window.ALL_FOODS = ALL_FOODS;
+  window.ARTICLE_CATEGORIES = ARTICLE_CATEGORIES;
+  window.ALL_ARTICLES = ALL_ARTICLES;
+  window.NUTRITION_MYTHS = NUTRITION_MYTHS;
+  window.DIET_PLANNER_PRESETS = DIET_PLANNER_PRESETS;
+}
+if (typeof globalThis !== 'undefined') {
+  globalThis.FOOD_CATEGORIES = FOOD_CATEGORIES;
+  globalThis.ALL_FOODS = ALL_FOODS;
+  globalThis.ARTICLE_CATEGORIES = ARTICLE_CATEGORIES;
+  globalThis.ALL_ARTICLES = ALL_ARTICLES;
+  globalThis.NUTRITION_MYTHS = NUTRITION_MYTHS;
+  globalThis.DIET_PLANNER_PRESETS = DIET_PLANNER_PRESETS;
+}
